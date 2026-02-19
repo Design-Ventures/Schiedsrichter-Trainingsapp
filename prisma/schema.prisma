@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// User
+// ============================================
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Regeltest relations
+  regeltestSessions RegeltestSession[]
+
+  // Lernmodus relations (for later)
+  quizSessions QuizSession[]
+
+  @@map("users")
+}
+
+// ============================================
+// Regeltest MVP
+// ============================================
+
+enum RegeltestMode {
+  EXAM // 30 Fragen, 30 Sek/Frage, max 60 Punkte
+  TEST // 15 Fragen, kein Zeitlimit, max 30 Punkte
+}
+
+model RegeltestQuestion {
+  id              String   @id @default(uuid())
+  situation       String   @db.Text
+  correctAnswer   String   @db.Text
+  explanation     String?  @db.Text
+  criteriaFull    String[] // All must match -> 2 points
+  criteriaPartial String[] // At least one -> 1 point
+  ruleReference   String?
+  source          String   // e.g. "SR-Zeitung 01/2025"
+  sourceDate      DateTime?
+  tags            String[]
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  answers RegeltestAnswer[]
+
+  @@map("regeltest_questions")
+}
+
+model RegeltestSession {
+  id            String        @id @default(uuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mode          RegeltestMode
+  totalQuestions Int
+  totalScore    Int           @default(0)
+  maxScore      Int
+  timeSpentSecs Int           @default(0)
+  startedAt     DateTime      @default(now())
+  completedAt   DateTime?
+  isCompleted   Boolean       @default(false)
+  isEvaluated   Boolean       @default(false)
+
+  answers RegeltestAnswer[]
+
+  @@map("regeltest_sessions")
+}
+
+model RegeltestAnswer {
+  id              String            @id @default(uuid())
+  sessionId       String
+  session         RegeltestSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  questionId      String
+  question        RegeltestQuestion @relation(fields: [questionId], references: [id])
+  questionIndex   Int
+  userAnswer      String            @db.Text
+  score           Int               @default(0)
+  aiFeedback      String?           @db.Text
+  matchedCriteria String[]
+  timeSpentSecs   Int               @default(0)
+  answeredAt      DateTime          @default(now())
+
+  @@unique([sessionId, questionIndex])
+  @@map("regeltest_answers")
+}
+
+// ============================================
+// Lernmodus (Multiple Choice - for later)
+// ============================================
+
+enum QuizMode {
+  PRACTICE
+  CHALLENGE
+}
+
+model Question {
+  id                 String   @id @default(uuid())
+  questionText       String   @db.Text
+  options            String[]
+  correctOptionIndex Int
+  category           String?
+  difficulty         Int      @default(1)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  answers QuizAnswer[]
+
+  @@map("questions")
+}
+
+model QuizSession {
+  id            String    @id @default(uuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mode          QuizMode
+  totalQuestions Int
+  correctAnswers Int      @default(0)
+  startedAt     DateTime  @default(now())
+  completedAt   DateTime?
+  isCompleted   Boolean   @default(false)
+
+  answers QuizAnswer[]
+
+  @@map("quiz_sessions")
+}
+
+model QuizAnswer {
+  id            String      @id @default(uuid())
+  sessionId     String
+  session       QuizSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  questionId    String
+  question      Question    @relation(fields: [questionId], references: [id])
+  selectedIndex Int
+  isCorrect     Boolean
+  answeredAt    DateTime    @default(now())
+
+  @@map("quiz_answers")
+}

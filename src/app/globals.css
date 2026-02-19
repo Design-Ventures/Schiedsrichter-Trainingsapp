@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dfb-green: #006B3F;
+  --color-dfb-green-light: #008A51;
+  --color-dfb-green-dark: #005432;
+  --color-dfb-gold: #C9B037;
+  --color-dfb-gold-light: #D4BF5A;
+  --color-dfb-gold-dark: #A8922B;
+  --color-dfb-dark: #1A1A2E;
+  --color-dfb-dark-light: #2A2A3E;
+  --color-dfb-gray: #F4F4F5;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-dfb-dark antialiased;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+}
