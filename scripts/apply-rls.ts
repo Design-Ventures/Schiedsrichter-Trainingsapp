@@ -7,6 +7,23 @@ const prisma = new PrismaClient({
 });
 
 const statements = [
+  // Drop all existing policies first
+  `DROP POLICY IF EXISTS "users_select_own" ON users`,
+  `DROP POLICY IF EXISTS "users_update_own" ON users`,
+  `DROP POLICY IF EXISTS "questions_select_authenticated" ON regeltest_questions`,
+  `DROP POLICY IF EXISTS "sessions_select_own" ON regeltest_sessions`,
+  `DROP POLICY IF EXISTS "sessions_insert_own" ON regeltest_sessions`,
+  `DROP POLICY IF EXISTS "sessions_update_own" ON regeltest_sessions`,
+  `DROP POLICY IF EXISTS "answers_select_own" ON regeltest_answers`,
+  `DROP POLICY IF EXISTS "answers_insert_own" ON regeltest_answers`,
+  `DROP POLICY IF EXISTS "answers_update_own" ON regeltest_answers`,
+  `DROP POLICY IF EXISTS "mc_questions_select_authenticated" ON questions`,
+  `DROP POLICY IF EXISTS "quiz_sessions_select_own" ON quiz_sessions`,
+  `DROP POLICY IF EXISTS "quiz_sessions_insert_own" ON quiz_sessions`,
+  `DROP POLICY IF EXISTS "quiz_sessions_update_own" ON quiz_sessions`,
+  `DROP POLICY IF EXISTS "quiz_answers_select_own" ON quiz_answers`,
+  `DROP POLICY IF EXISTS "quiz_answers_insert_own" ON quiz_answers`,
+
   // Enable RLS on all tables
   `ALTER TABLE users ENABLE ROW LEVEL SECURITY`,
   `ALTER TABLE regeltest_questions ENABLE ROW LEVEL SECURITY`,
@@ -17,29 +34,29 @@ const statements = [
   `ALTER TABLE quiz_answers ENABLE ROW LEVEL SECURITY`,
 
   // users: own row only
-  `CREATE POLICY "users_select_own" ON users FOR SELECT TO authenticated USING (id = auth.uid()::text)`,
-  `CREATE POLICY "users_update_own" ON users FOR UPDATE TO authenticated USING (id = auth.uid()::text)`,
+  `CREATE POLICY "users_select_own" ON users FOR SELECT TO authenticated USING (id = (select auth.uid())::text)`,
+  `CREATE POLICY "users_update_own" ON users FOR UPDATE TO authenticated USING (id = (select auth.uid())::text)`,
 
   // regeltest_questions: read-only for authenticated
   `CREATE POLICY "questions_select_authenticated" ON regeltest_questions FOR SELECT TO authenticated USING (true)`,
 
   // regeltest_sessions: own sessions only
-  `CREATE POLICY "sessions_select_own" ON regeltest_sessions FOR SELECT TO authenticated USING ("userId" = auth.uid()::text)`,
-  `CREATE POLICY "sessions_insert_own" ON regeltest_sessions FOR INSERT TO authenticated WITH CHECK ("userId" = auth.uid()::text)`,
-  `CREATE POLICY "sessions_update_own" ON regeltest_sessions FOR UPDATE TO authenticated USING ("userId" = auth.uid()::text)`,
+  `CREATE POLICY "sessions_select_own" ON regeltest_sessions FOR SELECT TO authenticated USING ("userId" = (select auth.uid())::text)`,
+  `CREATE POLICY "sessions_insert_own" ON regeltest_sessions FOR INSERT TO authenticated WITH CHECK ("userId" = (select auth.uid())::text)`,
+  `CREATE POLICY "sessions_update_own" ON regeltest_sessions FOR UPDATE TO authenticated USING ("userId" = (select auth.uid())::text)`,
 
   // regeltest_answers: own answers only (via session)
-  `CREATE POLICY "answers_select_own" ON regeltest_answers FOR SELECT TO authenticated USING ("sessionId" IN (SELECT id FROM regeltest_sessions WHERE "userId" = auth.uid()::text))`,
-  `CREATE POLICY "answers_insert_own" ON regeltest_answers FOR INSERT TO authenticated WITH CHECK ("sessionId" IN (SELECT id FROM regeltest_sessions WHERE "userId" = auth.uid()::text))`,
-  `CREATE POLICY "answers_update_own" ON regeltest_answers FOR UPDATE TO authenticated USING ("sessionId" IN (SELECT id FROM regeltest_sessions WHERE "userId" = auth.uid()::text))`,
+  `CREATE POLICY "answers_select_own" ON regeltest_answers FOR SELECT TO authenticated USING ("sessionId" IN (SELECT id FROM regeltest_sessions WHERE "userId" = (select auth.uid())::text))`,
+  `CREATE POLICY "answers_insert_own" ON regeltest_answers FOR INSERT TO authenticated WITH CHECK ("sessionId" IN (SELECT id FROM regeltest_sessions WHERE "userId" = (select auth.uid())::text))`,
+  `CREATE POLICY "answers_update_own" ON regeltest_answers FOR UPDATE TO authenticated USING ("sessionId" IN (SELECT id FROM regeltest_sessions WHERE "userId" = (select auth.uid())::text))`,
 
   // Quiz tables (future)
   `CREATE POLICY "mc_questions_select_authenticated" ON questions FOR SELECT TO authenticated USING (true)`,
-  `CREATE POLICY "quiz_sessions_select_own" ON quiz_sessions FOR SELECT TO authenticated USING ("userId" = auth.uid()::text)`,
-  `CREATE POLICY "quiz_sessions_insert_own" ON quiz_sessions FOR INSERT TO authenticated WITH CHECK ("userId" = auth.uid()::text)`,
-  `CREATE POLICY "quiz_sessions_update_own" ON quiz_sessions FOR UPDATE TO authenticated USING ("userId" = auth.uid()::text)`,
-  `CREATE POLICY "quiz_answers_select_own" ON quiz_answers FOR SELECT TO authenticated USING ("sessionId" IN (SELECT id FROM quiz_sessions WHERE "userId" = auth.uid()::text))`,
-  `CREATE POLICY "quiz_answers_insert_own" ON quiz_answers FOR INSERT TO authenticated WITH CHECK ("sessionId" IN (SELECT id FROM quiz_sessions WHERE "userId" = auth.uid()::text))`,
+  `CREATE POLICY "quiz_sessions_select_own" ON quiz_sessions FOR SELECT TO authenticated USING ("userId" = (select auth.uid())::text)`,
+  `CREATE POLICY "quiz_sessions_insert_own" ON quiz_sessions FOR INSERT TO authenticated WITH CHECK ("userId" = (select auth.uid())::text)`,
+  `CREATE POLICY "quiz_sessions_update_own" ON quiz_sessions FOR UPDATE TO authenticated USING ("userId" = (select auth.uid())::text)`,
+  `CREATE POLICY "quiz_answers_select_own" ON quiz_answers FOR SELECT TO authenticated USING ("sessionId" IN (SELECT id FROM quiz_sessions WHERE "userId" = (select auth.uid())::text))`,
+  `CREATE POLICY "quiz_answers_insert_own" ON quiz_answers FOR INSERT TO authenticated WITH CHECK ("sessionId" IN (SELECT id FROM quiz_sessions WHERE "userId" = (select auth.uid())::text))`,
 ];
 
 async function main() {
@@ -50,12 +67,8 @@ async function main() {
       console.log(`  OK: ${label}...`);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
-      if (message.includes("already exists")) {
-        console.log(`  SKIP (exists): ${label}...`);
-      } else {
-        console.error(`  FAIL: ${label}...`);
-        console.error(`        ${message}`);
-      }
+      console.error(`  FAIL: ${label}...`);
+      console.error(`        ${message}`);
     }
   }
   console.log("\nDone!");

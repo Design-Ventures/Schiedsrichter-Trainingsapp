@@ -209,7 +209,7 @@
   {
     "index": 11,
     "situation": "Ein Angreifer befindet sich knapp hinter der Mittellinie in einer Abseitsposition. Als ein Mitspieler einen langen Pass auf ihn spielt, wird der Ball von einem Verteidiger auf Höhe der Mittellinie mit einem absichtlichen Handspiel abgefangen. Wie entscheidet der Schiedsrichter?",
-    "correctAnswer": "Direkter Freistoß, keine persönliche Strafe. Hier liegt weder eine Verhinderung eines aussichtsreichen Angriffs noch einer klaren Torchance vor, da der Spieler, wenn er denn eingegri en hätte, im Abseits gestanden hätte.",
+    "correctAnswer": "Direkter Freistoß, keine persönliche Strafe. Hier liegt weder eine Verhinderung eines aussichtsreichen Angriffs noch einer klaren Torchance vor, da der Spieler, wenn er denn eingegriffen hätte, im Abseits gestanden hätte.",
     "source": "SR-Zeitung 01/2025",
     "criteriaFull": [
       "Direkter Freistoß"
@@ -225,7 +225,7 @@
       "Persönliche Strafe",
       "Spielfortsetzung"
     ],
-    "explanation": "Hier liegt weder eine Verhinderung eines aussichtsreichen Angriffs noch einer klaren Torchance vor, da der Spieler, wenn er denn eingegri en hätte, im Abseits gestanden hätte. (Vgl. Regel 11 (Abseits))"
+    "explanation": "Hier liegt weder eine Verhinderung eines aussichtsreichen Angriffs noch einer klaren Torchance vor, da der Spieler, wenn er denn eingegriffen hätte, im Abseits gestanden hätte. (Vgl. Regel 11 (Abseits))"
   },
   {
     "index": 12,
@@ -567,7 +567,7 @@
   },
   {
     "index": 28,
-    "situation": "Freistoß für die Angreifer am Strafraumteilkreis. Nach dem Stellen der Mauer mit drei Verteidigern gibt der Schiedsrichter den Ball mit P frei. Unmittelbar bevor der Schütze den Ball trifft, läuft ein Angreifer näher als einen Meter zu den Verteidigern in der Mauer. Der Ball wird über das Tor geschossen. Wie entscheidet der Schiedsrichter?",
+    "situation": "Freistoß für die Angreifer am Strafraumteilkreis. Nach dem Stellen der Mauer mit drei Verteidigern gibt der Schiedsrichter den Ball mit Pfiff frei. Unmittelbar bevor der Schütze den Ball trifft, läuft ein Angreifer näher als einen Meter zu den Verteidigern in der Mauer. Der Ball wird über das Tor geschossen. Wie entscheidet der Schiedsrichter?",
     "correctAnswer": "Indirekter Freistoß für die verteidigende Mannschaft. Auch wenn man hier auf den ersten Blick auf Vorteil und Wiederspielen entscheiden könnte, ist der indirekte Freistoß - etwa 15 Meter näher zum Tor der gegnerischen Mannschaft der bessere Vorteil. Zudem wird somit klar, dass der Schiedsrichter das Vergehen erkannt hat und nicht duldet.",
     "source": "SR-Zeitung 02/2025",
     "criteriaFull": [
@@ -649,7 +649,7 @@
   },
   {
     "index": 32,
-    "situation": "Ein Angreifer des Gastvereins schießt vom Strafraum-Teilkreis den Ball Richtung leeres Tor. Ein Teamoffizieller des Heimvereins betritt neben dem Tor das Spielfeld und will den Ball wegschießen. Er berührt jedoch den Ball nur, und dieser rollt trotzdem ins Tor. Welche Entscheidungen sind zu tre en?",
+    "situation": "Ein Angreifer des Gastvereins schießt vom Strafraum-Teilkreis den Ball Richtung leeres Tor. Ein Teamoffizieller des Heimvereins betritt neben dem Tor das Spielfeld und will den Ball wegschießen. Er berührt jedoch den Ball nur, und dieser rollt trotzdem ins Tor. Welche Entscheidungen sind zu treffen?",
     "correctAnswer": "Indirekter Freistoß, Feldverweis. Bei jeder Spielfortsetzung ist eine Doppelberührung mit einer Persönlichen Strafe zu ahnden, wenn dadurch eine offensichtliche Torchance oder ein aussichtsreicher Angriff verhindert wird.",
     "source": "SR-Zeitung 03/2025",
     "criteriaFull": [
@@ -743,7 +743,7 @@
   {
     "index": 36,
     "situation": "Ein Angreifer steht im gegnerischen Strafraum und schlägt den Ball mit der Hand etwa auf Kopfhöhe Richtung Tor. Der Ball fliegt jedoch neben dem Tor über die Torlinie. Welche Persönliche Strafe muss der Unparteiische aussprechen, bevor er das Spiel mit direktem Freistoß fortsetzen lässt?",
-    "correctAnswer": "Weiterspielen. Es handelt sich um kein strafbares Handspiel vom Verteidiger. Dass er sich mit dem Arm abfängt, ist es eine natürliche Bewegung, auch wenn der Begri \"Abstützarm\" regeltechnisch nicht mehr verwendet wird.",
+    "correctAnswer": "Weiterspielen. Es handelt sich um kein strafbares Handspiel vom Verteidiger. Dass er sich mit dem Arm abfängt, ist es eine natürliche Bewegung, auch wenn der Begriff \"Abstützarm\" regeltechnisch nicht mehr verwendet wird.",
     "source": "SR-Zeitung 03/2025",
     "criteriaFull": [
       "Weiterspielen"
@@ -758,7 +758,7 @@
       "Persönliche Strafe",
       "Spielfortsetzung"
     ],
-    "explanation": "Es handelt sich um kein strafbares Handspiel vom Verteidiger. Dass er sich mit dem Arm abfängt, ist es eine natürliche Bewegung, auch wenn der Begri \"Abstützarm\" regeltechnisch nicht mehr verwendet wird. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
+    "explanation": "Es handelt sich um kein strafbares Handspiel vom Verteidiger. Dass er sich mit dem Arm abfängt, ist es eine natürliche Bewegung, auch wenn der Begriff \"Abstützarm\" regeltechnisch nicht mehr verwendet wird. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
   },
   {
     "index": 37,
@@ -804,7 +804,7 @@
   {
     "index": 39,
     "situation": "Ein Angreifer verlässt das Spielfeld über die Torlinie, um sich der Abseitsposition zu entziehen. Als ein Verteidiger im Strafraum den Ball in seine Richtung spielt, läuft der Angreifer auf das Spielfeld und spielt den Ball mit dem Fuß. Entscheidung?",
-    "correctAnswer": "Direkter Freistoß, Verwarnung. Es wird eine Verwarnung ausgesprochen, da der Spieler unerlaubt das Spielfeld betreten hat. Das Abseits kann hier nicht mehr au eben, da der Ball zuvor unter kontrollierten Bedingungen vom Verteidiger gespielt wurde.",
+    "correctAnswer": "Direkter Freistoß, Verwarnung. Es wird eine Verwarnung ausgesprochen, da der Spieler unerlaubt das Spielfeld betreten hat. Das Abseits kann hier nicht mehr aufeben, da der Ball zuvor unter kontrollierten Bedingungen vom Verteidiger gespielt wurde.",
     "source": "SR-Zeitung 03/2025",
     "criteriaFull": [
       "Direkter Freistoß",
@@ -820,7 +820,7 @@
       "Persönliche Strafe",
       "Spielfortsetzung"
     ],
-    "explanation": "Es wird eine Verwarnung ausgesprochen, da der Spieler unerlaubt das Spielfeld betreten hat. Das Abseits kann hier nicht mehr au eben, da der Ball zuvor unter kontrollierten Bedingungen vom Verteidiger gespielt wurde. (Vgl. Regel 11 (Abseits))"
+    "explanation": "Es wird eine Verwarnung ausgesprochen, da der Spieler unerlaubt das Spielfeld betreten hat. Das Abseits kann hier nicht mehr aufeben, da der Ball zuvor unter kontrollierten Bedingungen vom Verteidiger gespielt wurde. (Vgl. Regel 11 (Abseits))"
   },
   {
     "index": 40,
@@ -869,7 +869,7 @@
   {
     "index": 42,
     "situation": "Vor der Ausführung eines Freistoßes an der Mittellinie nahe der Seitenlinie stehen drei Einwechselspieler des Gastvereins in deren Coaching-Zone. Der Unparteiische hört aus diesem Bereich deutlich eine Beleidigung, jedoch kann er diese nicht zuordnen. Da der Schiri den Täter nicht eruieren kann, schließt er nach ergebnisloser Befragung des Trainers diesen aus. Ist dies korrekt?",
-    "correctAnswer": "Ja. Die Einwechselspieler standen in der CoachingZone. Somit wird der Trainer hier in Haftung genommen, da er trotz Befragung des Schiris den Täter nicht genannt hat.",
+    "correctAnswer": "Ja. Die Einwechselspieler standen in der Coaching-Zone. Somit wird der Trainer hier in Haftung genommen, da er trotz Befragung des Schiris den Täter nicht genannt hat.",
     "source": "SR-Zeitung 03/2025",
     "criteriaFull": [
       "Ja"
@@ -883,7 +883,7 @@
       "Spielfortsetzung",
       "Unsportliches Verhalten"
     ],
-    "explanation": "Die Einwechselspieler standen in der CoachingZone. Somit wird der Trainer hier in Haftung genommen, da er trotz Befragung des Schiris den Täter nicht genannt hat. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
+    "explanation": "Die Einwechselspieler standen in der Coaching-Zone. Somit wird der Trainer hier in Haftung genommen, da er trotz Befragung des Schiris den Täter nicht genannt hat. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
   },
   {
     "index": 43,
@@ -951,8 +951,8 @@
   },
   {
     "index": 46,
-    "situation": "Vor einem Kreisligaspiel bittet der Heimverein den Schiedsrichter, umstrittene Entscheidungen mit Begründung per Lautsprecher-Durchsage auf dem Sportplatz bekannt zu geben, um so dem \"Public Announcement\" (ö entliche Bekanntgabe) Rechnung zu tragen. Soll der Schiedsrichter diesem Wunsch entsprechen?",
-    "correctAnswer": "Nein. \"Public Announcement\" ist nur da vorgesehen, wo ein Video-Assistent zum Einsatz kommt bzw. wo dies von den Ausführungsbestimmungen des jeweiligen Wettbewerbs ausdrücklich geregelt ist. Das trifft in Deutschland nur auf die Pro ligen zu.",
+    "situation": "Vor einem Kreisligaspiel bittet der Heimverein den Schiedsrichter, umstrittene Entscheidungen mit Begründung per Lautsprecher-Durchsage auf dem Sportplatz bekannt zu geben, um so dem \"Public Announcement\" (öffentliche Bekanntgabe) Rechnung zu tragen. Soll der Schiedsrichter diesem Wunsch entsprechen?",
+    "correctAnswer": "Nein. \"Public Announcement\" ist nur da vorgesehen, wo ein Video-Assistent zum Einsatz kommt bzw. wo dies von den Ausführungsbestimmungen des jeweiligen Wettbewerbs ausdrücklich geregelt ist. Das trifft in Deutschland nur auf die Profiligen zu.",
     "source": "SR-Zeitung 04/2025",
     "criteriaFull": [
       "Nein"
@@ -965,12 +965,12 @@
     "tags": [
       "VAR"
     ],
-    "explanation": "\"Public Announcement\" ist nur da vorgesehen, wo ein Video-Assistent zum Einsatz kommt bzw. wo dies von den Ausführungsbestimmungen des jeweiligen Wettbewerbs ausdrücklich geregelt ist. Das trifft in Deutschland nur auf die Pro ligen zu. (Vgl. Regel 5 (Schiedsrichter))"
+    "explanation": "\"Public Announcement\" ist nur da vorgesehen, wo ein Video-Assistent zum Einsatz kommt bzw. wo dies von den Ausführungsbestimmungen des jeweiligen Wettbewerbs ausdrücklich geregelt ist. Das trifft in Deutschland nur auf die Profiligen zu. (Vgl. Regel 5 (Schiedsrichter))"
   },
   {
     "index": 47,
-    "situation": "In welcher Reihenfolge und warum wird a) die Erklärung des Vorfalls und b) die nale Entscheidung beim \"Public Announcement\" bekannt gegeben?",
-    "correctAnswer": "Reihenfolge: erst a), dann b). Zuerst wird der Vorfall beschrieben bzw. erklärt, dann folgt die nale Entscheidung. Grund waren die Erkenntnisse aus dem Pilotprojekt, dass ansonsten die Erklärung in den Jubel bzw. im Lärm der Zuschauer untergehen kann.",
+    "situation": "In welcher Reihenfolge und warum wird a) die Erklärung des Vorfalls und b) die finale Entscheidung beim \"Public Announcement\" bekannt gegeben?",
+    "correctAnswer": "Reihenfolge: erst a), dann b). Zuerst wird der Vorfall beschrieben bzw. erklärt, dann folgt die finale Entscheidung. Grund waren die Erkenntnisse aus dem Pilotprojekt, dass ansonsten die Erklärung in den Jubel bzw. im Lärm der Zuschauer untergehen kann.",
     "source": "SR-Zeitung 04/2025",
     "criteriaFull": [
       "Erst Erklärung des Vorfalls, dann finale Entscheidung",
@@ -984,7 +984,7 @@
     "tags": [
       "VAR"
     ],
-    "explanation": "Zuerst wird der Vorfall beschrieben bzw. erklärt, dann folgt die nale Entscheidung. Grund waren die Erkenntnisse aus dem Pilotprojekt, dass ansonsten die Erklärung in den Jubel bzw. im Lärm der Zuschauer untergehen kann. (Vgl. Regel 5 (Schiedsrichter))"
+    "explanation": "Zuerst wird der Vorfall beschrieben bzw. erklärt, dann folgt die finale Entscheidung. Grund waren die Erkenntnisse aus dem Pilotprojekt, dass ansonsten die Erklärung in den Jubel bzw. im Lärm der Zuschauer untergehen kann. (Vgl. Regel 5 (Schiedsrichter))"
   },
   {
     "index": 48,
@@ -1245,7 +1245,7 @@
   {
     "index": 61,
     "situation": "Eine Flanke aus dem Halbfeld wird in den Strafraum geschlagen. Noch bevor der Ball überhaupt in den Strafraum gelangt, wird dort der Mitteltürmer mit beiden Armen von einem Verteidiger zu Boden gerissen. Der Mittelstürmer stand allerdings beim Abspiel in einer Abseitsposition. Wie entscheidet der Schiedsrichter?",
-    "correctAnswer": "Strafstoß; Verwarnung. Die Abseitsposition ist noch nicht strafbar, da zum Zeitpunkt des Haltevergehens noch kein Zweikampf mit dem Gegner um den Ball statt findet. Somit ist das unsportliche Halten mit beiden Armen um den Gegner zu bestrafen.",
+    "correctAnswer": "Strafstoß; Verwarnung. Die Abseitsposition ist noch nicht strafbar, da zum Zeitpunkt des Haltevergehens noch kein Zweikampf mit dem Gegner um den Ball stattfindet. Somit ist das unsportliche Halten mit beiden Armen um den Gegner zu bestrafen.",
     "source": "SR-Zeitung 05/2025",
     "criteriaFull": [
       "Strafstoß",
@@ -1264,7 +1264,7 @@
       "Strafstoß",
       "Unsportliches Verhalten"
     ],
-    "explanation": "Die Abseitsposition ist noch nicht strafbar, da zum Zeitpunkt des Haltevergehens noch kein Zweikampf mit dem Gegner um den Ball statt findet. Somit ist das unsportliche Halten mit beiden Armen um den Gegner zu bestrafen. (Vgl. Regel 11 (Abseits))"
+    "explanation": "Die Abseitsposition ist noch nicht strafbar, da zum Zeitpunkt des Haltevergehens noch kein Zweikampf mit dem Gegner um den Ball stattfindet. Somit ist das unsportliche Halten mit beiden Armen um den Gegner zu bestrafen. (Vgl. Regel 11 (Abseits))"
   },
   {
     "index": 62,
@@ -1351,7 +1351,7 @@
   },
   {
     "index": 66,
-    "situation": "Als ein Stürmer im gegnerischen Strafraum bei einem Zweikampf zu Fall kommt, entscheidet der Unparteiische auf Weiterspielen. Nun beleidigt der Ersatz-Keeper des angreifenden Teams von der Auswechselbank den Schiedsrichter. Aus diesem Grund unterbricht dieser das Spiel. Welche Entscheidung muss er tre en?",
+    "situation": "Als ein Stürmer im gegnerischen Strafraum bei einem Zweikampf zu Fall kommt, entscheidet der Unparteiische auf Weiterspielen. Nun beleidigt der Ersatz-Keeper des angreifenden Teams von der Auswechselbank den Schiedsrichter. Aus diesem Grund unterbricht dieser das Spiel. Welche Entscheidung muss er treffen?",
     "correctAnswer": "Indirekter Freistoß auf der Seitenauslinie; Feldverweis/Innenraumverweis mittels Roter Karte. Der Freistoß wird immer von der Stelle der Außenlinie ausgeführt, die dem Vergehen am nächsten liegt. Und da es sich hier um eine Unsportlichkeit handelt, wird diese mit einem indirekten Freistoß bestraft.",
     "source": "SR-Zeitung 05/2025",
     "criteriaFull": [
@@ -1481,7 +1481,7 @@
   },
   {
     "index": 72,
-    "situation": "In einem Kreisligaspiel möchte ein Spieler aufgrund frostiger Temperaturen mit einer Zipfelmütze au aufen. Von dieser Mütze geht weder eine Gefahr für andere Spieler aus, noch verscha t sich der Spieler dadurch einen Vorteil. Der Schiri verbietet dem Spieler das Tragen der Mütze, obwohl der Torhüter wiederum eine Cap tragen darf. Handelt der Schiedsrichter korrekt?",
+    "situation": "In einem Kreisligaspiel möchte ein Spieler aufgrund frostiger Temperaturen mit einer Zipfelmütze aufaufen. Von dieser Mütze geht weder eine Gefahr für andere Spieler aus, noch verscha t sich der Spieler dadurch einen Vorteil. Der Schiri verbietet dem Spieler das Tragen der Mütze, obwohl der Torhüter wiederum eine Cap tragen darf. Handelt der Schiedsrichter korrekt?",
     "correctAnswer": "Kopfbeddeckungen sind dem Torhüter erlaubt, zum Beispiel beim Blick in die Sonne oder das Flutlicht, aber keinem weiteren Spieler. Es sei denn, es handelt sich um eine medizinische Maßnahme. Diese liegt hier nicht vor, somit wird auch das Tragen der Kopfbedeckung nicht gestattet. Sollte ein medizinischer Grund vorliegen, so ist dieser dem Schiedsrichter gegenüber zu belegen.",
     "source": "SR-Zeitung 05/2025",
     "criteriaFull": [
@@ -1545,7 +1545,7 @@
   },
   {
     "index": 75,
-    "situation": "Ein Torwart hält den Ball länger als acht Sekunden kontrolliert in den Händen, ohne angegri en zu werden. Der Schiedsrichter hat jedoch vergessen, die letzten fünf Sekunden der erlaubten Ballkontrolle anzuzeigen. Darauf bekommt er nun einen Hinweis seines neutralen Assistenten. Wie kann er jetzt noch reagieren?",
+    "situation": "Ein Torwart hält den Ball länger als acht Sekunden kontrolliert in den Händen, ohne angegriffen zu werden. Der Schiedsrichter hat jedoch vergessen, die letzten fünf Sekunden der erlaubten Ballkontrolle anzuzeigen. Darauf bekommt er nun einen Hinweis seines neutralen Assistenten. Wie kann er jetzt noch reagieren?",
     "correctAnswer": "Direkter Freistoß für die gegnerische Mannschaft; Rote Karte für den Trainer. Da es sich hier um ein Werfen oder Treten eines Gegenstandes auf das Feld handelt, und dies durch einen Teamoffiziellen ist, ist in diesem Fall der Feldverweis die richtige Entscheidung.",
     "source": "SR-Zeitung 05/2025",
     "criteriaFull": [
@@ -1629,7 +1629,7 @@
   {
     "index": 79,
     "situation": "Ein allein auf das Tor zulaufender Angreifer hat in zentraler Position etwa 12 Meter vor dem Tor den Ball bereits am Torhüter vorbeigelegt. Dieser wiederum versucht, den Ball mit einem Hechtsprung noch zu erreichen, trifft mit seinen Händen allerdings nur den Angreifer am Fuß. Entscheidungen des Schiedsrichters?",
-    "correctAnswer": "Strafstoß; Verwarnung. Die Persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezi sch und ballorientiert agiert. Er versucht den Ball zu spielen, und er darf dies, entgegen den Abwehrspielern, auch mit den Händen. Dieses Vergehen ist nicht vergleichbar mit dem Halten durch einen Verteidiger.",
+    "correctAnswer": "Strafstoß; Verwarnung. Die Persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezifisch und ballorientiert agiert. Er versucht den Ball zu spielen, und er darf dies, entgegen den Abwehrspielern, auch mit den Händen. Dieses Vergehen ist nicht vergleichbar mit dem Halten durch einen Verteidiger.",
     "source": "SR-Zeitung 06/2025",
     "criteriaFull": [
       "Strafstoß",
@@ -1647,12 +1647,12 @@
       "Strafstoß",
       "Torwart"
     ],
-    "explanation": "Die Persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezi sch und ballorientiert agiert. Er versucht den Ball zu spielen, und er darf dies, entgegen den Abwehrspielern, auch mit den Händen. Dieses Vergehen ist nicht vergleichbar mit dem Halten durch einen Verteidiger. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
+    "explanation": "Die Persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezifisch und ballorientiert agiert. Er versucht den Ball zu spielen, und er darf dies, entgegen den Abwehrspielern, auch mit den Händen. Dieses Vergehen ist nicht vergleichbar mit dem Halten durch einen Verteidiger. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
   },
   {
     "index": 80,
     "situation": "Mit hohem Tempo läuft ein Stürmer alleine mit dem Ball auf das Tor zu. Er wird vom Verteidiger etwa 2 Meter innerhalb des Strafraums in zentraler Position durch ein kurzes Halten am Trikot derart behindert, dass er nicht mehr zum Torabschluss kommen kann. Wie entscheidet der Schiedsrichter?",
-    "correctAnswer": "Strafstoß; Feldverweis. Hier findet keine Reduzierung der Persönlichen Strafe (wie bei Situation 5) statt, da es sich um kein ballorientiertes und fußballspezi sches Vergehen handelt, sondern um ein klares regelwidriges Halten. Bei diesem gibt es auch bei einer Strafstoß-Entscheidung keine Reduzierung der Persönlichen Strafe.",
+    "correctAnswer": "Strafstoß; Feldverweis. Hier findet keine Reduzierung der Persönlichen Strafe (wie bei Situation 5) statt, da es sich um kein ballorientiertes und fußballspezifisches Vergehen handelt, sondern um ein klares regelwidriges Halten. Bei diesem gibt es auch bei einer Strafstoß-Entscheidung keine Reduzierung der Persönlichen Strafe.",
     "source": "SR-Zeitung 06/2025",
     "criteriaFull": [
       "Strafstoß",
@@ -1669,7 +1669,7 @@
       "Spielfortsetzung",
       "Strafstoß"
     ],
-    "explanation": "Hier findet keine Reduzierung der Persönlichen Strafe (wie bei Situation 5) statt, da es sich um kein ballorientiertes und fußballspezi sches Vergehen handelt, sondern um ein klares regelwidriges Halten. Bei diesem gibt es auch bei einer Strafstoß-Entscheidung keine Reduzierung der Persönlichen Strafe. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
+    "explanation": "Hier findet keine Reduzierung der Persönlichen Strafe (wie bei Situation 5) statt, da es sich um kein ballorientiertes und fußballspezifisches Vergehen handelt, sondern um ein klares regelwidriges Halten. Bei diesem gibt es auch bei einer Strafstoß-Entscheidung keine Reduzierung der Persönlichen Strafe. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
   },
   {
     "index": 81,
@@ -1798,7 +1798,7 @@
   {
     "index": 87,
     "situation": "Ein Angreifer hat den Torhüter umspielt, doch bevor der Ball die Torlinie überquert, läuft ein Balljunge auf das Spielfeld. Er versucht, den Ball aufzuhalten, trifft ihn auch, kann aber nicht verhindern, dass der Ball trotzdem ins Tor geht. Welche Entscheidung trifft der Schiedsrichter?",
-    "correctAnswer": "Indirekter Freistoß wegen Abseits. Entscheidend ist, ob der Spieler aus seiner Abseitsstellung störend auf den Torhüter bzw. die abwehrende Mannschaft einwirkt. Dies ist hier eindeutig der Fall. Noch bevor der Ball die Linie überschritten hat, wird der Spieler durch die Beeinflussung des Torwarts \"stra ällig\".",
+    "correctAnswer": "Indirekter Freistoß wegen Abseits. Entscheidend ist, ob der Spieler aus seiner Abseitsstellung störend auf den Torhüter bzw. die abwehrende Mannschaft einwirkt. Dies ist hier eindeutig der Fall. Noch bevor der Ball die Linie überschritten hat, wird der Spieler durch die Beeinflussung des Torwarts \"straffällig\".",
     "source": "SR-Zeitung 06/2025",
     "criteriaFull": [
       "Indirekter Freistoß"
@@ -1813,7 +1813,7 @@
       "Spielfortsetzung",
       "Torwart"
     ],
-    "explanation": "Entscheidend ist, ob der Spieler aus seiner Abseitsstellung störend auf den Torhüter bzw. die abwehrende Mannschaft einwirkt. Dies ist hier eindeutig der Fall. Noch bevor der Ball die Linie überschritten hat, wird der Spieler durch die Beeinflussung des Torwarts \"stra ällig\". (Vgl. Regel 11 (Abseits))"
+    "explanation": "Entscheidend ist, ob der Spieler aus seiner Abseitsstellung störend auf den Torhüter bzw. die abwehrende Mannschaft einwirkt. Dies ist hier eindeutig der Fall. Noch bevor der Ball die Linie überschritten hat, wird der Spieler durch die Beeinflussung des Torwarts \"straffällig\". (Vgl. Regel 11 (Abseits))"
   },
   {
     "index": 88,
@@ -1858,8 +1858,8 @@
   },
   {
     "index": 90,
-    "situation": "Als der Schiedsrichter von einem Auswechselspieler aus einer Gruppe, die sich neben dem eigenen Tor aufwärmt, beleidigt wird, kann er nicht ausmachen, wer der Täter ist. Daraufhin befragt er den Trainer der betre enden Mannschaft. Dieser kann dem Schiedsrichter jedoch auch keinen Namen nennen, worauf der Referee dem Trainer stellvertretend für den nicht zu ermittelnden Spieler die Rote Karte zeigt. Handelt er richtig?",
-    "correctAnswer": "Nein, der Trainer ist zwar in der Verantwortung, wenn der Schiedsrichter den Spieler nicht ausmachen kann, allerdings nur für Vorgänge in seinem Bereich, das heißt im Bereich der CoachingZone. Dies wurde seitens der FIFA und des IFAB so festgelegt.",
+    "situation": "Als der Schiedsrichter von einem Auswechselspieler aus einer Gruppe, die sich neben dem eigenen Tor aufwärmt, beleidigt wird, kann er nicht ausmachen, wer der Täter ist. Daraufhin befragt er den Trainer der betreffenden Mannschaft. Dieser kann dem Schiedsrichter jedoch auch keinen Namen nennen, worauf der Referee dem Trainer stellvertretend für den nicht zu ermittelnden Spieler die Rote Karte zeigt. Handelt er richtig?",
+    "correctAnswer": "Nein, der Trainer ist zwar in der Verantwortung, wenn der Schiedsrichter den Spieler nicht ausmachen kann, allerdings nur für Vorgänge in seinem Bereich, das heißt im Bereich der Coaching-Zone. Dies wurde seitens der FIFA und des IFAB so festgelegt.",
     "source": "SR-Zeitung 01/2026",
     "criteriaFull": [
       "Nein"
@@ -1877,7 +1877,7 @@
   {
     "index": 91,
     "situation": "Da sich der Torwart des Heimvereins über einen Gegenspieler ärgert, der sich drei Meter seitlich seines Tores außerhalb des Spielfeldes befindet, wirft er während des laufenden Spiels diesem den zuvor gefangenen Spielball heftig gegen den Kopf. Wie muss der Schiedsrichter in dieser Situation entscheiden?",
-    "correctAnswer": "Strafstoß, Feldverweis. Auch wenn der Kontakt außerhalb des Spielfeldes statt findet, so gilt dies regeltechnisch als auf der Linie stehend. Dass der Ball vor dem Kontakt das Spielfeld verlässt, ist laut den aktuellen Auslegungen von FIFA und IFAB nicht relevant, da schon mit dem Wurf die Straftat begangen wurde und der Fortsetzungsort in diesem Sonderfall auch im Spielfeld sein muss.",
+    "correctAnswer": "Strafstoß, Feldverweis. Auch wenn der Kontakt außerhalb des Spielfeldes stattfindet, so gilt dies regeltechnisch als auf der Linie stehend. Dass der Ball vor dem Kontakt das Spielfeld verlässt, ist laut den aktuellen Auslegungen von FIFA und IFAB nicht relevant, da schon mit dem Wurf die Straftat begangen wurde und der Fortsetzungsort in diesem Sonderfall auch im Spielfeld sein muss.",
     "source": "SR-Zeitung 01/2026",
     "criteriaFull": [
       "Strafstoß",
@@ -1894,7 +1894,7 @@
       "Strafstoß",
       "Torwart"
     ],
-    "explanation": "Auch wenn der Kontakt außerhalb des Spielfeldes statt findet, so gilt dies regeltechnisch als auf der Linie stehend. Dass der Ball vor dem Kontakt das Spielfeld verlässt, ist laut den aktuellen Auslegungen von FIFA und IFAB nicht relevant, da schon mit dem Wurf die Straftat begangen wurde und der Fortsetzungsort in diesem Sonderfall auch im Spielfeld sein muss. (Vgl. Regel 14 (Strafstoß))"
+    "explanation": "Auch wenn der Kontakt außerhalb des Spielfeldes stattfindet, so gilt dies regeltechnisch als auf der Linie stehend. Dass der Ball vor dem Kontakt das Spielfeld verlässt, ist laut den aktuellen Auslegungen von FIFA und IFAB nicht relevant, da schon mit dem Wurf die Straftat begangen wurde und der Fortsetzungsort in diesem Sonderfall auch im Spielfeld sein muss. (Vgl. Regel 14 (Strafstoß))"
   },
   {
     "index": 92,
@@ -1921,7 +1921,7 @@
   },
   {
     "index": 93,
-    "situation": "Bei der Ausführung eines direkten Freistoßes verkürzt der verteidigende Spieler den Abstand auf weniger als 9,15 Meter, bevor der Ball im Spiel ist, und verhindert dabei mit einem absichtlichen und strafbaren Handspiel eine gute Angriff ssituation des Gegners. Wie entscheidet der Schiedsrichter?",
+    "situation": "Bei der Ausführung eines direkten Freistoßes verkürzt der verteidigende Spieler den Abstand auf weniger als 9,15 Meter, bevor der Ball im Spiel ist, und verhindert dabei mit einem absichtlichen und strafbaren Handspiel eine gute Angriffssituation des Gegners. Wie entscheidet der Schiedsrichter?",
     "correctAnswer": "Direkter Freistoß, Verwarnung. Im Gegensatz zur vorherigen Situation wird hier kein \"Gelb/Rot\" ausgesprochen, obwohl neben dem zu frühen Vorlaufen auch noch ein verwarnungswürdiges Handspiel vorliegt. Da beide Vergehen zeitgleich sind, wird das schwerere Vergehen geahndet. Bei der Situation zuvor war es so, dass die Gelbe Karte bereits stand, als der Spieler dann das Spielfeld unerlaubt betrat, und dann zusätzlich ein weiteres zeitlich getrenntes Vergehen beging. Somit war er in diesem Fall zweimal zu verwarnen.",
     "source": "SR-Zeitung 01/2026",
     "criteriaFull": [
@@ -1984,7 +1984,7 @@
   {
     "index": 96,
     "situation": "Der Abwehrspieler verkürzt bei einer schnellen Einwurf-Ausführung des Gegners den Abstand zum einwerfenden Spieler auf der Seitenlinie auf weniger als zwei Meter, bevor dieser den Ball ins Spiel gebracht hat, und hält dann den eingeworfenen Ball mit der Brust auf. Wie entscheidet der Unparteiische?",
-    "correctAnswer": "Wiederholung des Schiedsrichterballs, Verwarnung. Abstandsvergehen, die eine Wiederholung der Spielfortsetzung erfordern, wertet der Schiedsrichter als verwarnungsp ichtige Unsportlichkeit.",
+    "correctAnswer": "Wiederholung des Schiedsrichterballs, Verwarnung. Abstandsvergehen, die eine Wiederholung der Spielfortsetzung erfordern, wertet der Schiedsrichter als verwarnungspflichtige Unsportlichkeit.",
     "source": "SR-Zeitung 01/2026",
     "criteriaFull": [
       "Wiederholung",
@@ -2000,7 +2000,7 @@
       "Spielfortsetzung",
       "Unsportliches Verhalten"
     ],
-    "explanation": "Abstandsvergehen, die eine Wiederholung der Spielfortsetzung erfordern, wertet der Schiedsrichter als verwarnungsp ichtige Unsportlichkeit. (Vgl. Regel 8 (Beginn und Fortsetzung des Spiels))"
+    "explanation": "Abstandsvergehen, die eine Wiederholung der Spielfortsetzung erfordern, wertet der Schiedsrichter als verwarnungspflichtige Unsportlichkeit. (Vgl. Regel 8 (Beginn und Fortsetzung des Spiels))"
   },
   {
     "index": 97,
@@ -2047,7 +2047,7 @@
   },
   {
     "index": 99,
-    "situation": "Der Schiedsrichter hat das Spiel wegen der Verletzung eines Spielers unterbrochen, ohne dass ein Regelverstoß vorgelegen hat. Nun setzt er das Spiel mit einem Schiedsrichterball fort. Ein Spieler übernimmt den korrekt ausgeführten Schiedsrichterball, läuft damit wenige Meter in Richtung Strafraum und erzielt ein Tor, ohne dass ein zweiter Spieler den Ball berührt hat. Welche Entscheidung muss der Schiedsrichter tre en?",
+    "situation": "Der Schiedsrichter hat das Spiel wegen der Verletzung eines Spielers unterbrochen, ohne dass ein Regelverstoß vorgelegen hat. Nun setzt er das Spiel mit einem Schiedsrichterball fort. Ein Spieler übernimmt den korrekt ausgeführten Schiedsrichterball, läuft damit wenige Meter in Richtung Strafraum und erzielt ein Tor, ohne dass ein zweiter Spieler den Ball berührt hat. Welche Entscheidung muss der Schiedsrichter treffen?",
     "correctAnswer": "In der nächsten Spielunterbrechung verwarnt der Schiedsrichter den Spieler, da es sich bei dessen Vergehen nicht um ein taktisches Vergehen handelte – das unterliegt einer Reduzierung – wie zum Beispiel eine Notbremse oder das Unterbinden eines vielversprechenden Angriffs, sondern um ein rücksichtsloses Foul, welches aufgrund der Schwere sanktioniert wird. Bei solchen Vergehen findet keine Reduzierung der Persönlichen Strafe statt.",
     "source": "SR-Zeitung 01/2026",
     "criteriaFull": [
@@ -2212,7 +2212,7 @@
   },
   {
     "index": 107,
-    "situation": "Zwei Minuten vor dem Halbzeitp blockiert der als Einwechselspieler und Spielertrainer nominierte und sich auf der Auswechselbank befindende Coach des Gastvereins den Spielball. So verhindert er die schnelle Einwurfausführung des Gegners. Wie muss der Schiedsrichter in diesem Fall entscheiden?",
+    "situation": "Zwei Minuten vor dem Halbzeitpause blockiert der als Einwechselspieler und Spielertrainer nominierte und sich auf der Auswechselbank befindende Coach des Gastvereins den Spielball. So verhindert er die schnelle Einwurfausführung des Gegners. Wie muss der Schiedsrichter in diesem Fall entscheiden?",
     "correctAnswer": "Einwurf; Feldverweis des Trainers. Bei persönlichen Strafen ist entscheidend, welche Funktion der Akteur gerade ausübt. Da er zu diesem Zeitpunkt als Coach fungiert, wird er auch als solcher bestraft. Als Einwechselspieler gibt es für das Verhindern einer schnellen Spielfortsetzung nur \"Gelb\", als Teamoffizieller jedoch \"Rot\".",
     "source": "SR-Zeitung 02/2026",
     "criteriaFull": [
@@ -2390,7 +2390,7 @@
   {
     "index": 115,
     "situation": "Der auf dem Spielbericht eingetragene Co-Trainer des Heimvereins steht hinter der Barriere im Zuschauerbereich und gibt von dort aus lautstark taktische Anweisungen. Der Teamoffizielle ist dem Schiedsrichter bekannt. Sollte der Schiedsrichter hier eingreifen?",
-    "correctAnswer": "Nein. Der Teamoffizielle darf sich jederzeit aus dem Innenraum hinaus bewegen. Nur beim Aufenthalt im Innenraum ist das Geben von Anweisungen unter Beachtung von Vorgaben nur aus der CoachingZone gestattet.",
+    "correctAnswer": "Nein. Der Teamoffizielle darf sich jederzeit aus dem Innenraum hinaus bewegen. Nur beim Aufenthalt im Innenraum ist das Geben von Anweisungen unter Beachtung von Vorgaben nur aus der Coaching-Zone gestattet.",
     "source": "SR-Zeitung 02/2026",
     "criteriaFull": [
       "Nein"
@@ -2403,11 +2403,11 @@
     "tags": [
       "Schiedsrichter-Entscheidung"
     ],
-    "explanation": "Der Teamoffizielle darf sich jederzeit aus dem Innenraum hinaus bewegen. Nur beim Aufenthalt im Innenraum ist das Geben von Anweisungen unter Beachtung von Vorgaben nur aus der CoachingZone gestattet. (Vgl. Regel 5 (Schiedsrichter))"
+    "explanation": "Der Teamoffizielle darf sich jederzeit aus dem Innenraum hinaus bewegen. Nur beim Aufenthalt im Innenraum ist das Geben von Anweisungen unter Beachtung von Vorgaben nur aus der Coaching-Zone gestattet. (Vgl. Regel 5 (Schiedsrichter))"
   },
   {
     "index": 116,
-    "situation": "Ein Angreifer ankt den Ball aus LinksaußenPosition unmittelbar vor der Grundlinie in den Torraum. Dabei gerät er, genauso wie mitlaufende Verteidiger, über die Torlinie seitlich des Tores ins Aus. Den in die Mitte geschlagenen Ball köpft der am Fünf-Meter-Raum stehende Mitspieler aufs Tor. Der auf der Torlinie stehende Torwart lenkt den Ball mit einem Re ex zur Seite. In diesem Moment läuft nun der sich zuvor im Toraus befindende Stürmer wieder zurück auf das Spielfeld und schießt den Abpraller ins Tor. Wie entscheidet der Schiedsrichter?",
+    "situation": "Ein Angreifer flankt den Ball aus Linksaußen-Position unmittelbar vor der Grundlinie in den Torraum. Dabei gerät er, genauso wie mitlaufende Verteidiger, über die Torlinie seitlich des Tores ins Aus. Den in die Mitte geschlagenen Ball köpft der am Fünf-Meter-Raum stehende Mitspieler aufs Tor. Der auf der Torlinie stehende Torwart lenkt den Ball mit einem Reflex zur Seite. In diesem Moment läuft nun der sich zuvor im Toraus befindende Stürmer wieder zurück auf das Spielfeld und schießt den Abpraller ins Tor. Wie entscheidet der Schiedsrichter?",
     "correctAnswer": "Tor; Anstoß. Hier liegt keine Abseitsposition vor, da zum Zeitpunkt des Kopfballes sich gleichzeitig mit dem Stürmer auch der Verteidiger im Toraus befunden hat und zudem der Torwart auf der Linie stand. Somit war der Stürmer auf gleicher Höhe mit dem vorletzten Abwehrspieler.",
     "source": "SR-Zeitung 02/2026",
     "criteriaFull": [
@@ -2553,7 +2553,7 @@
   {
     "index": 123,
     "situation": "Ein allein auf das Tor zulaufender Angreifer hat in zentraler Position etwa 15 Meter vor dem Tor den Ball bereits am Torhüter vorbeigelegt. Dieser wiederum versucht, den Ball mit einem Hechtsprung noch zu erreichen, trifft mit seinen Händen allerdings nur den Angreifer am Fuß. Entscheidung des Schiedsrichters?",
-    "correctAnswer": "Strafstoß, Verwarnung. Die persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezi sch und zudem ballorientiert agiert. Er versucht den Ball zu spielen, und darf dies, anders als die Abwehrspieler, auch mit den Händen. Dieses Vergehen ist also nicht vergleichbar mit dem Halten eines Verteidigers.",
+    "correctAnswer": "Strafstoß, Verwarnung. Die persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezifisch und zudem ballorientiert agiert. Er versucht den Ball zu spielen, und darf dies, anders als die Abwehrspieler, auch mit den Händen. Dieses Vergehen ist also nicht vergleichbar mit dem Halten eines Verteidigers.",
     "source": "SR-Newsletter 01/2025",
     "criteriaFull": [
       "Strafstoß",
@@ -2571,7 +2571,7 @@
       "Strafstoß",
       "Torwart"
     ],
-    "explanation": "Die persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezi sch und zudem ballorientiert agiert. Er versucht den Ball zu spielen, und darf dies, anders als die Abwehrspieler, auch mit den Händen. Dieses Vergehen ist also nicht vergleichbar mit dem Halten eines Verteidigers. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
+    "explanation": "Die persönliche Strafe wird bei dieser Notbremse auf \"Gelb\" reduziert, da der Torhüter fußballspezifisch und zudem ballorientiert agiert. Er versucht den Ball zu spielen, und darf dies, anders als die Abwehrspieler, auch mit den Händen. Dieses Vergehen ist also nicht vergleichbar mit dem Halten eines Verteidigers. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
   },
   {
     "index": 124,
@@ -2634,7 +2634,7 @@
   },
   {
     "index": 127,
-    "situation": "Im Verlauf der Verlängerung verlässt ein Spieler wegen einer Verletzung mit der Erlaubnis des Schiedsrichters das Spielfeld. Er befindet sich zum Zeitpunkt des Schlusspfiff s nicht auf dem Spielfeld. Der Spielführer meldet diesen Spieler dem Schiedsrichter als Schützen für das nun fällige Elfmeterschießen. Welche Entscheidung trifft der Schiedsrichter?",
+    "situation": "Im Verlauf der Verlängerung verlässt ein Spieler wegen einer Verletzung mit der Erlaubnis des Schiedsrichters das Spielfeld. Er befindet sich zum Zeitpunkt des Schlusspfiffs nicht auf dem Spielfeld. Der Spielführer meldet diesen Spieler dem Schiedsrichter als Schützen für das nun fällige Elfmeterschießen. Welche Entscheidung trifft der Schiedsrichter?",
     "correctAnswer": "Der Spieler ist teilnahmeberechtigt, da er zum Schluss des Spiels spielberechtigt war",
     "source": "SR-Newsletter 02/2025",
     "criteriaFull": [
@@ -2656,7 +2656,7 @@
   {
     "index": 128,
     "situation": "Ein Angreifer läuft mit dem Ball alleine in Richtung gegnerisches Tor. Knapp innerhalb des Strafraums versucht der Torwart zwar, den Ball zu spielen, trifft aber den Angreifer am Fuß, wodurch dieser zu Fall kommt. Der Ball gelangt nun zu einem Mitspieler des Angreifers, der ein korrektes Tor erzielt. Wie entscheidet der Schiedsrichter in puncto Persönlicher Strafe?",
-    "correctAnswer": "Es gibt keine Persönliche Strafe mehr. Aus \"Rot\" wegen Verhinderung einer offensichtlichen Torchance wurde im Strafraum aufgrund des ballorientierten Fußangriff s zunächst eigentlich \"Gelb\", durch die Vorteil-Entscheidung wurde die persönliche Strafe dann aber auch noch ein zweites Mal reduziert.",
+    "correctAnswer": "Es gibt keine Persönliche Strafe mehr. Aus \"Rot\" wegen Verhinderung einer offensichtlichen Torchance wurde im Strafraum aufgrund des ballorientierten Fußangriffs zunächst eigentlich \"Gelb\", durch die Vorteil-Entscheidung wurde die persönliche Strafe dann aber auch noch ein zweites Mal reduziert.",
     "source": "SR-Newsletter 02/2025",
     "criteriaFull": [
       "Feldverweis"
@@ -2672,7 +2672,7 @@
       "Torwart",
       "Vorteilsregel"
     ],
-    "explanation": "Aus \"Rot\" wegen Verhinderung einer offensichtlichen Torchance wurde im Strafraum aufgrund des ballorientierten Fußangriff s zunächst eigentlich \"Gelb\", durch die Vorteil-Entscheidung wurde die persönliche Strafe dann aber auch noch ein zweites Mal reduziert. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
+    "explanation": "Aus \"Rot\" wegen Verhinderung einer offensichtlichen Torchance wurde im Strafraum aufgrund des ballorientierten Fußangriffs zunächst eigentlich \"Gelb\", durch die Vorteil-Entscheidung wurde die persönliche Strafe dann aber auch noch ein zweites Mal reduziert. (Vgl. Regel 12 (Fouls und sonstiges Fehlverhalten))"
   },
   {
     "index": 129,
@@ -2801,8 +2801,8 @@
   },
   {
     "index": 135,
-    "situation": "Unmittelbar vor dem Anp zu Spielbeginn, beide Mannschaften sind schon bereit für den Anstoß, beleidigt ein Spieler der Gastmannschaft den Schiedsrichter. In welcher Weise reagiert der Schiedsrichter und was ist dabei zu beachten?",
-    "correctAnswer": "Ausschluss des Spielers mittels Roter Karte. Der Spieler kann aber durch einen Spieler seiner Mannschaft ersetzt werden, da das Spiel noch nicht begonnen hat. Der Anp ist jedoch nicht zu verzögern.",
+    "situation": "Unmittelbar vor dem Anstoß zu Spielbeginn, beide Mannschaften sind schon bereit für den Anstoß, beleidigt ein Spieler der Gastmannschaft den Schiedsrichter. In welcher Weise reagiert der Schiedsrichter und was ist dabei zu beachten?",
+    "correctAnswer": "Ausschluss des Spielers mittels Roter Karte. Der Spieler kann aber durch einen Spieler seiner Mannschaft ersetzt werden, da das Spiel noch nicht begonnen hat. Der Anstoß ist jedoch nicht zu verzögern.",
     "source": "SR-Newsletter 05/2025",
     "criteriaFull": [
       "Feldverweis"
@@ -2816,11 +2816,11 @@
       "Persönliche Strafe",
       "Spielfortsetzung"
     ],
-    "explanation": "Der Spieler kann aber durch einen Spieler seiner Mannschaft ersetzt werden, da das Spiel noch nicht begonnen hat. Der Anp ist jedoch nicht zu verzögern. (Vgl. Regel 8 (Beginn und Fortsetzung des Spiels))"
+    "explanation": "Der Spieler kann aber durch einen Spieler seiner Mannschaft ersetzt werden, da das Spiel noch nicht begonnen hat. Der Anstoß ist jedoch nicht zu verzögern. (Vgl. Regel 8 (Beginn und Fortsetzung des Spiels))"
   },
   {
     "index": 136,
-    "situation": "Unmittelbar vor dem Halbzeitp beleidigt ein Spieler des Heimteams seinen Gegenspieler. Dies wird vom Schiri-Assistenten eindeutig wahrgenommen. Bevor er es jedoch dem Referee melden kann, beendet dieser die 1. Halbzeit. Die Meldung erfolgt durch den Assistenten in der Halbzeitpause. Welche Sanktionen hat der Referee auszusprechen und wie ist das Spiel fortzusetzen?",
+    "situation": "Unmittelbar vor dem Halbzeitpause beleidigt ein Spieler des Heimteams seinen Gegenspieler. Dies wird vom Schiri-Assistenten eindeutig wahrgenommen. Bevor er es jedoch dem Referee melden kann, beendet dieser die 1. Halbzeit. Die Meldung erfolgt durch den Assistenten in der Halbzeitpause. Welche Sanktionen hat der Referee auszusprechen und wie ist das Spiel fortzusetzen?",
     "correctAnswer": "Der Spieler wird in der Halbzeitpause mittels Roter Karte ausgeschlossen. Die Mitteilung erfolgt an beide Spielführer. Eine Spielstrafe ist nicht mehr möglich. Das Spiel wird mit Anstoß zur 2. Halbzeit fortgesetzt.",
     "source": "SR-Newsletter 05/2025",
     "criteriaFull": [

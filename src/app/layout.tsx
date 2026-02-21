@@ -31,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={inter.variable}>
       <body className={inter.className}>
+        <div className="gradient-bar" />
         <Providers>{children}</Providers>
       </body>
     </html>

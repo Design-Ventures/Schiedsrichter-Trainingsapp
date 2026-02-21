@@ -21,7 +21,7 @@ export function ProgressBar({ current, total, answeredCount }: ProgressBarProps)
       </div>
       <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
         <div
-          className="h-full rounded-full bg-primary transition-all duration-300"
+          className="h-full rounded-full bg-accent transition-all duration-300"
           style={{ width: `${progress}%` }}
         />
       </div>

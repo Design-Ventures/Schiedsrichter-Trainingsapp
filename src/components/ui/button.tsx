@@ -12,19 +12,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-white shadow-sm hover:bg-primary-hover hover:shadow-md active:bg-primary-dark active:shadow-sm",
+    "bg-primary text-white hover:bg-primary-hover active:bg-gray-800",
   secondary:
-    "bg-accent text-gray-900 shadow-sm hover:bg-accent-hover hover:shadow-md active:bg-accent-dark active:shadow-sm",
+    "bg-accent text-white hover:bg-accent-hover active:bg-purple-800",
   outline:
-    "border border-border text-text-primary bg-surface hover:bg-surface-raised hover:border-border-hover active:bg-gray-100",
+    "border border-border text-text-primary hover:bg-gray-50 hover:border-border-hover active:bg-gray-100",
   ghost:
-    "text-text-secondary hover:text-text-primary hover:bg-surface-raised active:bg-gray-100",
+    "text-text-secondary hover:text-text-primary hover:bg-gray-50 active:bg-gray-100",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: "px-3 py-1.5 text-sm gap-1.5",
   md: "px-4 py-2 text-sm gap-2",
-  lg: "px-5 py-2.5 text-base gap-2",
+  lg: "px-5 py-2.5 text-[15px] gap-2",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -44,7 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-[--radius-lg] font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center rounded-[--radius-lg] font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40",
           variantStyles[variant],
           sizeStyles[size],
           className

@@ -1,51 +1,71 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-950 to-gray-900 px-4">
-      <div className="w-full max-w-md text-center">
-        <div className="mb-8">
-          <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-[--radius-2xl] bg-primary shadow-lg">
-            <svg
-              className="h-10 w-10 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">
-            Schiedsrichter
-            <span className="block text-gradient">Trainingsapp</span>
-          </h1>
-          <p className="mt-3 text-text-on-dark-secondary">
-            Teste dein Regelwissen mit KI-Bewertung
-          </p>
-        </div>
-
+    <div className="flex min-h-[calc(100vh-2px)] flex-col">
+      {/* Nav */}
+      <nav className="flex items-center justify-between px-6 py-4 max-w-6xl mx-auto w-full">
+        <Logo />
         <Link
           href="/login"
-          className="inline-flex w-full items-center justify-center rounded-[--radius-lg] bg-primary px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-200 hover:bg-primary-hover hover:shadow-md"
+          className="text-sm text-text-secondary hover:text-text-primary transition-colors"
         >
           Anmelden
         </Link>
+      </nav>
 
-        <p className="mt-4 text-sm text-text-on-dark-secondary">
-          Noch kein Konto?{" "}
-          <Link
-            href="/register"
-            className="text-accent hover:text-accent-hover transition-colors"
-          >
-            Jetzt registrieren
-          </Link>
-        </p>
-      </div>
+      {/* Hero */}
+      <main className="flex-1 flex flex-col items-center justify-center px-4 pb-20">
+        <div className="max-w-2xl text-center">
+          <h1 className="text-4xl sm:text-5xl font-bold text-text-primary leading-[1.1]">
+            Teste dein Regelwissen
+          </h1>
+          <p className="mt-4 text-lg text-text-secondary max-w-md mx-auto leading-relaxed">
+            Trainiere mit echten Prüfungsfragen und erhalte sofortiges KI-Feedback zu deinen Antworten.
+          </p>
+
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/register"
+              className="inline-flex items-center justify-center rounded-[--radius-lg] bg-primary px-6 py-2.5 text-[15px] font-medium text-white transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
+            >
+              Kostenlos starten
+            </Link>
+            <Link
+              href="/login"
+              className="inline-flex items-center justify-center rounded-[--radius-lg] border border-border px-6 py-2.5 text-[15px] font-medium text-text-primary transition-all duration-150 hover:bg-gray-50 w-full sm:w-auto"
+            >
+              Anmelden
+            </Link>
+          </div>
+        </div>
+
+        {/* Feature highlights */}
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl w-full">
+          <div className="text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-accent-subtle">
+              <span className="text-lg">📝</span>
+            </div>
+            <div className="text-sm font-medium text-text-primary">571 Fragen</div>
+            <div className="text-xs text-text-tertiary mt-0.5">Aus SR-Zeitungen</div>
+          </div>
+          <div className="text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-exam-light">
+              <span className="text-lg">⏱️</span>
+            </div>
+            <div className="text-sm font-medium text-text-primary">Prüfungsmodus</div>
+            <div className="text-xs text-text-tertiary mt-0.5">30 Sek. pro Frage</div>
+          </div>
+          <div className="text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-info-light">
+              <span className="text-lg">🤖</span>
+            </div>
+            <div className="text-sm font-medium text-text-primary">KI-Bewertung</div>
+            <div className="text-xs text-text-tertiary mt-0.5">Sofortiges Feedback</div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

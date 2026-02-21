@@ -22,12 +22,12 @@ ALTER TABLE quiz_answers ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "users_select_own"
   ON users FOR SELECT
   TO authenticated
-  USING (id = auth.uid()::text);
+  USING (id = (select auth.uid())::text);
 
 CREATE POLICY "users_update_own"
   ON users FOR UPDATE
   TO authenticated
-  USING (id = auth.uid()::text);
+  USING (id = (select auth.uid())::text);
 
 -- ============================================
 -- regeltest_questions: read-only for authenticated
@@ -46,17 +46,17 @@ CREATE POLICY "questions_select_authenticated"
 CREATE POLICY "sessions_select_own"
   ON regeltest_sessions FOR SELECT
   TO authenticated
-  USING ("userId" = auth.uid()::text);
+  USING ("userId" = (select auth.uid())::text);
 
 CREATE POLICY "sessions_insert_own"
   ON regeltest_sessions FOR INSERT
   TO authenticated
-  WITH CHECK ("userId" = auth.uid()::text);
+  WITH CHECK ("userId" = (select auth.uid())::text);
 
 CREATE POLICY "sessions_update_own"
   ON regeltest_sessions FOR UPDATE
   TO authenticated
-  USING ("userId" = auth.uid()::text);
+  USING ("userId" = (select auth.uid())::text);
 
 -- ============================================
 -- regeltest_answers: own answers only (via session ownership)
@@ -66,7 +66,7 @@ CREATE POLICY "answers_select_own"
   TO authenticated
   USING (
     "sessionId" IN (
-      SELECT id FROM regeltest_sessions WHERE "userId" = auth.uid()::text
+      SELECT id FROM regeltest_sessions WHERE "userId" = (select auth.uid())::text
     )
   );
 
@@ -75,7 +75,7 @@ CREATE POLICY "answers_insert_own"
   TO authenticated
   WITH CHECK (
     "sessionId" IN (
-      SELECT id FROM regeltest_sessions WHERE "userId" = auth.uid()::text
+      SELECT id FROM regeltest_sessions WHERE "userId" = (select auth.uid())::text
     )
   );
 
@@ -84,7 +84,7 @@ CREATE POLICY "answers_update_own"
   TO authenticated
   USING (
     "sessionId" IN (
-      SELECT id FROM regeltest_sessions WHERE "userId" = auth.uid()::text
+      SELECT id FROM regeltest_sessions WHERE "userId" = (select auth.uid())::text
     )
   );
 
@@ -99,24 +99,24 @@ CREATE POLICY "mc_questions_select_authenticated"
 CREATE POLICY "quiz_sessions_select_own"
   ON quiz_sessions FOR SELECT
   TO authenticated
-  USING ("userId" = auth.uid()::text);
+  USING ("userId" = (select auth.uid())::text);
 
 CREATE POLICY "quiz_sessions_insert_own"
   ON quiz_sessions FOR INSERT
   TO authenticated
-  WITH CHECK ("userId" = auth.uid()::text);
+  WITH CHECK ("userId" = (select auth.uid())::text);
 
 CREATE POLICY "quiz_sessions_update_own"
   ON quiz_sessions FOR UPDATE
   TO authenticated
-  USING ("userId" = auth.uid()::text);
+  USING ("userId" = (select auth.uid())::text);
 
 CREATE POLICY "quiz_answers_select_own"
   ON quiz_answers FOR SELECT
   TO authenticated
   USING (
     "sessionId" IN (
-      SELECT id FROM quiz_sessions WHERE "userId" = auth.uid()::text
+      SELECT id FROM quiz_sessions WHERE "userId" = (select auth.uid())::text
     )
   );
 
@@ -125,6 +125,6 @@ CREATE POLICY "quiz_answers_insert_own"
   TO authenticated
   WITH CHECK (
     "sessionId" IN (
-      SELECT id FROM quiz_sessions WHERE "userId" = auth.uid()::text
+      SELECT id FROM quiz_sessions WHERE "userId" = (select auth.uid())::text
     )
   );

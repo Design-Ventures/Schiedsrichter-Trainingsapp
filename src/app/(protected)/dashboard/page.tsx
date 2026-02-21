@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Logo } from "@/components/ui/logo";
 import { LogoutButton } from "./logout-button";
 
 export default async function DashboardPage() {
@@ -43,13 +43,13 @@ export default async function DashboardPage() {
   const recentSessions = sessions.slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-surface-raised">
+    <div className="min-h-screen bg-surface">
       {/* Header */}
-      <header className="border-b border-border bg-surface glass sticky top-0 z-10">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-          <h1 className="text-xl font-bold text-text-primary">
-            <span className="text-primary">SR</span> Trainingsapp
-          </h1>
+      <header className="border-b border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
+          <Link href="/dashboard">
+            <Logo />
+          </Link>
           <div className="flex items-center gap-4">
             <span className="text-sm text-text-secondary">{displayName}</span>
             <LogoutButton />
@@ -58,121 +58,123 @@ export default async function DashboardPage() {
       </header>
 
       {/* Content */}
-      <main className="mx-auto max-w-5xl px-4 py-8">
-        <h2 className="mb-6 text-2xl font-bold text-text-primary">
-          Willkommen, {displayName}!
+      <main className="mx-auto max-w-3xl px-6 py-10">
+        <h2 className="text-2xl font-bold text-text-primary">
+          Willkommen, {displayName}
         </h2>
+        <p className="mt-1 text-sm text-text-secondary">
+          Wähle einen Modus und teste dein Regelwissen.
+        </p>
 
-        {/* Quick Actions */}
-        <div className="mb-8 grid gap-4 sm:grid-cols-2">
-          <Link href="/regeltest?mode=EXAM" className="block">
-            <Card>
-              <CardHeader>
-                <CardTitle>Regeltest starten</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-text-secondary">
-                  30 Fragen, 30 Sekunden pro Frage, max. 60 Punkte
-                </p>
-                <span className="mt-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
-                  Prüfungsmodus
-                </span>
-              </CardContent>
-            </Card>
+        {/* Test Mode Cards */}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <Link href="/regeltest?mode=EXAM" className="group block">
+            <div className="rounded-[--radius-xl] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-exam-light">
+                <span className="text-lg">⏱️</span>
+              </div>
+              <h3 className="text-base font-semibold text-text-primary">Regeltest</h3>
+              <p className="mt-1 text-sm text-text-secondary">
+                30 Fragen, 30 Sekunden pro Frage
+              </p>
+              <span className="mt-3 inline-block rounded-full bg-exam-light px-2.5 py-0.5 text-xs font-medium text-exam">
+                Prüfungsmodus
+              </span>
+            </div>
           </Link>
 
-          <Link href="/regeltest?mode=TEST" className="block">
-            <Card>
-              <CardHeader>
-                <CardTitle>Übungstest starten</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-text-secondary">
-                  15 Fragen, kein Zeitlimit, max. 30 Punkte
-                </p>
-                <span className="mt-3 inline-block rounded-full bg-accent/15 px-3 py-1 text-sm font-medium text-accent-dark">
-                  Testmodus
-                </span>
-              </CardContent>
-            </Card>
+          <Link href="/regeltest?mode=TEST" className="group block">
+            <div className="rounded-[--radius-xl] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-test-light">
+                <span className="text-lg">📝</span>
+              </div>
+              <h3 className="text-base font-semibold text-text-primary">Übungstest</h3>
+              <p className="mt-1 text-sm text-text-secondary">
+                15 Fragen, kein Zeitlimit
+              </p>
+              <span className="mt-3 inline-block rounded-full bg-test-light px-2.5 py-0.5 text-xs font-medium text-test">
+                Testmodus
+              </span>
+            </div>
           </Link>
         </div>
 
         {/* Stats */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Deine Statistiken</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {totalTests === 0 ? (
-              <p className="text-sm text-text-tertiary">
-                Starte deinen ersten Regeltest, um Statistiken zu sehen.
-              </p>
-            ) : (
-              <div className="space-y-6">
-                {/* Summary stats */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-text-primary">
-                      {totalTests}
-                    </div>
-                    <div className="text-xs text-text-tertiary">Tests</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">
-                      {averagePercent}%
-                    </div>
-                    <div className="text-xs text-text-tertiary">Durchschnitt</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-accent-dark">
-                      {bestScore}%
-                    </div>
-                    <div className="text-xs text-text-tertiary">Bestleistung</div>
-                  </div>
-                </div>
+        <div className="mt-10">
+          <h3 className="text-base font-semibold text-text-primary">Deine Statistiken</h3>
 
-                {/* Recent sessions */}
-                <div>
-                  <h4 className="mb-2 text-sm font-medium text-text-primary">
-                    Letzte Ergebnisse
-                  </h4>
-                  <div className="space-y-2">
-                    {recentSessions.map((s) => {
-                      const pct = Math.round(
-                        (s.totalScore / s.maxScore) * 100
-                      );
-                      return (
-                        <div
-                          key={s.id}
-                          className="flex items-center justify-between rounded-[--radius-lg] bg-surface-raised px-3 py-2"
-                        >
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-medium text-text-secondary">
-                              {s.mode === "EXAM"
-                                ? "Prüfung"
-                                : "Übung"}
-                            </span>
-                            <span className="text-xs text-text-tertiary">
-                              {s.completedAt
-                                ? new Date(s.completedAt).toLocaleDateString(
-                                    "de-DE"
-                                  )
-                                : ""}
-                            </span>
-                          </div>
-                          <span className="text-sm font-semibold text-text-primary">
-                            {s.totalScore}/{s.maxScore} ({pct}%)
-                          </span>
-                        </div>
-                      );
-                    })}
+          {totalTests === 0 ? (
+            <p className="mt-3 text-sm text-text-tertiary">
+              Starte deinen ersten Regeltest, um Statistiken zu sehen.
+            </p>
+          ) : (
+            <div className="mt-4 space-y-6">
+              {/* Summary stats */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="rounded-[--radius-lg] border border-border p-4 text-center">
+                  <div className="text-2xl font-bold text-text-primary">
+                    {totalTests}
                   </div>
+                  <div className="text-xs text-text-tertiary">Tests</div>
+                </div>
+                <div className="rounded-[--radius-lg] border border-border p-4 text-center">
+                  <div className="text-2xl font-bold text-accent">
+                    {averagePercent}%
+                  </div>
+                  <div className="text-xs text-text-tertiary">Durchschnitt</div>
+                </div>
+                <div className="rounded-[--radius-lg] border border-border p-4 text-center">
+                  <div className="text-2xl font-bold text-success">
+                    {bestScore}%
+                  </div>
+                  <div className="text-xs text-text-tertiary">Bestleistung</div>
                 </div>
               </div>
-            )}
-          </CardContent>
-        </Card>
+
+              {/* Recent sessions */}
+              <div>
+                <h4 className="mb-3 text-sm font-medium text-text-primary">
+                  Letzte Ergebnisse
+                </h4>
+                <div className="space-y-2">
+                  {recentSessions.map((s) => {
+                    const pct = Math.round(
+                      (s.totalScore / s.maxScore) * 100
+                    );
+                    return (
+                      <div
+                        key={s.id}
+                        className="flex items-center justify-between rounded-[--radius-lg] border border-border px-4 py-3"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
+                              s.mode === "EXAM"
+                                ? "bg-exam-light text-exam"
+                                : "bg-test-light text-test"
+                            }`}
+                          >
+                            {s.mode === "EXAM" ? "Prüfung" : "Übung"}
+                          </span>
+                          <span className="text-xs text-text-tertiary">
+                            {s.completedAt
+                              ? new Date(s.completedAt).toLocaleDateString(
+                                  "de-DE"
+                                )
+                              : ""}
+                          </span>
+                        </div>
+                        <span className="text-sm font-semibold text-text-primary">
+                          {s.totalScore}/{s.maxScore} ({pct}%)
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </main>
     </div>
   );

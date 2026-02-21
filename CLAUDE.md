@@ -12,7 +12,7 @@ Regeltest = Freitext-Fragen aus DFB SR-Zeitung/Newsletter. Nutzer beantwortet Si
 
 - **Next.js 15** (App Router, Server Components bevorzugt)
 - **TypeScript** (strict mode)
-- **Tailwind CSS v4** (Standalone Design System: Primary #10B981, Accent #F59E0B, Neutrals zinc scale)
+- **Tailwind CSS v4** (Luma-inspired Design System: Primary #18181B dark, Accent #8B5CF6 purple, Exam #EF4444, Test #8B5CF6, Neutrals zinc scale)
 - **Supabase** (Auth, PostgreSQL, EU-Frankfurt)
 - **Prisma** (ORM, Schema in `prisma/schema.prisma`)
 - **Claude API** (`@anthropic-ai/sdk`, Model: claude-sonnet-4-5-20250929 für Bewertung)

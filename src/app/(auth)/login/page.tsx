@@ -6,7 +6,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
+import { Logo } from "@/components/ui/logo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -46,10 +46,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-950 to-gray-900 px-4">
-      <Card className="w-full max-w-md">
-        <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold text-text-primary">Anmelden</h1>
+    <div className="flex min-h-[calc(100vh-2px)] flex-col items-center justify-center px-4">
+      <div className="w-full max-w-sm">
+        <div className="mb-8 text-center">
+          <Link href="/">
+            <Logo />
+          </Link>
+          <h1 className="mt-6 text-2xl font-bold text-text-primary">Anmelden</h1>
           <p className="mt-1 text-sm text-text-secondary">
             Melde dich an, um fortzufahren
           </p>
@@ -80,7 +83,7 @@ export default function LoginPage() {
             <p className="text-sm text-error">{error}</p>
           ) : null}
 
-          <Button type="submit" className="w-full" isLoading={isLoading}>
+          <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
             Anmelden
           </Button>
         </form>
@@ -89,12 +92,12 @@ export default function LoginPage() {
           Noch kein Konto?{" "}
           <Link
             href="/register"
-            className="font-medium text-primary hover:text-primary-hover transition-colors"
+            className="font-medium text-text-primary hover:underline"
           >
             Jetzt registrieren
           </Link>
         </p>
-      </Card>
+      </div>
     </div>
   );
 }

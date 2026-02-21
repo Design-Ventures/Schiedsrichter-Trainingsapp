@@ -27,7 +27,7 @@ export function QuestionResult({ result }: QuestionResultProps) {
     <Card>
       <CardContent className="space-y-3">
         <div className="flex items-start justify-between gap-3">
-          <div className="text-sm font-medium text-primary">
+          <div className="text-sm font-medium text-accent">
             Frage {result.questionIndex + 1}
           </div>
           <span
@@ -57,7 +57,7 @@ export function QuestionResult({ result }: QuestionResultProps) {
             <span className="text-xs font-medium text-text-tertiary">
               Musterantwort:
             </span>
-            <p className="text-sm text-primary-dark">{result.correctAnswer}</p>
+            <p className="text-sm text-success">{result.correctAnswer}</p>
           </div>
         </div>
 

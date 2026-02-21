@@ -34,9 +34,9 @@ export function QuestionNavigation() {
                 className={cn(
                   "flex h-8 w-8 items-center justify-center rounded-[--radius-md] text-xs font-medium transition-colors",
                   i === currentIndex
-                    ? "bg-primary text-white"
+                    ? "bg-accent text-white"
                     : answers.has(i)
-                      ? "bg-primary/15 text-primary-dark"
+                      ? "bg-accent-light text-accent"
                       : "bg-gray-100 text-text-tertiary hover:bg-gray-200"
                 )}
               >
