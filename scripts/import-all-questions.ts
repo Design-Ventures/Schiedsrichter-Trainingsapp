@@ -29,10 +29,21 @@ interface AppQuestion {
 // Database import via Prisma
 // ---------------------------------------------------------------------------
 
-async function importToDatabase(questions: AppQuestion[]) {
-  const prisma = new PrismaClient();
+async function importToDatabase(questions: AppQuestion[], replace = false) {
+  const prisma = new PrismaClient({
+    datasources: {
+      db: { url: process.env.DIRECT_URL || process.env.DATABASE_URL },
+    },
+  });
 
   try {
+    if (replace) {
+      await prisma.$executeRaw`DELETE FROM "regeltest_answers"`;
+      await prisma.$executeRaw`DELETE FROM "regeltest_sessions"`;
+      await prisma.$executeRaw`DELETE FROM "regeltest_questions"`;
+      console.log(`\nDeleted all existing questions, sessions, and answers from database.`);
+    }
+
     console.log(`\nImporting ${questions.length} questions to database...\n`);
 
     let imported = 0;
@@ -118,6 +129,7 @@ const args = process.argv.slice(2);
 async function main() {
   const shouldImport = args.includes("--import");
   const shouldUpdate = args.includes("--update");
+  const shouldReplace = args.includes("--replace");
 
   // Load questions from JSON
   if (!fs.existsSync(ALL_QUESTIONS_PATH)) {
@@ -158,14 +170,18 @@ async function main() {
     console.log();
   }
 
-  if (shouldImport || shouldUpdate) {
+  if (shouldReplace) {
+    await importToDatabase(questions, true);
+  } else if (shouldImport || shouldUpdate) {
     await importToDatabase(questions);
   } else {
     console.log(
       "\nTo import into the database, run:" +
         "\n  npm run import:all -- --import" +
         "\n\nTo update existing + import new:" +
-        "\n  npm run import:all -- --import --update\n",
+        "\n  npm run import:all -- --import --update" +
+        "\n\nTo delete all and reimport fresh:" +
+        "\n  npm run import:all -- --replace\n",
     );
   }
 }

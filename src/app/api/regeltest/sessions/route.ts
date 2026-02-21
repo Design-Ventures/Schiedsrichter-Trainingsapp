@@ -80,6 +80,7 @@ export async function POST(request: Request) {
       questions: orderedQuestions,
     });
   } catch (error) {
+    console.error("Session creation error:", error);
     return NextResponse.json(
       { error: "Interner Serverfehler" },
       { status: 500 }

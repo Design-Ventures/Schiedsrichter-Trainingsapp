@@ -1,7 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-
 interface ProgressBarProps {
   current: number;
   total: number;
@@ -14,18 +12,16 @@ export function ProgressBar({ current, total, answeredCount }: ProgressBarProps)
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-sm">
-        <span className="font-medium text-dfb-dark">
+        <span className="font-medium text-text-primary">
           Frage {current + 1} von {total}
         </span>
-        <span className="text-gray-500">
+        <span className="text-text-tertiary">
           {answeredCount} beantwortet
         </span>
       </div>
       <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
         <div
-          className={cn(
-            "h-full rounded-full bg-dfb-green transition-all duration-300"
-          )}
+          className="h-full rounded-full bg-primary transition-all duration-300"
           style={{ width: `${progress}%` }}
         />
       </div>

@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-dfb-dark to-dfb-dark-light px-4">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-950 to-gray-900 px-4">
       <div className="w-full max-w-md text-center">
         <div className="mb-8">
-          <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-dfb-green">
+          <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-[--radius-2xl] bg-primary shadow-lg">
             <svg
               className="h-10 w-10 text-white"
               fill="none"
@@ -20,27 +20,27 @@ export default function LandingPage() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-white">
+          <h1 className="text-3xl font-bold text-white tracking-tight">
             Schiedsrichter
-            <span className="block text-dfb-gold">Trainingsapp</span>
+            <span className="block text-gradient">Trainingsapp</span>
           </h1>
-          <p className="mt-3 text-gray-400">
+          <p className="mt-3 text-text-on-dark-secondary">
             Teste dein Regelwissen mit KI-Bewertung
           </p>
         </div>
 
         <Link
           href="/login"
-          className="inline-flex w-full items-center justify-center rounded-lg bg-dfb-green px-6 py-3 text-lg font-semibold text-white transition-colors hover:bg-dfb-green-light"
+          className="inline-flex w-full items-center justify-center rounded-[--radius-lg] bg-primary px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-200 hover:bg-primary-hover hover:shadow-md"
         >
           Anmelden
         </Link>
 
-        <p className="mt-4 text-sm text-gray-500">
+        <p className="mt-4 text-sm text-text-on-dark-secondary">
           Noch kein Konto?{" "}
           <Link
             href="/register"
-            className="text-dfb-gold hover:text-dfb-gold-light"
+            className="text-accent hover:text-accent-hover transition-colors"
           >
             Jetzt registrieren
           </Link>

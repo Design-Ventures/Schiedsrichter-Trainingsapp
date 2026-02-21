@@ -12,18 +12,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-dfb-green text-white hover:bg-dfb-green-light active:bg-dfb-green-dark",
+    "bg-primary text-white shadow-sm hover:bg-primary-hover hover:shadow-md active:bg-primary-dark active:shadow-sm",
   secondary:
-    "bg-dfb-gold text-dfb-dark hover:bg-dfb-gold-light active:bg-dfb-gold-dark",
+    "bg-accent text-gray-900 shadow-sm hover:bg-accent-hover hover:shadow-md active:bg-accent-dark active:shadow-sm",
   outline:
-    "border-2 border-dfb-green text-dfb-green hover:bg-dfb-green hover:text-white",
-  ghost: "text-dfb-dark hover:bg-dfb-gray",
+    "border border-border text-text-primary bg-surface hover:bg-surface-raised hover:border-border-hover active:bg-gray-100",
+  ghost:
+    "text-text-secondary hover:text-text-primary hover:bg-surface-raised active:bg-gray-100",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-3 py-1.5 text-sm",
-  md: "px-5 py-2.5 text-base",
-  lg: "px-7 py-3 text-lg",
+  sm: "px-3 py-1.5 text-sm gap-1.5",
+  md: "px-4 py-2 text-sm gap-2",
+  lg: "px-5 py-2.5 text-base gap-2",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -43,7 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dfb-green focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center rounded-[--radius-lg] font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
           variantStyles[variant],
           sizeStyles[size],
           className
@@ -52,7 +53,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading ? (
-          <span className="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+          <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
         ) : null}
         {children}
       </button>

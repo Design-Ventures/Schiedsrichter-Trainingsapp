@@ -43,15 +43,15 @@ export default async function DashboardPage() {
   const recentSessions = sessions.slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-dfb-gray">
+    <div className="min-h-screen bg-surface-raised">
       {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
+      <header className="border-b border-border bg-surface glass sticky top-0 z-10">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-          <h1 className="text-xl font-bold text-dfb-dark">
-            <span className="text-dfb-green">SR</span> Trainingsapp
+          <h1 className="text-xl font-bold text-text-primary">
+            <span className="text-primary">SR</span> Trainingsapp
           </h1>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-600">{displayName}</span>
+            <span className="text-sm text-text-secondary">{displayName}</span>
             <LogoutButton />
           </div>
         </div>
@@ -59,22 +59,22 @@ export default async function DashboardPage() {
 
       {/* Content */}
       <main className="mx-auto max-w-5xl px-4 py-8">
-        <h2 className="mb-6 text-2xl font-bold text-dfb-dark">
+        <h2 className="mb-6 text-2xl font-bold text-text-primary">
           Willkommen, {displayName}!
         </h2>
 
         {/* Quick Actions */}
         <div className="mb-8 grid gap-4 sm:grid-cols-2">
           <Link href="/regeltest?mode=EXAM" className="block">
-            <Card className="transition-shadow hover:shadow-md">
+            <Card>
               <CardHeader>
                 <CardTitle>Regeltest starten</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-text-secondary">
                   30 Fragen, 30 Sekunden pro Frage, max. 60 Punkte
                 </p>
-                <span className="mt-3 inline-block rounded-full bg-dfb-green/10 px-3 py-1 text-sm font-medium text-dfb-green">
+                <span className="mt-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
                   Prüfungsmodus
                 </span>
               </CardContent>
@@ -82,15 +82,15 @@ export default async function DashboardPage() {
           </Link>
 
           <Link href="/regeltest?mode=TEST" className="block">
-            <Card className="transition-shadow hover:shadow-md">
+            <Card>
               <CardHeader>
                 <CardTitle>Übungstest starten</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-text-secondary">
                   15 Fragen, kein Zeitlimit, max. 30 Punkte
                 </p>
-                <span className="mt-3 inline-block rounded-full bg-dfb-gold/20 px-3 py-1 text-sm font-medium text-dfb-gold-dark">
+                <span className="mt-3 inline-block rounded-full bg-accent/15 px-3 py-1 text-sm font-medium text-accent-dark">
                   Testmodus
                 </span>
               </CardContent>
@@ -105,7 +105,7 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             {totalTests === 0 ? (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-text-tertiary">
                 Starte deinen ersten Regeltest, um Statistiken zu sehen.
               </p>
             ) : (
@@ -113,28 +113,28 @@ export default async function DashboardPage() {
                 {/* Summary stats */}
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-dfb-dark">
+                    <div className="text-2xl font-bold text-text-primary">
                       {totalTests}
                     </div>
-                    <div className="text-xs text-gray-500">Tests</div>
+                    <div className="text-xs text-text-tertiary">Tests</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-dfb-green">
+                    <div className="text-2xl font-bold text-primary">
                       {averagePercent}%
                     </div>
-                    <div className="text-xs text-gray-500">Durchschnitt</div>
+                    <div className="text-xs text-text-tertiary">Durchschnitt</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-dfb-gold-dark">
+                    <div className="text-2xl font-bold text-accent-dark">
                       {bestScore}%
                     </div>
-                    <div className="text-xs text-gray-500">Bestleistung</div>
+                    <div className="text-xs text-text-tertiary">Bestleistung</div>
                   </div>
                 </div>
 
                 {/* Recent sessions */}
                 <div>
-                  <h4 className="mb-2 text-sm font-medium text-dfb-dark">
+                  <h4 className="mb-2 text-sm font-medium text-text-primary">
                     Letzte Ergebnisse
                   </h4>
                   <div className="space-y-2">
@@ -145,15 +145,15 @@ export default async function DashboardPage() {
                       return (
                         <div
                           key={s.id}
-                          className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2"
+                          className="flex items-center justify-between rounded-[--radius-lg] bg-surface-raised px-3 py-2"
                         >
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-medium text-gray-500">
+                            <span className="text-xs font-medium text-text-secondary">
                               {s.mode === "EXAM"
                                 ? "Prüfung"
                                 : "Übung"}
                             </span>
-                            <span className="text-xs text-gray-400">
+                            <span className="text-xs text-text-tertiary">
                               {s.completedAt
                                 ? new Date(s.completedAt).toLocaleDateString(
                                     "de-DE"
@@ -161,7 +161,7 @@ export default async function DashboardPage() {
                                 : ""}
                             </span>
                           </div>
-                          <span className="text-sm font-semibold text-dfb-dark">
+                          <span className="text-sm font-semibold text-text-primary">
                             {s.totalScore}/{s.maxScore} ({pct}%)
                           </span>
                         </div>

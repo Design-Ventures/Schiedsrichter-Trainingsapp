@@ -19,15 +19,15 @@ export function SubmitConfirmation({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="mx-4 w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
-        <h3 className="mb-2 text-lg font-bold text-dfb-dark">
+      <div className="mx-4 w-full max-w-md rounded-[--radius-xl] bg-surface p-6 shadow-xl">
+        <h3 className="mb-2 text-lg font-bold text-text-primary">
           Test abgeben?
         </h3>
-        <p className="mb-1 text-sm text-gray-600">
+        <p className="mb-1 text-sm text-text-secondary">
           Du hast {answeredCount} von {totalCount} Fragen beantwortet.
         </p>
         {unanswered > 0 && (
-          <p className="mb-4 text-sm font-medium text-red-600">
+          <p className="mb-4 text-sm font-medium text-error">
             {unanswered} Frage{unanswered > 1 ? "n" : ""} ohne Antwort (0 Punkte).
           </p>
         )}

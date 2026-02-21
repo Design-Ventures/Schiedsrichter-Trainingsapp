@@ -26,10 +26,10 @@ export function Timer() {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-lg px-4 py-2 font-mono text-lg font-bold tabular-nums",
+        "flex items-center gap-2 rounded-[--radius-lg] px-4 py-2 font-mono text-lg font-bold tabular-nums",
         isWarning
-          ? "animate-pulse bg-red-100 text-red-600"
-          : "bg-dfb-green/10 text-dfb-green"
+          ? "animate-pulse bg-error-light text-error"
+          : "bg-primary/10 text-primary-dark"
       )}
     >
       <svg

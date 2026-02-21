@@ -46,11 +46,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-dfb-dark to-dfb-dark-light px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-950 to-gray-900 px-4">
       <Card className="w-full max-w-md">
         <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold text-dfb-dark">Anmelden</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <h1 className="text-2xl font-bold text-text-primary">Anmelden</h1>
+          <p className="mt-1 text-sm text-text-secondary">
             Melde dich an, um fortzufahren
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function LoginPage() {
           />
 
           {error ? (
-            <p className="text-sm text-red-600">{error}</p>
+            <p className="text-sm text-error">{error}</p>
           ) : null}
 
           <Button type="submit" className="w-full" isLoading={isLoading}>
@@ -85,11 +85,11 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-500">
+        <p className="mt-6 text-center text-sm text-text-secondary">
           Noch kein Konto?{" "}
           <Link
             href="/register"
-            className="font-medium text-dfb-green hover:text-dfb-green-light"
+            className="font-medium text-primary hover:text-primary-hover transition-colors"
           >
             Jetzt registrieren
           </Link>

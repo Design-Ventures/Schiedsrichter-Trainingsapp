@@ -17,15 +17,15 @@ export default async function RegeltestPage({ searchParams }: RegeltestPageProps
   const validMode: RegeltestMode = mode;
 
   return (
-    <div className="min-h-screen bg-dfb-gray">
-      <header className="border-b border-gray-200 bg-white">
+    <div className="min-h-screen bg-surface-raised">
+      <header className="border-b border-border bg-surface glass sticky top-0 z-10">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
-          <h1 className="text-xl font-bold text-dfb-dark">
-            <span className="text-dfb-green">SR</span> Regeltest
+          <h1 className="text-xl font-bold text-text-primary">
+            <span className="text-primary">SR</span> Regeltest
           </h1>
           <Link
             href="/dashboard"
-            className="text-sm text-gray-500 hover:text-dfb-green"
+            className="text-sm text-text-secondary hover:text-primary transition-colors"
           >
             Abbrechen
           </Link>

@@ -15,9 +15,9 @@ export function RegeltestError() {
     <div className="flex min-h-[60vh] flex-col items-center justify-center">
       <Card className="w-full max-w-md text-center">
         <CardContent>
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-error-light">
             <svg
-              className="h-6 w-6 text-red-600"
+              className="h-6 w-6 text-error"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
@@ -30,10 +30,10 @@ export function RegeltestError() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-lg font-bold text-dfb-dark">
+          <h3 className="mb-2 text-lg font-bold text-text-primary">
             Ein Fehler ist aufgetreten
           </h3>
-          <p className="mb-4 text-sm text-gray-500">
+          <p className="mb-4 text-sm text-text-secondary">
             {errorMessage || "Unbekannter Fehler"}
           </p>
           <div className="flex gap-3">

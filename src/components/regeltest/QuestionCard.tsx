@@ -11,10 +11,10 @@ export function QuestionCard({ situation, questionNumber }: QuestionCardProps) {
   return (
     <Card>
       <CardContent>
-        <div className="mb-2 text-sm font-medium text-dfb-green">
+        <div className="mb-2 text-sm font-medium text-primary">
           Situation {questionNumber}
         </div>
-        <p className="text-dfb-dark leading-relaxed whitespace-pre-line">
+        <p className="text-text-primary leading-relaxed whitespace-pre-line">
           {situation}
         </p>
       </CardContent>

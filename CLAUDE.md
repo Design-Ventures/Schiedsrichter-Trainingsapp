@@ -12,7 +12,7 @@ Regeltest = Freitext-Fragen aus DFB SR-Zeitung/Newsletter. Nutzer beantwortet Si
 
 - **Next.js 15** (App Router, Server Components bevorzugt)
 - **TypeScript** (strict mode)
-- **Tailwind CSS** (DFB-Farben: Grün #006B3F, Gold #C9B037, Dunkel #1A1A2E)
+- **Tailwind CSS v4** (Standalone Design System: Primary #10B981, Accent #F59E0B, Neutrals zinc scale)
 - **Supabase** (Auth, PostgreSQL, EU-Frankfurt)
 - **Prisma** (ORM, Schema in `prisma/schema.prisma`)
 - **Claude API** (`@anthropic-ai/sdk`, Model: claude-sonnet-4-5-20250929 für Bewertung)

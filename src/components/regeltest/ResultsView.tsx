@@ -25,19 +25,19 @@ export function ResultsView() {
             className={cn(
               "mx-auto mb-3 flex h-24 w-24 items-center justify-center rounded-full text-3xl font-bold",
               passed
-                ? "bg-green-100 text-green-700"
-                : "bg-red-100 text-red-700"
+                ? "bg-success-light text-success"
+                : "bg-error-light text-error"
             )}
           >
             {percentage}%
           </div>
-          <h2 className="mb-1 text-xl font-bold text-dfb-dark">
+          <h2 className="mb-1 text-xl font-bold text-text-primary">
             {passed ? "Bestanden!" : "Nicht bestanden"}
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-text-secondary">
             {results.totalScore} von {results.maxScore} Punkten
           </p>
-          <p className="mt-1 text-xs text-gray-400">
+          <p className="mt-1 text-xs text-text-tertiary">
             {results.totalQuestions} Fragen &middot;{" "}
             {results.mode === "EXAM" ? "Prüfungsmodus" : "Testmodus"}
           </p>
@@ -50,14 +50,14 @@ export function ResultsView() {
           const count = results.answers.filter((a) => a.score === score).length;
           const labels = { 2: "2 Punkte", 1: "1 Punkt", 0: "0 Punkte" };
           const colors = {
-            2: "text-green-700 bg-green-50",
-            1: "text-yellow-700 bg-yellow-50",
-            0: "text-red-700 bg-red-50",
+            2: "text-success bg-success-light",
+            1: "text-warning bg-warning-light",
+            0: "text-error bg-error-light",
           };
           return (
             <div
               key={score}
-              className={cn("rounded-lg p-3 text-center", colors[score])}
+              className={cn("rounded-[--radius-lg] p-3 text-center", colors[score])}
             >
               <div className="text-2xl font-bold">{count}</div>
               <div className="text-xs">{labels[score]}</div>
@@ -68,7 +68,7 @@ export function ResultsView() {
 
       {/* Per-question results */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-dfb-dark">
+        <h3 className="text-lg font-semibold text-text-primary">
           Einzelergebnisse
         </h3>
         {results.answers.map((answer) => (
