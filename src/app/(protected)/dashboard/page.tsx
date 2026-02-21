@@ -69,8 +69,8 @@ export default async function DashboardPage() {
         {/* Test Mode Cards */}
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <Link href="/regeltest?mode=EXAM" className="group block">
-            <div className="rounded-[--radius-xl] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-exam-light">
+            <div className="rounded-[var(--radius-xl)] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
                 <span className="text-lg">⏱️</span>
               </div>
               <h3 className="text-base font-semibold text-text-primary">Regeltest</h3>
@@ -84,8 +84,8 @@ export default async function DashboardPage() {
           </Link>
 
           <Link href="/regeltest?mode=TEST" className="group block">
-            <div className="rounded-[--radius-xl] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-test-light">
+            <div className="rounded-[var(--radius-xl)] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-test-light">
                 <span className="text-lg">📝</span>
               </div>
               <h3 className="text-base font-semibold text-text-primary">Übungstest</h3>
@@ -111,19 +111,19 @@ export default async function DashboardPage() {
             <div className="mt-4 space-y-6">
               {/* Summary stats */}
               <div className="grid grid-cols-3 gap-4">
-                <div className="rounded-[--radius-lg] border border-border p-4 text-center">
+                <div className="rounded-[var(--radius-lg)] border border-border p-4 text-center">
                   <div className="text-2xl font-bold text-text-primary">
                     {totalTests}
                   </div>
                   <div className="text-xs text-text-tertiary">Tests</div>
                 </div>
-                <div className="rounded-[--radius-lg] border border-border p-4 text-center">
+                <div className="rounded-[var(--radius-lg)] border border-border p-4 text-center">
                   <div className="text-2xl font-bold text-accent">
                     {averagePercent}%
                   </div>
                   <div className="text-xs text-text-tertiary">Durchschnitt</div>
                 </div>
-                <div className="rounded-[--radius-lg] border border-border p-4 text-center">
+                <div className="rounded-[var(--radius-lg)] border border-border p-4 text-center">
                   <div className="text-2xl font-bold text-success">
                     {bestScore}%
                   </div>
@@ -144,7 +144,7 @@ export default async function DashboardPage() {
                     return (
                       <div
                         key={s.id}
-                        className="flex items-center justify-between rounded-[--radius-lg] border border-border px-4 py-3"
+                        className="flex items-center justify-between rounded-[var(--radius-lg)] border border-border px-4 py-3"
                       >
                         <div className="flex items-center gap-3">
                           <span

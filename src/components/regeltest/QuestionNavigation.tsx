@@ -32,7 +32,7 @@ export function QuestionNavigation() {
                 key={i}
                 onClick={() => goToQuestion(i)}
                 className={cn(
-                  "flex h-8 w-8 items-center justify-center rounded-[--radius-md] text-xs font-medium transition-colors",
+                  "flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-xs font-medium transition-colors",
                   i === currentIndex
                     ? "bg-accent text-white"
                     : answers.has(i)

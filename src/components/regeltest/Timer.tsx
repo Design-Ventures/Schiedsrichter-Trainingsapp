@@ -26,7 +26,7 @@ export function Timer() {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-[--radius-lg] px-4 py-2 font-mono text-lg font-bold tabular-nums",
+        "flex items-center gap-2 rounded-[var(--radius-lg)] px-4 py-2 font-mono text-lg font-bold tabular-nums",
         isWarning
           ? "animate-pulse bg-error-light text-error"
           : "bg-exam-light text-exam"

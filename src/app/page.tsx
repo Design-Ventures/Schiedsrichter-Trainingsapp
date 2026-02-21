@@ -28,13 +28,13 @@ export default function LandingPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/register"
-              className="inline-flex items-center justify-center rounded-[--radius-lg] bg-primary px-6 py-2.5 text-[15px] font-medium text-white transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] bg-primary px-6 py-2.5 text-[15px] font-medium text-white transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
             >
               Kostenlos starten
             </Link>
             <Link
               href="/login"
-              className="inline-flex items-center justify-center rounded-[--radius-lg] border border-border px-6 py-2.5 text-[15px] font-medium text-text-primary transition-all duration-150 hover:bg-gray-50 w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] border border-border px-6 py-2.5 text-[15px] font-medium text-text-primary transition-all duration-150 hover:bg-gray-50 w-full sm:w-auto"
             >
               Anmelden
             </Link>
@@ -44,21 +44,21 @@ export default function LandingPage() {
         {/* Feature highlights */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl w-full">
           <div className="text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-accent-subtle">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-accent-subtle">
               <span className="text-lg">📝</span>
             </div>
             <div className="text-sm font-medium text-text-primary">571 Fragen</div>
             <div className="text-xs text-text-tertiary mt-0.5">Aus SR-Zeitungen</div>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-exam-light">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
               <span className="text-lg">⏱️</span>
             </div>
             <div className="text-sm font-medium text-text-primary">Prüfungsmodus</div>
             <div className="text-xs text-text-tertiary mt-0.5">30 Sek. pro Frage</div>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-info-light">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-info-light">
               <span className="text-lg">🤖</span>
             </div>
             <div className="text-sm font-medium text-text-primary">KI-Bewertung</div>

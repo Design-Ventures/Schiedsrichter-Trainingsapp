@@ -19,7 +19,7 @@ export function SubmitConfirmation({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="mx-4 w-full max-w-md rounded-[--radius-xl] bg-surface p-6 shadow-xl">
+      <div className="mx-4 w-full max-w-md rounded-[var(--radius-xl)] bg-surface p-6 shadow-xl">
         <h3 className="mb-2 text-lg font-bold text-text-primary">
           Test abgeben?
         </h3>

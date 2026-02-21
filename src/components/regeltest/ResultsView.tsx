@@ -57,7 +57,7 @@ export function ResultsView() {
           return (
             <div
               key={score}
-              className={cn("rounded-[--radius-lg] p-3 text-center", colors[score])}
+              className={cn("rounded-[var(--radius-lg)] p-3 text-center", colors[score])}
             >
               <div className="text-2xl font-bold">{count}</div>
               <div className="text-xs">{labels[score]}</div>

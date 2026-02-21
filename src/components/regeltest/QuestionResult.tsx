@@ -44,7 +44,7 @@ export function QuestionResult({ result }: QuestionResultProps) {
           {result.situation}
         </p>
 
-        <div className="space-y-2 rounded-[--radius-lg] bg-surface-raised p-3">
+        <div className="space-y-2 rounded-[var(--radius-lg)] bg-surface-raised p-3">
           <div>
             <span className="text-xs font-medium text-text-tertiary">
               Deine Antwort:
@@ -62,7 +62,7 @@ export function QuestionResult({ result }: QuestionResultProps) {
         </div>
 
         {result.aiFeedback && (
-          <div className="rounded-[--radius-lg] border border-blue-100 bg-blue-50 p-3">
+          <div className="rounded-[var(--radius-lg)] border border-blue-100 bg-blue-50 p-3">
             <span className="text-xs font-medium text-blue-600">
               KI-Bewertung:
             </span>
