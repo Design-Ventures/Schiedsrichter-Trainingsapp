@@ -101,6 +101,7 @@ export async function POST(
       totalScore,
       maxScore: session.maxScore,
       totalQuestions: session.totalQuestions,
+      completedAt: session.completedAt?.toISOString() ?? new Date().toISOString(),
       answers: session.answers.map((a) => {
         const result = resultsMap.get(a.questionIndex);
         return {

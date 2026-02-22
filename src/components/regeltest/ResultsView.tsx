@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { useRegeltestStore } from "@/stores/regeltestStore";
+import { REGELTEST_CONFIG } from "@/types/regeltest";
 import { QuestionResult } from "./QuestionResult";
 
 export function ResultsView() {
@@ -13,41 +13,29 @@ export function ResultsView() {
 
   if (!results) return null;
 
-  const percentage = Math.round((results.totalScore / results.maxScore) * 100);
-  const passed = percentage >= 80;
+  const config = REGELTEST_CONFIG[results.mode];
+  const passScore = Math.ceil(results.maxScore * (config.passPercentage / 100));
+  const passed = results.totalScore >= passScore;
+
+  const completedDate = new Date(results.completedAt).toLocaleDateString(
+    "de-DE",
+    { day: "2-digit", month: "2-digit", year: "numeric" }
+  );
 
   return (
     <div className="space-y-6">
-      {/* Score summary */}
-      <Card>
-        <CardContent className="text-center">
-          <div
-            className={cn(
-              "mx-auto mb-3 flex h-24 w-24 items-center justify-center rounded-full text-3xl font-bold",
-              passed
-                ? "bg-success-light text-success-text"
-                : "bg-error-light text-error"
-            )}
-          >
-            {percentage}%
-          </div>
-          <h2 className="mb-1 text-xl font-bold text-text-primary">
-            {passed ? "Bestanden!" : "Nicht bestanden"}
-          </h2>
-          <p className="text-sm text-text-secondary">
-            {results.totalScore} von {results.maxScore} Punkten
-          </p>
-          <p className="mt-1 text-xs text-text-tertiary">
-            {results.totalQuestions} Fragen &middot;{" "}
-            {results.mode === "EXAM" ? "Prüfungsmodus" : "Testmodus"}
-          </p>
-        </CardContent>
-      </Card>
+      {/* Neutral header */}
+      <p className="text-center text-sm text-text-secondary">
+        {results.totalQuestions} Situationen abgeschlossen &middot;{" "}
+        {completedDate}
+      </p>
 
       {/* Score breakdown */}
       <div className="grid grid-cols-3 gap-3">
         {([2, 1, 0] as const).map((score) => {
-          const count = results.answers.filter((a) => a.score === score).length;
+          const count = results.answers.filter(
+            (a) => a.score === score
+          ).length;
           const labels = { 2: "2 Punkte", 1: "1 Punkt", 0: "0 Punkte" };
           const colors = {
             2: "text-success-text bg-success-light",
@@ -57,7 +45,10 @@ export function ResultsView() {
           return (
             <div
               key={score}
-              className={cn("rounded-[var(--radius-lg)] p-3 text-center", colors[score])}
+              className={cn(
+                "rounded-[var(--radius-lg)] p-3 text-center",
+                colors[score]
+              )}
             >
               <div className="text-2xl font-bold">{count}</div>
               <div className="text-xs">{labels[score]}</div>
@@ -74,6 +65,24 @@ export function ResultsView() {
         {results.answers.map((answer) => (
           <QuestionResult key={answer.questionIndex} result={answer} />
         ))}
+      </div>
+
+      {/* Pass/fail context */}
+      <div
+        className={cn(
+          "rounded-[var(--radius-lg)] p-4 text-sm",
+          passed
+            ? "bg-success-light text-success-text"
+            : "bg-error-light text-error"
+        )}
+      >
+        <p>
+          Zum Bestehen benötigst du {passScore} Punkte — du hattest{" "}
+          {results.totalScore}.{" "}
+          <span className="font-semibold">
+            {passed ? "Bestanden." : "Nicht bestanden."}
+          </span>
+        </p>
       </div>
 
       {/* Actions */}

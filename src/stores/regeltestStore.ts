@@ -15,6 +15,7 @@ type Phase =
   | "active"
   | "submitting"
   | "evaluating"
+  | "evaluating_done"
   | "results"
   | "error";
 
@@ -40,6 +41,7 @@ interface RegeltestState {
   handleTimeout: () => void;
   submitAllAnswers: () => Promise<void>;
   triggerEvaluation: () => Promise<void>;
+  setPhase: (phase: Phase) => void;
   reset: () => void;
 }
 
@@ -224,7 +226,7 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
       }
 
       const results: RegeltestResults = await res.json();
-      set({ phase: "results", results });
+      set({ phase: "evaluating_done", results });
     } catch (error) {
       set({
         phase: "error",
@@ -232,6 +234,10 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
           error instanceof Error ? error.message : "Unbekannter Fehler",
       });
     }
+  },
+
+  setPhase: (phase: Phase) => {
+    set({ phase });
   },
 
   reset: () => {

@@ -27,8 +27,15 @@ export function QuestionResult({ result }: QuestionResultProps) {
     <Card>
       <CardContent className="space-y-3">
         <div className="flex items-start justify-between gap-3">
-          <div className="text-sm font-medium text-accent-text">
-            Frage {result.questionIndex + 1}
+          <div className="space-y-1">
+            <div className="text-sm font-medium text-accent-text">
+              Frage {result.questionIndex + 1}
+            </div>
+            {score === 1 && (
+              <span className="text-xs text-warning-text">
+                Sinngemäß richtig gewertet
+              </span>
+            )}
           </div>
           <span
             className={cn(

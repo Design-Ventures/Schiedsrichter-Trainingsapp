@@ -5,12 +5,14 @@ export const REGELTEST_CONFIG = {
     questionCount: 30,
     timeLimitPerQuestion: 30,
     maxScore: 60,
+    passPercentage: 80,
     label: "Prüfungsmodus",
   },
   TEST: {
     questionCount: 15,
     timeLimitPerQuestion: null,
     maxScore: 30,
+    passPercentage: 80,
     label: "Testmodus",
   },
 } as const;
@@ -61,6 +63,7 @@ export interface RegeltestResults {
   totalScore: number;
   maxScore: number;
   totalQuestions: number;
+  completedAt: string;
   answers: RegeltestAnswerResult[];
 }
 

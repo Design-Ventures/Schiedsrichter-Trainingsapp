@@ -42,6 +42,7 @@ export function RegeltestClient({ initialMode }: RegeltestClientProps) {
       return <RegeltestActive />;
     case "submitting":
     case "evaluating":
+    case "evaluating_done":
       return <EvaluatingView />;
     case "results":
       return <ResultsView />;
