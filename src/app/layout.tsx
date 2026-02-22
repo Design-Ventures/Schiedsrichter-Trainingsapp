@@ -14,16 +14,28 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Schiedsrichter Trainingsapp",
+  title: {
+    default: "schiri.app — Werde ein besserer Schiedsrichter",
+    template: "%s | schiri.app",
+  },
   description:
-    "Lernplattform für Fußball-Schiedsrichter – Regeltest mit sofortigem Feedback",
+    "Echte DFB-Prüfungsfragen aus der Schiedsrichter-Zeitung mit sofortigem Feedback nach jeder Antwort.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
   ),
   openGraph: {
-    title: "Schiedsrichter Trainingsapp",
-    description: "Lernplattform für Fußball-Schiedsrichter",
+    title: "schiri.app — Werde ein besserer Schiedsrichter",
+    description:
+      "Echte DFB-Prüfungsfragen aus der Schiedsrichter-Zeitung mit sofortigem Feedback nach jeder Antwort.",
     locale: "de_DE",
+    type: "website",
+    siteName: "schiri.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "schiri.app — Werde ein besserer Schiedsrichter",
+    description:
+      "Echte DFB-Prüfungsfragen mit sofortigem Feedback.",
   },
 };
 
