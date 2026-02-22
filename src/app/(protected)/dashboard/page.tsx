@@ -88,8 +88,8 @@ export default async function DashboardPage() {
         <h3 className="text-[15px] sm:text-base font-semibold text-text-primary">Deine Statistiken</h3>
 
         {totalTests === 0 ? (
-          <p className="mt-3 text-[13px] sm:text-sm text-text-tertiary">
-            Starte deinen ersten Regeltest, um Statistiken zu sehen.
+          <p className="mt-3 text-[13px] sm:text-sm text-text-secondary">
+            Nach deinem ersten Test siehst du hier deinen Fortschritt.
           </p>
         ) : (
           <div className="mt-4 space-y-5 sm:space-y-6">
