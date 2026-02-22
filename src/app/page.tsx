@@ -22,16 +22,11 @@ export default async function LandingPage() {
       {/* Hero */}
       <main className="flex-1 flex flex-col items-center justify-center px-5 sm:px-6 pb-16 sm:pb-24">
         <div className="max-w-xl text-center">
-          <h1 className="text-3xl sm:text-5xl font-bold text-text-primary leading-[1.15] sm:leading-[1.1]">
-            Der Regeltest, der dich
-            <br />
-            zum besseren
-            <br className="sm:hidden" />
-            {" "}Schiedsrichter macht.
+          <h1 className="text-3xl sm:text-5xl font-bold text-text-primary leading-[1.15] sm:leading-[1.1] text-balance">
+            Der Regeltest, der dich zum besseren Schiedsrichter macht.
           </h1>
-          <p className="mt-4 sm:mt-6 text-[15px] sm:text-lg text-text-secondary max-w-xs sm:max-w-md mx-auto leading-relaxed">
-            Echte Prüfungsfragen aus der DFB Schiedsrichter-Zeitung
-            {" "}&mdash; mit sofortigem Feedback nach jeder Antwort.
+          <p className="mt-4 sm:mt-6 text-[15px] sm:text-lg text-text-secondary max-w-md mx-auto leading-relaxed text-pretty">
+            Echte Prüfungsfragen aus der DFB Schiedsrichter-Zeitung — mit sofortigem Feedback nach jeder Antwort.
           </p>
 
           <div className="mt-8 sm:mt-10 flex flex-col items-center gap-2">
