@@ -1,13 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useRegeltestStore } from "@/stores/regeltestStore";
 import type { RegeltestMode } from "@/types/regeltest";
 import { RegeltestLoading } from "./RegeltestLoading";
 import { RegeltestActive } from "./RegeltestActive";
-import { EvaluatingView } from "./EvaluatingView";
-import { ResultsView } from "./ResultsView";
-import { RegeltestError } from "./RegeltestError";
+
+// Lazy-load views that aren't needed on initial render
+const EvaluatingView = dynamic(
+  () => import("./EvaluatingView").then((m) => ({ default: m.EvaluatingView })),
+  { loading: () => <RegeltestLoading /> }
+);
+const ResultsView = dynamic(
+  () => import("./ResultsView").then((m) => ({ default: m.ResultsView })),
+  { loading: () => <RegeltestLoading /> }
+);
+const RegeltestError = dynamic(
+  () => import("./RegeltestError").then((m) => ({ default: m.RegeltestError }))
+);
 
 interface RegeltestClientProps {
   initialMode: RegeltestMode;

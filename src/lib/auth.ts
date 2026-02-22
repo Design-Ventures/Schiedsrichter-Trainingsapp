@@ -1,7 +1,12 @@
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 
-export async function getAuthenticatedUser() {
+/**
+ * Cached per-request auth lookup. Safe to call from layout + page
+ * without hitting Supabase twice in the same render pass.
+ */
+export const getAuthenticatedUser = cache(async () => {
   const supabase = await createClient();
   const {
     data: { user },
@@ -26,4 +31,4 @@ export async function getAuthenticatedUser() {
   });
 
   return user;
-}
+});

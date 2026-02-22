@@ -5,7 +5,9 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: "2mb",
     },
+    optimizePackageImports: ["framer-motion"],
   },
+  poweredByHeader: false,
 };
 
 export default nextConfig;

@@ -1,19 +1,41 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { getAuthenticatedUser } from "@/lib/auth";
+import { Logo } from "@/components/ui/logo";
+import { LogoutButton } from "@/components/ui/logout-button";
 
 export default async function ProtectedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getAuthenticatedUser();
 
   if (!user) {
     redirect("/login");
   }
 
-  return <>{children}</>;
+  const displayName = user.user_metadata?.name || user.email || "Nutzer";
+
+  return (
+    <div className="min-h-screen bg-surface">
+      <header className="border-b border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3 sm:px-6 sm:py-4">
+          <Link href="/dashboard">
+            <Logo />
+          </Link>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <span className="hidden sm:inline text-sm text-text-secondary">
+              {displayName}
+            </span>
+            <LogoutButton />
+          </div>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-3xl px-5 py-8 sm:px-6 sm:py-12">
+        {children}
+      </main>
+    </div>
+  );
 }
