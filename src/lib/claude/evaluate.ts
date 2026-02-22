@@ -5,26 +5,29 @@ const SYSTEM_PROMPT = `Du bist ein erfahrener DFB-Schiedsrichter-Prüfer. Du bew
 
 Für jede Frage erhältst du:
 - Die Spielsituation
-- Die korrekte Musterantwort
-- Kriterien für volle Punktzahl (criteriaFull) und Teilpunktzahl (criteriaPartial)
+- Die korrekte Musterantwort (= die vollständige, richtige Antwort)
+- Orientierungskriterien (criteriaFull / criteriaPartial) als zusätzliche Hinweise
 - Die Antwort des Prüflings
 
+BEWERTUNGSGRUNDLAGE: Vergleiche die Antwort des Prüflings PRIMÄR mit der Musterantwort. Die Orientierungskriterien helfen dir, die Kernaspekte zu erkennen, aber die Musterantwort ist die Wahrheit.
+
 Bewertungsregeln:
-- 2 Punkte: ALLE criteriaFull sind in der Antwort sinngemäß enthalten
-- 1 Punkt: Mindestens eines der criteriaPartial ist sinngemäß enthalten, aber nicht alle criteriaFull
-- 0 Punkte: Keines der Kriterien ist erkennbar enthalten, oder die Antwort ist leer/unsinnig
+- 2 Punkte: Die Antwort erfasst ALLE wesentlichen Aspekte der Musterantwort – korrekte Spielfortsetzung UND korrekte persönliche Strafe (falls relevant) UND nachvollziehbare Begründung.
+- 1 Punkt: Die Antwort erfasst die Kernentscheidung (z.B. richtige Spielfortsetzung), aber die Begründung fehlt, ist unvollständig, oder eine relevante Komponente (z.B. persönliche Strafe) fehlt.
+- 0 Punkte: Die Antwort ist falsch, widerspricht der Musterantwort, oder trifft keine relevante Entscheidung.
 
 Wichtig:
-- Bewerte sinngemäß, nicht wörtlich. Der Prüfling muss nicht exakt die gleichen Worte verwenden.
-- Fachbegriffe (z.B. "Direkter Freistoß", "Persönliche Strafe", "Vorteil") müssen korrekt verwendet werden.
-- Eine leere oder offensichtlich falsche Antwort erhält immer 0 Punkte.
+- Bewerte SEMANTISCH, nicht wörtlich. Der Prüfling muss nicht exakt die gleichen Worte verwenden, aber der Inhalt muss stimmen.
+- Fachbegriffe müssen korrekt verwendet werden: "Direkter Freistoß" ≠ "Indirekter Freistoß", "Verwarnung" ≠ "Feldverweis".
+- Wenn die Musterantwort eine bestimmte Spielfortsetzung + persönliche Strafe nennt, müssen beide Aspekte für 2 Punkte vorhanden sein.
+- Feedback auf Deutsch, max 2 Sätze. Erkläre kurz, was fehlt oder falsch ist – bezogen auf die Musterantwort.
 
 Antworte ausschließlich im folgenden JSON-Format (als Array):
 [
   {
     "questionIndex": <number>,
     "score": <0|1|2>,
-    "feedback": "<kurze deutsche Begründung der Bewertung, max 2 Sätze>",
+    "feedback": "<kurze deutsche Begründung, max 2 Sätze>",
     "matchedCriteria": ["<liste der erfüllten Kriterien>"]
   }
 ]`;
@@ -44,7 +47,7 @@ Antwort des Prüflings: ${q.userAnswer || "(keine Antwort)"}
   return `Bewerte die folgenden ${inputs.length} Antworten:\n\n${questions.join("\n\n")}`;
 }
 
-const BATCH_SIZE = 8;
+const BATCH_SIZE = 15;
 
 async function evaluateBatch(
   inputs: EvaluationInput[]
@@ -55,7 +58,7 @@ async function evaluateBatch(
     try {
       const response = await anthropic.messages.create({
         model: "claude-haiku-4-5-20251001",
-        max_tokens: 2048,
+        max_tokens: 3000,
         system: SYSTEM_PROMPT,
         messages: [{ role: "user", content: userPrompt }],
       });
@@ -95,11 +98,31 @@ async function evaluateBatch(
 export async function evaluateAnswers(
   inputs: EvaluationInput[]
 ): Promise<EvaluationResult[]> {
+  const emptyResults: EvaluationResult[] = [];
+  const toEvaluate: EvaluationInput[] = [];
+
+  for (const input of inputs) {
+    if (!input.userAnswer || input.userAnswer.trim() === "") {
+      emptyResults.push({
+        questionIndex: input.questionIndex,
+        score: 0,
+        feedback: "Keine Antwort abgegeben.",
+        matchedCriteria: [],
+      });
+    } else {
+      toEvaluate.push(input);
+    }
+  }
+
+  if (toEvaluate.length === 0) {
+    return emptyResults;
+  }
+
   const batches: EvaluationInput[][] = [];
-  for (let i = 0; i < inputs.length; i += BATCH_SIZE) {
-    batches.push(inputs.slice(i, i + BATCH_SIZE));
+  for (let i = 0; i < toEvaluate.length; i += BATCH_SIZE) {
+    batches.push(toEvaluate.slice(i, i + BATCH_SIZE));
   }
 
   const batchResults = await Promise.all(batches.map(evaluateBatch));
-  return batchResults.flat();
+  return [...emptyResults, ...batchResults.flat()];
 }

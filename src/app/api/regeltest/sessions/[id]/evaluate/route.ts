@@ -63,12 +63,12 @@ export async function POST(
 
     const totalScore = results.reduce((sum, r) => sum + r.score, 0);
 
-    await prisma.$transaction([
-      ...results.map((r) => {
+    const answerUpdates = results
+      .map((r) => {
         const answer = session.answers.find(
           (a) => a.questionIndex === r.questionIndex
         );
-        if (!answer) return prisma.$queryRaw`SELECT 1`;
+        if (!answer) return null;
         return prisma.regeltestAnswer.update({
           where: { id: answer.id },
           data: {
@@ -77,7 +77,11 @@ export async function POST(
             matchedCriteria: r.matchedCriteria,
           },
         });
-      }),
+      })
+      .filter((op) => op !== null);
+
+    await prisma.$transaction([
+      ...answerUpdates,
       prisma.regeltestSession.update({
         where: { id: sessionId },
         data: {
@@ -87,19 +91,9 @@ export async function POST(
       }),
     ]);
 
-    const updatedAnswers = await prisma.regeltestAnswer.findMany({
-      where: { sessionId },
-      orderBy: { questionIndex: "asc" },
-      include: {
-        question: {
-          select: {
-            id: true,
-            situation: true,
-            correctAnswer: true,
-          },
-        },
-      },
-    });
+    const resultsMap = new Map(
+      results.map((r) => [r.questionIndex, r])
+    );
 
     return NextResponse.json({
       sessionId: session.id,
@@ -107,16 +101,19 @@ export async function POST(
       totalScore,
       maxScore: session.maxScore,
       totalQuestions: session.totalQuestions,
-      answers: updatedAnswers.map((a) => ({
-        questionId: a.questionId,
-        questionIndex: a.questionIndex,
-        userAnswer: a.userAnswer,
-        score: a.score,
-        aiFeedback: a.aiFeedback,
-        matchedCriteria: a.matchedCriteria,
-        correctAnswer: a.question.correctAnswer,
-        situation: a.question.situation,
-      })),
+      answers: session.answers.map((a) => {
+        const result = resultsMap.get(a.questionIndex);
+        return {
+          questionId: a.questionId,
+          questionIndex: a.questionIndex,
+          userAnswer: a.userAnswer,
+          score: result?.score ?? 0,
+          aiFeedback: result?.feedback ?? null,
+          matchedCriteria: result?.matchedCriteria ?? [],
+          correctAnswer: a.question.correctAnswer,
+          situation: a.question.situation,
+        };
+      }),
     });
   } catch (error) {
     return NextResponse.json(
