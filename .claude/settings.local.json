@@ -5,7 +5,12 @@
       "Bash(npx next build:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pdftotext:*)",
+      "Bash(npx tsx:*)",
+      "Bash(node -e:*)",
+      "Bash(python3:*)",
+      "Bash(npm run import:all:*)"
     ]
   }
 }
