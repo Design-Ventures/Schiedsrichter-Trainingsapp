@@ -44,55 +44,55 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-surface">
-      {/* Header */}
+      {/* Header — compact, Luma-style */}
       <header className="border-b border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3 sm:px-6 sm:py-4">
           <Link href="/dashboard">
             <Logo />
           </Link>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-text-secondary">{displayName}</span>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <span className="hidden sm:inline text-sm text-text-secondary">{displayName}</span>
             <LogoutButton />
           </div>
         </div>
       </header>
 
       {/* Content */}
-      <main className="mx-auto max-w-3xl px-6 py-12">
-        <h2 className="text-2xl font-bold text-text-primary">
+      <main className="mx-auto max-w-3xl px-5 py-8 sm:px-6 sm:py-12">
+        <h2 className="text-xl sm:text-2xl font-bold text-text-primary">
           Willkommen, {displayName}
         </h2>
-        <p className="mt-2 text-sm text-text-secondary">
+        <p className="mt-1.5 sm:mt-2 text-[13px] sm:text-sm text-text-secondary">
           Wähle einen Modus und teste dein Regelwissen.
         </p>
 
         {/* Test Mode Cards */}
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
+        <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-5 sm:grid-cols-2">
           <Link href="/regeltest?mode=EXAM" className="group block">
-            <div className="rounded-[var(--radius-xl)] border border-border p-6 transition-all duration-150 hover:border-border-hover hover:shadow-md">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
-                <span className="text-lg">⏱️</span>
+            <div className="rounded-[var(--radius-xl)] border border-border p-5 sm:p-6 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-3 sm:mb-4 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
+                <span className="text-base sm:text-lg">⏱️</span>
               </div>
-              <h3 className="text-base font-semibold text-text-primary">Regeltest</h3>
-              <p className="mt-1.5 text-sm text-text-secondary leading-relaxed">
+              <h3 className="text-[15px] sm:text-base font-semibold text-text-primary">Regeltest</h3>
+              <p className="mt-1 sm:mt-1.5 text-[13px] sm:text-sm text-text-secondary leading-relaxed">
                 30 Fragen, 30 Sekunden pro Frage
               </p>
-              <span className="mt-4 inline-block rounded-full bg-exam-light px-2.5 py-0.5 text-xs font-medium text-exam">
+              <span className="mt-3 sm:mt-4 inline-block rounded-full bg-exam-light px-2.5 py-0.5 text-[11px] sm:text-xs font-medium text-exam">
                 Prüfungsmodus
               </span>
             </div>
           </Link>
 
           <Link href="/regeltest?mode=TEST" className="group block">
-            <div className="rounded-[var(--radius-xl)] border border-border p-6 transition-all duration-150 hover:border-border-hover hover:shadow-md">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-test-light">
-                <span className="text-lg">📝</span>
+            <div className="rounded-[var(--radius-xl)] border border-border p-5 sm:p-6 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-3 sm:mb-4 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-test-light">
+                <span className="text-base sm:text-lg">📝</span>
               </div>
-              <h3 className="text-base font-semibold text-text-primary">Übungstest</h3>
-              <p className="mt-1.5 text-sm text-text-secondary leading-relaxed">
+              <h3 className="text-[15px] sm:text-base font-semibold text-text-primary">Übungstest</h3>
+              <p className="mt-1 sm:mt-1.5 text-[13px] sm:text-sm text-text-secondary leading-relaxed">
                 15 Fragen, kein Zeitlimit
               </p>
-              <span className="mt-4 inline-block rounded-full bg-test-light px-2.5 py-0.5 text-xs font-medium text-test">
+              <span className="mt-3 sm:mt-4 inline-block rounded-full bg-test-light px-2.5 py-0.5 text-[11px] sm:text-xs font-medium text-test">
                 Testmodus
               </span>
             </div>
@@ -100,40 +100,40 @@ export default async function DashboardPage() {
         </div>
 
         {/* Stats */}
-        <div className="mt-14">
-          <h3 className="text-base font-semibold text-text-primary">Deine Statistiken</h3>
+        <div className="mt-10 sm:mt-14">
+          <h3 className="text-[15px] sm:text-base font-semibold text-text-primary">Deine Statistiken</h3>
 
           {totalTests === 0 ? (
-            <p className="mt-3 text-sm text-text-tertiary">
+            <p className="mt-3 text-[13px] sm:text-sm text-text-tertiary">
               Starte deinen ersten Regeltest, um Statistiken zu sehen.
             </p>
           ) : (
-            <div className="mt-4 space-y-6">
+            <div className="mt-4 space-y-5 sm:space-y-6">
               {/* Summary stats */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="rounded-[var(--radius-lg)] border border-border p-4 text-center">
-                  <div className="text-2xl font-bold text-text-primary">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                <div className="rounded-[var(--radius-lg)] border border-border p-3 sm:p-4 text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-text-primary">
                     {totalTests}
                   </div>
-                  <div className="text-xs text-text-tertiary">Tests</div>
+                  <div className="text-[11px] sm:text-xs text-text-tertiary">Tests</div>
                 </div>
-                <div className="rounded-[var(--radius-lg)] border border-border p-4 text-center">
-                  <div className="text-2xl font-bold text-accent">
+                <div className="rounded-[var(--radius-lg)] border border-border p-3 sm:p-4 text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-accent">
                     {averagePercent}%
                   </div>
-                  <div className="text-xs text-text-tertiary">Durchschnitt</div>
+                  <div className="text-[11px] sm:text-xs text-text-tertiary">Durchschnitt</div>
                 </div>
-                <div className="rounded-[var(--radius-lg)] border border-border p-4 text-center">
-                  <div className="text-2xl font-bold text-success">
+                <div className="rounded-[var(--radius-lg)] border border-border p-3 sm:p-4 text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-success">
                     {bestScore}%
                   </div>
-                  <div className="text-xs text-text-tertiary">Bestleistung</div>
+                  <div className="text-[11px] sm:text-xs text-text-tertiary">Bestleistung</div>
                 </div>
               </div>
 
               {/* Recent sessions */}
               <div>
-                <h4 className="mb-3 text-sm font-medium text-text-primary">
+                <h4 className="mb-2.5 sm:mb-3 text-[13px] sm:text-sm font-medium text-text-primary">
                   Letzte Ergebnisse
                 </h4>
                 <div className="space-y-2">
@@ -144,11 +144,11 @@ export default async function DashboardPage() {
                     return (
                       <div
                         key={s.id}
-                        className="flex items-center justify-between rounded-[var(--radius-lg)] border border-border px-4 py-3"
+                        className="flex items-center justify-between rounded-[var(--radius-lg)] border border-border px-3.5 py-2.5 sm:px-4 sm:py-3"
                       >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2.5 sm:gap-3">
                           <span
-                            className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
+                            className={`inline-block rounded-full px-2 py-0.5 text-[11px] sm:text-xs font-medium ${
                               s.mode === "EXAM"
                                 ? "bg-exam-light text-exam"
                                 : "bg-test-light text-test"
@@ -156,7 +156,7 @@ export default async function DashboardPage() {
                           >
                             {s.mode === "EXAM" ? "Prüfung" : "Übung"}
                           </span>
-                          <span className="text-xs text-text-tertiary">
+                          <span className="text-[11px] sm:text-xs text-text-tertiary">
                             {s.completedAt
                               ? new Date(s.completedAt).toLocaleDateString(
                                   "de-DE"
@@ -164,7 +164,7 @@ export default async function DashboardPage() {
                               : ""}
                           </span>
                         </div>
-                        <span className="text-sm font-semibold text-text-primary">
+                        <span className="text-[13px] sm:text-sm font-semibold text-text-primary">
                           {s.totalScore}/{s.maxScore} ({pct}%)
                         </span>
                       </div>

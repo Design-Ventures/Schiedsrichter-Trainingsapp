@@ -46,19 +46,19 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-2px)] flex-col items-center justify-center px-4">
+    <div className="flex min-h-[calc(100vh-2px)] flex-col items-center justify-center px-5 sm:px-6">
       <div className="w-full max-w-sm">
-        <div className="mb-8 text-center">
+        <div className="mb-6 sm:mb-8 text-center">
           <Link href="/">
             <Logo />
           </Link>
-          <h1 className="mt-6 text-2xl font-bold text-text-primary">Anmelden</h1>
-          <p className="mt-1 text-sm text-text-secondary">
+          <h1 className="mt-5 sm:mt-6 text-xl sm:text-2xl font-bold text-text-primary">Anmelden</h1>
+          <p className="mt-1 text-[13px] sm:text-sm text-text-secondary">
             Melde dich an, um fortzufahren
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
           <Input
             id="email"
             label="E-Mail"
@@ -88,7 +88,7 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-text-secondary">
+        <p className="mt-5 sm:mt-6 text-center text-[13px] sm:text-sm text-text-secondary">
           Noch kein Konto?{" "}
           <Link
             href="/register"
