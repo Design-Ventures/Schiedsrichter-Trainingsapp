@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: "Regelkategorien | schiri.app",
@@ -81,13 +80,36 @@ export default async function StatistikenPage() {
       </div>
 
       {tagStats.length === 0 ? (
-        <div className="mt-10 rounded-[var(--radius-xl)] border border-border px-6 py-10 sm:py-14 text-center">
-          <p className="mx-auto max-w-[20rem] text-[13px] sm:text-sm text-text-tertiary text-pretty">
-            Absolviere deinen ersten Regeltest, um deine Stärken und Schwächen pro Kategorie zu sehen.
-          </p>
-          <Link href="/dashboard" className="mt-5 inline-block">
-            <Button>Zum Dashboard</Button>
-          </Link>
+        <div className="mt-10 space-y-6">
+          <div className="rounded-[var(--radius-xl)] border border-border px-6 py-10 sm:py-14 text-center">
+            <h3 className="text-lg sm:text-xl font-bold text-text-primary">
+              Finde heraus, wo du stehst
+            </h3>
+            <p className="mx-auto mt-2 max-w-[22rem] text-[13px] sm:text-sm text-text-secondary text-pretty leading-relaxed">
+              Mach deinen ersten Regeltest — danach siehst du hier deine Stärken und Schwächen pro Kategorie.
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 max-w-md mx-auto">
+              <Link href="/regeltest?mode=EXAM" className="group block">
+                <div className="rounded-[var(--radius-lg)] border border-border p-4 transition-all duration-150 hover:border-border-hover hover:shadow-md text-left">
+                  <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
+                    <span className="text-sm">⏱️</span>
+                  </div>
+                  <h4 className="text-[13px] sm:text-sm font-semibold text-text-primary">Regeltest</h4>
+                  <p className="mt-0.5 text-[11px] sm:text-xs text-text-tertiary">30 Fragen, 30 Sek. pro Frage</p>
+                </div>
+              </Link>
+              <Link href="/regeltest?mode=TEST" className="group block">
+                <div className="rounded-[var(--radius-lg)] border border-border p-4 transition-all duration-150 hover:border-border-hover hover:shadow-md text-left">
+                  <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-[var(--radius-lg)] bg-test-light">
+                    <span className="text-sm">📝</span>
+                  </div>
+                  <h4 className="text-[13px] sm:text-sm font-semibold text-text-primary">Übungstest</h4>
+                  <p className="mt-0.5 text-[11px] sm:text-xs text-text-tertiary">15 Fragen, kein Zeitlimit</p>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="mt-8 space-y-3">
