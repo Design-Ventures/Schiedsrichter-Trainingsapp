@@ -113,6 +113,7 @@ export async function POST(
           matchedCriteria: result?.matchedCriteria ?? [],
           correctAnswer: a.question.correctAnswer,
           situation: a.question.situation,
+          tags: a.question.tags,
         };
       }),
     });

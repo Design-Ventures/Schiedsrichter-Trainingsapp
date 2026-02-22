@@ -5,17 +5,20 @@ import { RegeltestClient } from "@/components/regeltest/RegeltestClient";
 import type { RegeltestMode } from "@/types/regeltest";
 
 interface RegeltestPageProps {
-  searchParams: Promise<{ mode?: string }>;
+  searchParams: Promise<{ mode?: string; tags?: string }>;
 }
 
 export default async function RegeltestPage({ searchParams }: RegeltestPageProps) {
-  const { mode } = await searchParams;
+  const { mode, tags: tagsParam } = await searchParams;
 
   if (mode !== "EXAM" && mode !== "TEST") {
     redirect("/");
   }
 
   const validMode: RegeltestMode = mode;
+  const tags = tagsParam
+    ? tagsParam.split(",").map((t) => t.trim()).filter(Boolean)
+    : undefined;
 
   return (
     <div className="min-h-screen bg-surface">
@@ -34,7 +37,7 @@ export default async function RegeltestPage({ searchParams }: RegeltestPageProps
       </header>
 
       <main className="mx-auto max-w-3xl px-5 py-5 sm:px-6 sm:py-6">
-        <RegeltestClient initialMode={validMode} />
+        <RegeltestClient initialMode={validMode} initialTags={tags} />
       </main>
     </div>
   );

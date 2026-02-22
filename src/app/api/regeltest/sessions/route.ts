@@ -6,6 +6,7 @@ import { REGELTEST_CONFIG } from "@/types/regeltest";
 
 const createSessionSchema = z.object({
   mode: z.enum(["EXAM", "TEST"]),
+  tags: z.array(z.string()).optional(),
 });
 
 function fisherYatesShuffle<T>(array: T[]): T[] {
@@ -30,25 +31,38 @@ export async function POST(request: Request) {
       );
     }
 
-    const { mode } = parsed.data;
+    const { mode, tags } = parsed.data;
     const config = REGELTEST_CONFIG[mode];
+    const isFiltered = tags && tags.length > 0;
+
+    const whereClause: { isActive: true; tags?: { hasSome: string[] } } = {
+      isActive: true,
+    };
+    if (isFiltered) {
+      whereClause.tags = { hasSome: tags };
+    }
 
     const allQuestionIds = await prisma.regeltestQuestion.findMany({
-      where: { isActive: true },
+      where: whereClause,
       select: { id: true },
     });
 
-    if (allQuestionIds.length < config.questionCount) {
+    const minRequired = isFiltered ? 5 : config.questionCount;
+    if (allQuestionIds.length < minRequired) {
       return NextResponse.json(
         {
-          error: `Nicht genügend Fragen verfügbar (${allQuestionIds.length}/${config.questionCount})`,
+          error: `Nicht genügend Fragen verfügbar (${allQuestionIds.length}/${minRequired})`,
         },
         { status: 422 }
       );
     }
 
+    const questionCount = isFiltered
+      ? Math.min(config.questionCount, allQuestionIds.length)
+      : config.questionCount;
+
     const shuffled = fisherYatesShuffle(allQuestionIds);
-    const selectedIds = shuffled.slice(0, config.questionCount).map((q) => q.id);
+    const selectedIds = shuffled.slice(0, questionCount).map((q) => q.id);
 
     const questions = await prisma.regeltestQuestion.findMany({
       where: { id: { in: selectedIds } },
@@ -64,8 +78,8 @@ export async function POST(request: Request) {
       data: {
         userId: user?.id ?? null,
         mode,
-        totalQuestions: config.questionCount,
-        maxScore: config.maxScore,
+        totalQuestions: questionCount,
+        maxScore: questionCount * 2,
       },
     });
 

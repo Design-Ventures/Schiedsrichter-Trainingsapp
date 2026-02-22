@@ -32,7 +32,7 @@ interface RegeltestState {
   results: RegeltestResults | null;
   errorMessage: string | null;
 
-  startSession: (mode: RegeltestMode) => Promise<void>;
+  startSession: (mode: RegeltestMode, tags?: string[]) => Promise<void>;
   setAnswer: (index: number, text: string) => void;
   goToQuestion: (index: number) => void;
   nextQuestion: () => void;
@@ -62,14 +62,19 @@ const initialState = {
 export const useRegeltestStore = create<RegeltestState>((set, get) => ({
   ...initialState,
 
-  startSession: async (mode: RegeltestMode) => {
+  startSession: async (mode: RegeltestMode, tags?: string[]) => {
     set({ phase: "loading", mode, errorMessage: null });
 
     try {
+      const body: { mode: RegeltestMode; tags?: string[] } = { mode };
+      if (tags && tags.length > 0) {
+        body.tags = tags;
+      }
+
       const res = await fetch("/api/regeltest/sessions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode }),
+        body: JSON.stringify(body),
       });
 
       if (!res.ok) {

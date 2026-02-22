@@ -47,6 +47,7 @@ export interface RegeltestAnswerResult {
   matchedCriteria: string[];
   correctAnswer: string;
   situation: string;
+  tags: string[];
 }
 
 export interface RegeltestSession {
@@ -69,6 +70,7 @@ export interface RegeltestResults {
 
 export interface CreateSessionRequest {
   mode: RegeltestMode;
+  tags?: string[];
 }
 
 export interface SubmitAnswersRequest {
