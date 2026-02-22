@@ -16,51 +16,50 @@ interface TagStats {
   scores: [number, number, number];
 }
 
+interface TagRow {
+  tag: string;
+  total_answered: bigint;
+  total_score: bigint;
+  score_0: bigint;
+  score_1: bigint;
+  score_2: bigint;
+}
+
 export default async function StatistikenPage() {
   const user = await getAuthenticatedUser();
 
-  const answers = user
-    ? await prisma.regeltestAnswer.findMany({
-        where: {
-          session: { userId: user.id, isEvaluated: true },
-        },
-        select: {
-          score: true,
-          question: { select: { tags: true } },
-        },
-      })
+  // Single SQL query: unnest tags, aggregate per tag, sort by weakest
+  const rows: TagRow[] = user
+    ? await prisma.$queryRaw<TagRow[]>`
+        SELECT
+          unnest(q.tags) AS tag,
+          COUNT(*)::bigint AS total_answered,
+          SUM(a.score)::bigint AS total_score,
+          SUM(CASE WHEN a.score = 0 THEN 1 ELSE 0 END)::bigint AS score_0,
+          SUM(CASE WHEN a.score = 1 THEN 1 ELSE 0 END)::bigint AS score_1,
+          SUM(CASE WHEN a.score = 2 THEN 1 ELSE 0 END)::bigint AS score_2
+        FROM regeltest_answers a
+        JOIN regeltest_sessions s ON a."sessionId" = s.id
+        JOIN regeltest_questions q ON a."questionId" = q.id
+        WHERE s."userId" = ${user.id} AND s."isEvaluated" = true
+        GROUP BY tag
+        ORDER BY SUM(a.score)::float / (COUNT(*) * 2) ASC
+      `
     : [];
 
-  // Aggregate per tag
-  const tagMap = new Map<
-    string,
-    { totalAnswered: number; totalScore: number; scores: [number, number, number] }
-  >();
-
-  for (const answer of answers) {
-    for (const tag of answer.question.tags) {
-      const entry = tagMap.get(tag) ?? {
-        totalAnswered: 0,
-        totalScore: 0,
-        scores: [0, 0, 0] as [number, number, number],
-      };
-      entry.totalAnswered++;
-      entry.totalScore += answer.score;
-      entry.scores[answer.score]++;
-      tagMap.set(tag, entry);
-    }
-  }
-
-  const tagStats: TagStats[] = Array.from(tagMap.entries())
-    .map(([tag, data]) => ({
-      tag,
-      totalAnswered: data.totalAnswered,
-      totalScore: data.totalScore,
-      maxScore: data.totalAnswered * 2,
-      percent: Math.round((data.totalScore / (data.totalAnswered * 2)) * 100),
-      scores: data.scores,
-    }))
-    .sort((a, b) => a.percent - b.percent);
+  const tagStats: TagStats[] = rows.map((r) => {
+    const totalAnswered = Number(r.total_answered);
+    const totalScore = Number(r.total_score);
+    const maxScore = totalAnswered * 2;
+    return {
+      tag: r.tag,
+      totalAnswered,
+      totalScore,
+      maxScore,
+      percent: Math.round((totalScore / maxScore) * 100),
+      scores: [Number(r.score_0), Number(r.score_1), Number(r.score_2)],
+    };
+  });
 
   return (
     <>

@@ -74,6 +74,7 @@ model RegeltestSession {
 
   answers RegeltestAnswer[]
 
+  @@index([userId, isEvaluated])
   @@map("regeltest_sessions")
 }
 
@@ -92,6 +93,7 @@ model RegeltestAnswer {
   answeredAt      DateTime          @default(now())
 
   @@unique([sessionId, questionIndex])
+  @@index([questionId])
   @@map("regeltest_answers")
 }
 
