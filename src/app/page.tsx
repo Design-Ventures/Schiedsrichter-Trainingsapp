@@ -21,29 +21,29 @@ export default async function LandingPage() {
 
       {/* Hero */}
       <main className="flex-1 flex flex-col items-center justify-center px-5 sm:px-6 pb-16 sm:pb-24">
-        <div className="max-w-lg text-center">
+        <div className="max-w-xl text-center">
           <h1 className="text-3xl sm:text-5xl font-bold text-text-primary leading-[1.15] sm:leading-[1.1]">
-            Werde sicher
+            Der Regeltest, der dich
             <br />
-            in den Regeln.
+            zum besseren
+            <br className="sm:hidden" />
+            {" "}Schiedsrichter macht.
           </h1>
-          <p className="mt-4 sm:mt-6 text-[15px] sm:text-lg text-text-secondary max-w-xs sm:max-w-sm mx-auto leading-relaxed">
-            Trainiere mit echten Prüfungsfragen und erhalte sofort detailliertes Feedback zu deinen Antworten.
+          <p className="mt-4 sm:mt-6 text-[15px] sm:text-lg text-text-secondary max-w-xs sm:max-w-md mx-auto leading-relaxed">
+            Echte Prüfungsfragen aus der DFB Schiedsrichter-Zeitung
+            {" "}&mdash; mit sofortigem Feedback nach jeder Antwort.
           </p>
 
-          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="mt-8 sm:mt-10 flex flex-col items-center gap-2">
             <Link
-              href="/register"
-              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] bg-primary px-6 py-2.5 min-h-[44px] text-[15px] font-medium text-text-on-primary transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
+              href="/regeltest?mode=TEST"
+              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] bg-primary px-8 py-3 min-h-[48px] text-[15px] font-medium text-text-on-primary transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
             >
-              Kostenlos starten
+              Kostenlos trainieren
             </Link>
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] border border-border px-6 py-2.5 min-h-[44px] text-[15px] font-medium text-text-primary transition-all duration-150 hover:bg-fill-hover w-full sm:w-auto"
-            >
-              Anmelden
-            </Link>
+            <span className="text-[13px] text-text-tertiary">
+              Ohne Anmeldung starten
+            </span>
           </div>
         </div>
 
@@ -53,22 +53,22 @@ export default async function LandingPage() {
             <div className="mx-auto mb-2 sm:mb-3 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-accent-subtle">
               <span className="text-base sm:text-lg">📝</span>
             </div>
-            <div className="text-[13px] sm:text-sm font-medium text-text-primary">{questionCount} Fragen</div>
-            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Aus SR-Zeitungen</div>
+            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Offizielle DFB-Fragen</div>
+            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Direkt aus der SR-Zeitung</div>
           </div>
           <div className="text-center">
             <div className="mx-auto mb-2 sm:mb-3 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
               <span className="text-base sm:text-lg">⏱️</span>
             </div>
-            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Prüfungsmodus</div>
-            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">30 Sek. pro Frage</div>
+            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Prüfungsnah trainieren</div>
+            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Wie im echten Regeltest</div>
           </div>
           <div className="text-center">
             <div className="mx-auto mb-2 sm:mb-3 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-info-light">
               <span className="text-base sm:text-lg">✨</span>
             </div>
-            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Sofort-Bewertung</div>
-            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Detailliertes Feedback</div>
+            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Sofort verstehen</div>
+            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Begründung zu jeder Antwort</div>
           </div>
         </div>
       </main>

@@ -60,8 +60,8 @@ model RegeltestQuestion {
 
 model RegeltestSession {
   id            String        @id @default(uuid())
-  userId        String
-  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String?
+  user          User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
   mode          RegeltestMode
   totalQuestions Int
   totalScore    Int           @default(0)

@@ -84,7 +84,7 @@ export default function LoginPage() {
           ) : null}
 
           <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
-            Anmelden
+            {isLoading ? "Anmelden..." : "Anmelden"}
           </Button>
         </form>
 

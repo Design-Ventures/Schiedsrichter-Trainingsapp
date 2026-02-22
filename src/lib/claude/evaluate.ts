@@ -44,7 +44,9 @@ Antwort des Prüflings: ${q.userAnswer || "(keine Antwort)"}
   return `Bewerte die folgenden ${inputs.length} Antworten:\n\n${questions.join("\n\n")}`;
 }
 
-export async function evaluateAnswers(
+const BATCH_SIZE = 8;
+
+async function evaluateBatch(
   inputs: EvaluationInput[]
 ): Promise<EvaluationResult[]> {
   const userPrompt = buildUserPrompt(inputs);
@@ -52,8 +54,8 @@ export async function evaluateAnswers(
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       const response = await anthropic.messages.create({
-        model: "claude-sonnet-4-5-20250929",
-        max_tokens: 4096,
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 2048,
         system: SYSTEM_PROMPT,
         messages: [{ role: "user", content: userPrompt }],
       });
@@ -88,4 +90,16 @@ export async function evaluateAnswers(
   }
 
   return [];
+}
+
+export async function evaluateAnswers(
+  inputs: EvaluationInput[]
+): Promise<EvaluationResult[]> {
+  const batches: EvaluationInput[][] = [];
+  for (let i = 0; i < inputs.length; i += BATCH_SIZE) {
+    batches.push(inputs.slice(i, i + BATCH_SIZE));
+  }
+
+  const batchResults = await Promise.all(batches.map(evaluateBatch));
+  return batchResults.flat();
 }

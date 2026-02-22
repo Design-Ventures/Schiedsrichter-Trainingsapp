@@ -12,7 +12,7 @@ export default async function RegeltestPage({ searchParams }: RegeltestPageProps
   const { mode } = await searchParams;
 
   if (mode !== "EXAM" && mode !== "TEST") {
-    redirect("/dashboard");
+    redirect("/");
   }
 
   const validMode: RegeltestMode = mode;
@@ -21,11 +21,11 @@ export default async function RegeltestPage({ searchParams }: RegeltestPageProps
     <div className="min-h-screen bg-surface">
       <header className="border-b border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3 sm:px-6 sm:py-4">
-          <Link href="/dashboard">
+          <Link href="/">
             <Logo />
           </Link>
           <Link
-            href="/dashboard"
+            href="/"
             className="inline-flex items-center min-h-[44px] text-[13px] sm:text-sm text-text-secondary hover:text-text-primary transition-colors"
           >
             Abbrechen

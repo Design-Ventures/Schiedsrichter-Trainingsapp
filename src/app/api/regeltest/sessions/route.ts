@@ -20,9 +20,6 @@ function fisherYatesShuffle<T>(array: T[]): T[] {
 export async function POST(request: Request) {
   try {
     const user = await getAuthenticatedUser();
-    if (!user) {
-      return NextResponse.json({ error: "Nicht autorisiert" }, { status: 401 });
-    }
 
     const body = await request.json();
     const parsed = createSessionSchema.safeParse(body);
@@ -65,7 +62,7 @@ export async function POST(request: Request) {
 
     const session = await prisma.regeltestSession.create({
       data: {
-        userId: user.id,
+        userId: user?.id ?? null,
         mode,
         totalQuestions: config.questionCount,
         maxScore: config.maxScore,

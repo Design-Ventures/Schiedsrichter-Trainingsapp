@@ -20,10 +20,6 @@ export async function POST(
 ) {
   try {
     const user = await getAuthenticatedUser();
-    if (!user) {
-      return NextResponse.json({ error: "Nicht autorisiert" }, { status: 401 });
-    }
-
     const { id: sessionId } = await params;
 
     const session = await prisma.regeltestSession.findUnique({
@@ -37,7 +33,7 @@ export async function POST(
       );
     }
 
-    if (session.userId !== user.id) {
+    if (session.userId && session.userId !== user?.id) {
       return NextResponse.json({ error: "Nicht autorisiert" }, { status: 403 });
     }
 
