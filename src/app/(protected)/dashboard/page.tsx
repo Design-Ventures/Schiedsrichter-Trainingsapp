@@ -58,41 +58,41 @@ export default async function DashboardPage() {
       </header>
 
       {/* Content */}
-      <main className="mx-auto max-w-3xl px-6 py-10">
+      <main className="mx-auto max-w-3xl px-6 py-12">
         <h2 className="text-2xl font-bold text-text-primary">
           Willkommen, {displayName}
         </h2>
-        <p className="mt-1 text-sm text-text-secondary">
+        <p className="mt-2 text-sm text-text-secondary">
           Wähle einen Modus und teste dein Regelwissen.
         </p>
 
         {/* Test Mode Cards */}
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2">
           <Link href="/regeltest?mode=EXAM" className="group block">
-            <div className="rounded-[var(--radius-xl)] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
+            <div className="rounded-[var(--radius-xl)] border border-border p-6 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
                 <span className="text-lg">⏱️</span>
               </div>
               <h3 className="text-base font-semibold text-text-primary">Regeltest</h3>
-              <p className="mt-1 text-sm text-text-secondary">
+              <p className="mt-1.5 text-sm text-text-secondary leading-relaxed">
                 30 Fragen, 30 Sekunden pro Frage
               </p>
-              <span className="mt-3 inline-block rounded-full bg-exam-light px-2.5 py-0.5 text-xs font-medium text-exam">
+              <span className="mt-4 inline-block rounded-full bg-exam-light px-2.5 py-0.5 text-xs font-medium text-exam">
                 Prüfungsmodus
               </span>
             </div>
           </Link>
 
           <Link href="/regeltest?mode=TEST" className="group block">
-            <div className="rounded-[var(--radius-xl)] border border-border p-5 transition-all duration-150 hover:border-border-hover hover:shadow-md">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-test-light">
+            <div className="rounded-[var(--radius-xl)] border border-border p-6 transition-all duration-150 hover:border-border-hover hover:shadow-md">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-test-light">
                 <span className="text-lg">📝</span>
               </div>
               <h3 className="text-base font-semibold text-text-primary">Übungstest</h3>
-              <p className="mt-1 text-sm text-text-secondary">
+              <p className="mt-1.5 text-sm text-text-secondary leading-relaxed">
                 15 Fragen, kein Zeitlimit
               </p>
-              <span className="mt-3 inline-block rounded-full bg-test-light px-2.5 py-0.5 text-xs font-medium text-test">
+              <span className="mt-4 inline-block rounded-full bg-test-light px-2.5 py-0.5 text-xs font-medium text-test">
                 Testmodus
               </span>
             </div>
@@ -100,7 +100,7 @@ export default async function DashboardPage() {
         </div>
 
         {/* Stats */}
-        <div className="mt-10">
+        <div className="mt-14">
           <h3 className="text-base font-semibold text-text-primary">Deine Statistiken</h3>
 
           {totalTests === 0 ? (

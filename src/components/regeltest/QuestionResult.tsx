@@ -64,7 +64,7 @@ export function QuestionResult({ result }: QuestionResultProps) {
         {result.aiFeedback && (
           <div className="rounded-[var(--radius-lg)] border border-blue-100 bg-blue-50 p-3">
             <span className="text-xs font-medium text-blue-600">
-              KI-Bewertung:
+              Bewertung:
             </span>
             <p className="text-sm text-blue-900">{result.aiFeedback}</p>
           </div>

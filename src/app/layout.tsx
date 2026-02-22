@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Schiedsrichter Trainingsapp",
   description:
-    "Lernplattform für Fußball-Schiedsrichter – Regeltest mit KI-Bewertung",
+    "Lernplattform für Fußball-Schiedsrichter – Regeltest mit sofortigem Feedback",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
   ),

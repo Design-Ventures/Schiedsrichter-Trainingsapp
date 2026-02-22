@@ -8,7 +8,7 @@ export function EvaluatingView() {
         Deine Antworten werden bewertet...
       </h2>
       <p className="text-sm text-text-secondary">
-        Die KI analysiert deine Antworten. Das kann einen Moment dauern.
+        Deine Antworten werden gerade ausgewertet. Das kann einen Moment dauern.
       </p>
     </div>
   );
