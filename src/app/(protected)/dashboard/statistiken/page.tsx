@@ -46,6 +46,20 @@ export default async function StatistikenPage() {
       `
     : [];
 
+  // Session history for sparkline (last 20, oldest first)
+  const sessions = user
+    ? await prisma.regeltestSession.findMany({
+        where: { userId: user.id, isEvaluated: true },
+        orderBy: { completedAt: "asc" },
+        take: 20,
+        select: { totalScore: true, maxScore: true, completedAt: true },
+      })
+    : [];
+
+  const sessionPercents = sessions.map((s) =>
+    Math.round((s.totalScore / s.maxScore) * 100)
+  );
+
   const tagStats: TagStats[] = rows.map((r) => {
     const totalAnswered = Number(r.total_answered);
     const totalScore = Number(r.total_score);
@@ -78,6 +92,102 @@ export default async function StatistikenPage() {
           Sortiert nach Trefferquote — Schwächen stehen oben
         </p>
       </div>
+
+      {/* Sparkline progress card */}
+      {sessionPercents.length >= 2 && (() => {
+        const avg = Math.round(
+          sessionPercents.reduce((a, b) => a + b, 0) / sessionPercents.length
+        );
+        const recent3 = sessionPercents.slice(-3);
+        const first3 = sessionPercents.slice(0, 3);
+        const recentAvg = recent3.reduce((a, b) => a + b, 0) / recent3.length;
+        const firstAvg = first3.reduce((a, b) => a + b, 0) / first3.length;
+        const trend = Math.round(recentAvg - firstAvg);
+
+        // SVG sparkline coordinates
+        const w = 120;
+        const h = 40;
+        const pad = 2;
+        const n = sessionPercents.length;
+        const points = sessionPercents
+          .map((pct, i) => {
+            const x = pad + (i / (n - 1)) * (w - pad * 2);
+            const y = h - pad - (pct / 100) * (h - pad * 2);
+            return `${x.toFixed(1)},${y.toFixed(1)}`;
+          })
+          .join(" ");
+        const lastPct = sessionPercents[n - 1];
+        const lastX = w - pad;
+        const lastY = h - pad - (lastPct / 100) * (h - pad * 2);
+        // Fill area under the line
+        const fillPoints = `${pad},${h - pad} ${points} ${lastX.toFixed(1)},${h - pad}`;
+
+        return (
+          <div className="mt-8 rounded-[var(--radius-lg)] border border-border px-4 py-3 sm:px-5 sm:py-4">
+            <h3 className="text-[13px] sm:text-sm font-medium text-text-secondary mb-3">
+              Dein Verlauf
+            </h3>
+            <div className="flex items-center gap-5 sm:gap-6">
+              <svg
+                viewBox={`0 0 ${w} ${h}`}
+                className="h-10 w-[120px] shrink-0"
+                aria-hidden="true"
+              >
+                <polygon
+                  points={fillPoints}
+                  className="fill-accent/10"
+                />
+                <polyline
+                  points={points}
+                  fill="none"
+                  className="stroke-accent"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle
+                  cx={lastX}
+                  cy={lastY}
+                  r="3"
+                  className="fill-accent"
+                />
+              </svg>
+              <div className="flex items-baseline gap-4 sm:gap-5">
+                <div>
+                  <span className="text-lg sm:text-xl font-bold text-text-primary">
+                    {avg}%
+                  </span>
+                  <span className="ml-1 text-[11px] sm:text-xs text-text-tertiary">
+                    Schnitt
+                  </span>
+                </div>
+                {sessionPercents.length >= 3 && trend !== 0 && (
+                  <div>
+                    <span
+                      className={`text-[13px] sm:text-sm font-semibold ${
+                        trend > 0 ? "text-success-text" : "text-error"
+                      }`}
+                    >
+                      {trend > 0 ? "+" : ""}{trend}%
+                    </span>
+                    <span className="ml-1 text-[11px] sm:text-xs text-text-tertiary">
+                      Trend
+                    </span>
+                  </div>
+                )}
+                <div>
+                  <span className="text-[13px] sm:text-sm font-semibold text-text-primary">
+                    {sessionPercents.length}
+                  </span>
+                  <span className="ml-1 text-[11px] sm:text-xs text-text-tertiary">
+                    Tests
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {tagStats.length === 0 ? (
         <div className="mt-10 space-y-6">
