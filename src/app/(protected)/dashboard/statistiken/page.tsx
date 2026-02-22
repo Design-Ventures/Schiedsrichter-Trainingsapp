@@ -140,11 +140,21 @@ export default async function StatistikenPage() {
                 />
               </div>
 
-              {/* Score distribution */}
-              <div className="mt-2 flex gap-3 text-[11px] text-text-tertiary">
-                <span>{t.scores[2]}x volle Punkte</span>
-                <span>{t.scores[1]}x teilweise</span>
-                <span>{t.scores[0]}x keine</span>
+              {/* Score distribution + practice link */}
+              <div className="mt-2 flex items-center justify-between gap-3">
+                <div className="flex gap-3 text-[11px] text-text-tertiary">
+                  <span>{t.scores[2]}x volle Punkte</span>
+                  <span>{t.scores[1]}x teilweise</span>
+                  <span>{t.scores[0]}x keine</span>
+                </div>
+                {t.percent < 80 && (
+                  <Link
+                    href={`/regeltest?mode=TEST&tags=${encodeURIComponent(t.tag)}`}
+                    className="shrink-0 text-[11px] sm:text-xs font-medium text-accent hover:text-accent-hover transition-colors"
+                  >
+                    Üben &rarr;
+                  </Link>
+                )}
               </div>
             </div>
           ))}
