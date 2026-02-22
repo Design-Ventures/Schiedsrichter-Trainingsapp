@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { Logo } from "@/components/ui/logo";
 import { LogoutButton } from "@/components/ui/logout-button";
+import { PageTransition } from "@/components/ui/page-transition";
 
 export default async function ProtectedLayout({
   children,
@@ -34,7 +35,7 @@ export default async function ProtectedLayout({
       </header>
 
       <main className="mx-auto max-w-3xl px-5 py-8 sm:px-6 sm:py-12">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
     </div>
   );

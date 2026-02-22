@@ -241,6 +241,15 @@
   100% { background-position: -200% 0; }
 }
 
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@utility animate-page-in {
+  animation: page-in 0.2s ease both;
+}
+
 /* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
