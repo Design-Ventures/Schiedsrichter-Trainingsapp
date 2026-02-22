@@ -12,3 +12,4 @@ prisma/*.db
 npm-debug.log*
 .vercel
 .claude/SESSION_CONTEXT.md
+tsconfig.tsbuildinfo
