@@ -25,6 +25,8 @@ export function Timer() {
 
   return (
     <div
+      aria-live="polite"
+      aria-label={`${timeRemaining} Sekunden verbleibend`}
       className={cn(
         "flex items-center gap-2 rounded-[var(--radius-lg)] px-4 py-2 font-mono text-lg font-bold tabular-nums",
         isWarning
@@ -38,6 +40,7 @@ export function Timer() {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
+        aria-hidden="true"
       >
         <path
           strokeLinecap="round"

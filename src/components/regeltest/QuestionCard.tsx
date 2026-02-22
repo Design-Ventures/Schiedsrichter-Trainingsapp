@@ -11,7 +11,7 @@ export function QuestionCard({ situation, questionNumber }: QuestionCardProps) {
   return (
     <Card>
       <CardContent>
-        <div className="mb-2 text-sm font-medium text-accent">
+        <div className="mb-2 text-sm font-medium text-accent-text">
           Situation {questionNumber}
         </div>
         <p className="text-text-primary leading-relaxed whitespace-pre-line">

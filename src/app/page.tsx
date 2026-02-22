@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
+import { prisma } from "@/lib/prisma";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const questionCount = await prisma.regeltestQuestion.count({
+    where: { isActive: true },
+  });
   return (
     <div className="flex min-h-[calc(100vh-2px)] flex-col">
       {/* Nav — compact like Luma: tight padding, pill-style sign-in */}
@@ -9,7 +13,7 @@ export default function LandingPage() {
         <Logo />
         <Link
           href="/login"
-          className="rounded-full border border-border px-3.5 py-1 text-[13px] font-medium text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors"
+          className="inline-flex items-center rounded-full border border-border px-3.5 py-1 min-h-[44px] text-[13px] font-medium text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors"
         >
           Anmelden
         </Link>
@@ -30,13 +34,13 @@ export default function LandingPage() {
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/register"
-              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] bg-primary px-6 py-2.5 text-[15px] font-medium text-white transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] bg-primary px-6 py-2.5 min-h-[44px] text-[15px] font-medium text-text-on-primary transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
             >
               Kostenlos starten
             </Link>
             <Link
               href="/login"
-              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] border border-border px-6 py-2.5 text-[15px] font-medium text-text-primary transition-all duration-150 hover:bg-gray-50 w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] border border-border px-6 py-2.5 min-h-[44px] text-[15px] font-medium text-text-primary transition-all duration-150 hover:bg-fill-hover w-full sm:w-auto"
             >
               Anmelden
             </Link>
@@ -49,7 +53,7 @@ export default function LandingPage() {
             <div className="mx-auto mb-2 sm:mb-3 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-accent-subtle">
               <span className="text-base sm:text-lg">📝</span>
             </div>
-            <div className="text-[13px] sm:text-sm font-medium text-text-primary">571 Fragen</div>
+            <div className="text-[13px] sm:text-sm font-medium text-text-primary">{questionCount} Fragen</div>
             <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Aus SR-Zeitungen</div>
           </div>
           <div className="text-center">

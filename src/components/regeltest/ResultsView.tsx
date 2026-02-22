@@ -25,7 +25,7 @@ export function ResultsView() {
             className={cn(
               "mx-auto mb-3 flex h-24 w-24 items-center justify-center rounded-full text-3xl font-bold",
               passed
-                ? "bg-success-light text-success"
+                ? "bg-success-light text-success-text"
                 : "bg-error-light text-error"
             )}
           >
@@ -50,8 +50,8 @@ export function ResultsView() {
           const count = results.answers.filter((a) => a.score === score).length;
           const labels = { 2: "2 Punkte", 1: "1 Punkt", 0: "0 Punkte" };
           const colors = {
-            2: "text-success bg-success-light",
-            1: "text-warning bg-warning-light",
+            2: "text-success-text bg-success-light",
+            1: "text-warning-text bg-warning-light",
             0: "text-error bg-error-light",
           };
           return (

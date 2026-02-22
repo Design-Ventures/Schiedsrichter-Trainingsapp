@@ -19,7 +19,14 @@ export function ProgressBar({ current, total, answeredCount }: ProgressBarProps)
           {answeredCount} beantwortet
         </span>
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+      <div
+        className="h-2 w-full overflow-hidden rounded-full bg-fill-tertiary"
+        role="progressbar"
+        aria-valuenow={current + 1}
+        aria-valuemin={1}
+        aria-valuemax={total}
+        aria-label={`Frage ${current + 1} von ${total}`}
+      >
         <div
           className="h-full rounded-full bg-accent transition-all duration-300"
           style={{ width: `${progress}%` }}

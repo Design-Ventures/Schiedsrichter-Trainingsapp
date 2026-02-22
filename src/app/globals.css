@@ -2,15 +2,17 @@
 
 @theme {
   /* ─── Brand Colors ─── */
-  /* Luma-inspired: neutral primary, soft lavender accent */
   --color-primary: #18181B;
   --color-primary-hover: #27272A;
   --color-primary-light: #3F3F46;
+  --color-primary-active: #3F3F46;
 
   --color-accent: #8B5CF6;
   --color-accent-hover: #7C3AED;
   --color-accent-light: #EDE9FE;
   --color-accent-subtle: #F5F3FF;
+  --color-accent-active: #6D28D9;
+  --color-accent-text: #7C3AED; /* 5.7:1 on white – use for text on light bg */
 
   /* ─── Neutral Palette ─── */
   --color-gray-50: #FAFAFA;
@@ -32,11 +34,17 @@
   --color-surface-dark: #18181B;
   --color-surface-dark-raised: #27272A;
 
+  /* ─── Interactive Fills ─── */
+  --color-fill-hover: #F4F4F5;
+  --color-fill-active: #E4E4E7;
+  --color-fill-tertiary: #F4F4F5;
+
   /* ─── Semantic Text ─── */
   --color-text-primary: #18181B;
   --color-text-secondary: #71717A;
   --color-text-tertiary: #A1A1AA;
   --color-text-inverse: #FFFFFF;
+  --color-text-on-primary: #FFFFFF;
 
   /* ─── Semantic Borders ─── */
   --color-border: #E4E4E7;
@@ -44,17 +52,29 @@
   --color-border-hover: #D4D4D8;
   --color-border-focus: #18181B;
 
+  /* ─── Focus Rings ─── */
+  --color-ring: #D4D4D8;
+  --color-ring-error: #FECACA;
+
   /* ─── Feedback Colors ─── */
   --color-success: #16A34A;
   --color-success-light: #F0FDF4;
+  --color-success-text: #15803D; /* 5.1:1 on white */
   --color-error: #DC2626;
   --color-error-light: #FEF2F2;
   --color-warning: #F59E0B;
   --color-warning-light: #FFFBEB;
+  --color-warning-text: #B45309; /* 5.0:1 on white */
   --color-info: #3B82F6;
   --color-info-light: #EFF6FF;
 
-  /* ─── Category Colors (small accents) ─── */
+  /* ─── Feedback Section (AI review) ─── */
+  --color-feedback-bg: #EFF6FF;
+  --color-feedback-border: #DBEAFE;
+  --color-feedback-text: #1E3A5F;
+  --color-feedback-label: #2563EB;
+
+  /* ─── Category Colors ─── */
   --color-exam: #EF4444;
   --color-exam-light: #FEF2F2;
   --color-test: #8B5CF6;
@@ -72,8 +92,8 @@
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
-  --radius-xl: 10px;
-  --radius-2xl: 14px;
+  --radius-xl: 16px; /* Apple HIG: ~20pt for large cards */
+  --radius-2xl: 20px;
   --radius-full: 9999px;
 
   /* ─── Transitions ─── */
@@ -104,6 +124,75 @@
   ::selection {
     background-color: var(--color-accent-light);
   }
+
+  /* ─── Dark Mode ─── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-primary: #FAFAFA;
+      --color-primary-hover: #E4E4E7;
+      --color-primary-light: #D4D4D8;
+      --color-primary-active: #D4D4D8;
+
+      --color-accent: #A78BFA;
+      --color-accent-hover: #8B5CF6;
+      --color-accent-light: #2E1065;
+      --color-accent-subtle: #1E1B4B;
+      --color-accent-active: #C4B5FD;
+      --color-accent-text: #A78BFA;
+
+      --color-surface: #09090B;
+      --color-surface-raised: #18181B;
+      --color-surface-overlay: rgba(9, 9, 11, 0.85);
+      --color-surface-dark: #FAFAFA;
+      --color-surface-dark-raised: #E4E4E7;
+
+      --color-fill-hover: #27272A;
+      --color-fill-active: #3F3F46;
+      --color-fill-tertiary: #27272A;
+
+      --color-text-primary: #FAFAFA;
+      --color-text-secondary: #A1A1AA;
+      --color-text-tertiary: #71717A;
+      --color-text-inverse: #18181B;
+      --color-text-on-primary: #18181B;
+
+      --color-border: #27272A;
+      --color-border-light: #18181B;
+      --color-border-hover: #3F3F46;
+      --color-border-focus: #FAFAFA;
+
+      --color-ring: #52525B;
+      --color-ring-error: #7F1D1D;
+
+      --color-success: #22C55E;
+      --color-success-light: #052E16;
+      --color-success-text: #4ADE80;
+      --color-error: #EF4444;
+      --color-error-light: #450A0A;
+      --color-warning: #FBBF24;
+      --color-warning-light: #451A03;
+      --color-warning-text: #FBBF24;
+      --color-info: #60A5FA;
+      --color-info-light: #172554;
+
+      --color-feedback-bg: #172554;
+      --color-feedback-border: #1E3A5F;
+      --color-feedback-text: #BFDBFE;
+      --color-feedback-label: #60A5FA;
+
+      --color-exam: #F87171;
+      --color-exam-light: #450A0A;
+      --color-test: #A78BFA;
+      --color-test-light: #2E1065;
+
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2);
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
 }
 
 @layer utilities {
@@ -126,5 +215,43 @@
   .gradient-bar {
     background: linear-gradient(90deg, #c084fc, #a78bfa, #818cf8, #93c5fd);
     height: 2px;
+  }
+
+  /* Safe area bottom padding for fixed bottom bars */
+  .pb-safe {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Skeleton shimmer animation */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-fill-tertiary) 25%,
+      var(--color-fill-active) 50%,
+      var(--color-fill-tertiary) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-md);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .skeleton {
+    animation: none;
+    background: var(--color-fill-tertiary);
   }
 }

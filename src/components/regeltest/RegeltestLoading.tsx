@@ -2,12 +2,36 @@
 
 export function RegeltestLoading() {
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
-      <div className="mb-6 h-12 w-12 animate-spin rounded-full border-4 border-accent border-t-transparent" />
-      <h2 className="mb-2 text-lg font-semibold text-text-primary">
-        Regeltest wird geladen...
-      </h2>
-      <p className="text-sm text-text-secondary">Fragen werden zufällig ausgewählt.</p>
+    <div className="space-y-4 pb-24" aria-busy="true" aria-label="Regeltest wird geladen">
+      {/* Progress bar skeleton */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <div className="skeleton h-4 w-28" />
+          <div className="skeleton h-4 w-20" />
+        </div>
+        <div className="skeleton h-2 w-full rounded-full" />
+      </div>
+
+      {/* Question card skeleton */}
+      <div className="rounded-[var(--radius-xl)] border border-border bg-surface p-6">
+        <div className="skeleton mb-3 h-4 w-24" />
+        <div className="space-y-2">
+          <div className="skeleton h-4 w-full" />
+          <div className="skeleton h-4 w-full" />
+          <div className="skeleton h-4 w-3/4" />
+        </div>
+      </div>
+
+      {/* Answer textarea skeleton */}
+      <div>
+        <div className="skeleton mb-1.5 h-4 w-24" />
+        <div className="skeleton h-[120px] w-full rounded-[var(--radius-lg)]" />
+      </div>
+
+      {/* Status text */}
+      <p className="text-center text-sm text-text-secondary">
+        Fragen werden zufällig ausgewählt...
+      </p>
     </div>
   );
 }

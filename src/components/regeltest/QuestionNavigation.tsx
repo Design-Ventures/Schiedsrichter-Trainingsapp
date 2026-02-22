@@ -23,46 +23,60 @@ export function QuestionNavigation() {
 
   return (
     <>
-      <div className="space-y-4">
-        {/* Question grid (TEST mode only) */}
-        {mode === "TEST" && (
-          <div className="flex flex-wrap gap-2">
-            {questions.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goToQuestion(i)}
-                className={cn(
-                  "flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-xs font-medium transition-colors",
-                  i === currentIndex
-                    ? "bg-accent text-white"
-                    : answers.has(i)
-                      ? "bg-accent-light text-accent"
-                      : "bg-gray-100 text-text-tertiary hover:bg-gray-200"
-                )}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
-        )}
+      {/* Question grid (TEST mode only) — stays in scrollable content */}
+      {mode === "TEST" && (
+        <nav aria-label="Fragenübersicht" className="flex flex-wrap gap-2">
+          {questions.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goToQuestion(i)}
+              aria-label={`Frage ${i + 1}${answers.has(i) ? ", beantwortet" : ""}`}
+              aria-current={i === currentIndex ? "step" : undefined}
+              className={cn(
+                "flex h-11 w-11 items-center justify-center rounded-[var(--radius-lg)] text-sm font-medium transition-colors",
+                i === currentIndex
+                  ? "bg-accent text-text-on-primary"
+                  : answers.has(i)
+                    ? "bg-accent-light text-accent-text"
+                    : "bg-fill-tertiary text-text-tertiary hover:bg-fill-active"
+              )}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </nav>
+      )}
 
-        {/* Navigation buttons */}
-        <div className="flex items-center justify-between">
-          <Button
-            variant="outline"
-            onClick={previousQuestion}
-            disabled={!canGoBack}
-            className={cn(!canGoBack && "invisible")}
-          >
-            Zurück
-          </Button>
+      {/* Fixed bottom navigation bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-20 border-t border-border bg-surface/80 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-3xl items-center gap-3 px-5 pt-3 pb-safe sm:px-6">
+          {canGoBack ? (
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={previousQuestion}
+              className="flex-1"
+            >
+              Zurück
+            </Button>
+          ) : (
+            <div className="flex-1" />
+          )}
 
           {isLastQuestion ? (
-            <Button onClick={() => setShowConfirm(true)}>
+            <Button
+              size="lg"
+              onClick={() => setShowConfirm(true)}
+              className="flex-1"
+            >
               Test abgeben
             </Button>
           ) : (
-            <Button onClick={nextQuestion}>
+            <Button
+              size="lg"
+              onClick={nextQuestion}
+              className="flex-1"
+            >
               Weiter
             </Button>
           )}

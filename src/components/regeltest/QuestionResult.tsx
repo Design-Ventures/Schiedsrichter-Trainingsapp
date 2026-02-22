@@ -10,8 +10,8 @@ interface QuestionResultProps {
 
 const scoreColors = {
   0: "bg-error-light text-error border-error/20",
-  1: "bg-warning-light text-warning border-warning/20",
-  2: "bg-success-light text-success border-success/20",
+  1: "bg-warning-light text-warning-text border-warning/20",
+  2: "bg-success-light text-success-text border-success/20",
 } as const;
 
 const scoreLabels = {
@@ -27,7 +27,7 @@ export function QuestionResult({ result }: QuestionResultProps) {
     <Card>
       <CardContent className="space-y-3">
         <div className="flex items-start justify-between gap-3">
-          <div className="text-sm font-medium text-accent">
+          <div className="text-sm font-medium text-accent-text">
             Frage {result.questionIndex + 1}
           </div>
           <span
@@ -57,16 +57,16 @@ export function QuestionResult({ result }: QuestionResultProps) {
             <span className="text-xs font-medium text-text-tertiary">
               Musterantwort:
             </span>
-            <p className="text-sm text-success">{result.correctAnswer}</p>
+            <p className="text-sm text-success-text">{result.correctAnswer}</p>
           </div>
         </div>
 
         {result.aiFeedback && (
-          <div className="rounded-[var(--radius-lg)] border border-blue-100 bg-blue-50 p-3">
-            <span className="text-xs font-medium text-blue-600">
+          <div className="rounded-[var(--radius-lg)] border border-feedback-border bg-feedback-bg p-3">
+            <span className="text-xs font-medium text-feedback-label">
               Bewertung:
             </span>
-            <p className="text-sm text-blue-900">{result.aiFeedback}</p>
+            <p className="text-sm text-feedback-text">{result.aiFeedback}</p>
           </div>
         )}
       </CardContent>

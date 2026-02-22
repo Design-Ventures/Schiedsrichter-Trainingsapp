@@ -118,13 +118,13 @@ export default async function DashboardPage() {
                   <div className="text-[11px] sm:text-xs text-text-tertiary">Tests</div>
                 </div>
                 <div className="rounded-[var(--radius-lg)] border border-border p-3 sm:p-4 text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-accent">
+                  <div className="text-xl sm:text-2xl font-bold text-accent-text">
                     {averagePercent}%
                   </div>
                   <div className="text-[11px] sm:text-xs text-text-tertiary">Durchschnitt</div>
                 </div>
                 <div className="rounded-[var(--radius-lg)] border border-border p-3 sm:p-4 text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-success">
+                  <div className="text-xl sm:text-2xl font-bold text-success-text">
                     {bestScore}%
                   </div>
                   <div className="text-[11px] sm:text-xs text-text-tertiary">Bestleistung</div>
@@ -144,7 +144,7 @@ export default async function DashboardPage() {
                     return (
                       <div
                         key={s.id}
-                        className="flex items-center justify-between rounded-[var(--radius-lg)] border border-border px-3.5 py-2.5 sm:px-4 sm:py-3"
+                        className="flex items-center justify-between rounded-[var(--radius-lg)] border border-border px-3.5 py-2.5 sm:px-4 sm:py-3 min-h-[44px]"
                       >
                         <div className="flex items-center gap-2.5 sm:gap-3">
                           <span

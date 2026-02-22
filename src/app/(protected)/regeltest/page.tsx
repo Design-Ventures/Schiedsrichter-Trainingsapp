@@ -26,7 +26,7 @@ export default async function RegeltestPage({ searchParams }: RegeltestPageProps
           </Link>
           <Link
             href="/dashboard"
-            className="text-[13px] sm:text-sm text-text-secondary hover:text-text-primary transition-colors"
+            className="inline-flex items-center min-h-[44px] text-[13px] sm:text-sm text-text-secondary hover:text-text-primary transition-colors"
           >
             Abbrechen
           </Link>

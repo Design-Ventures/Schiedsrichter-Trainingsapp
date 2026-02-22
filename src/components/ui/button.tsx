@@ -12,19 +12,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-white hover:bg-primary-hover active:bg-gray-800",
+    "bg-primary text-text-on-primary hover:bg-primary-hover active:bg-primary-active",
   secondary:
-    "bg-accent text-white hover:bg-accent-hover active:bg-purple-800",
+    "bg-accent text-text-on-primary hover:bg-accent-hover active:bg-accent-active",
   outline:
-    "border border-border text-text-primary hover:bg-gray-50 hover:border-border-hover active:bg-gray-100",
+    "border border-border text-text-primary hover:bg-fill-hover hover:border-border-hover active:bg-fill-active",
   ghost:
-    "text-text-secondary hover:text-text-primary hover:bg-gray-50 active:bg-gray-100",
+    "text-text-secondary hover:text-text-primary hover:bg-fill-hover active:bg-fill-active",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-3 py-1.5 text-sm gap-1.5",
-  md: "px-4 py-2 text-sm gap-2",
-  lg: "px-5 py-2.5 text-[15px] gap-2",
+  sm: "px-3 py-1.5 text-sm gap-1.5 min-h-[44px]",
+  md: "px-4 py-2.5 text-sm gap-2 min-h-[44px]",
+  lg: "px-5 py-3 text-[15px] gap-2 min-h-[44px]",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -44,7 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-[var(--radius-lg)] font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40",
+          "inline-flex items-center justify-center rounded-[var(--radius-lg)] font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-40",
           variantStyles[variant],
           sizeStyles[size],
           className
