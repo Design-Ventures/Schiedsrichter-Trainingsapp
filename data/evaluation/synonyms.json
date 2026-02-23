@@ -1,0 +1,94 @@
+{
+  "Feldverweis": [
+    "Feldverweis",
+    "Rote Karte",
+    "Rot",
+    "Platzverweis",
+    "des Feldes verwiesen"
+  ],
+  "Verwarnung": [
+    "Verwarnung",
+    "Gelbe Karte",
+    "Gelb"
+  ],
+  "Gelb/Rot": [
+    "Gelb/Rot",
+    "Gelb-Rot",
+    "Gelb-Rote Karte",
+    "zweite Verwarnung"
+  ],
+  "Strafstoß": [
+    "Strafstoß",
+    "Elfmeter",
+    "Penalty"
+  ],
+  "Direkter Freistoß": [
+    "Direkter Freistoß",
+    "direkter FK",
+    "DFK"
+  ],
+  "Indirekter Freistoß": [
+    "Indirekter Freistoß",
+    "indirekter FK",
+    "IFK",
+    "ind. Freistoß"
+  ],
+  "Schiedsrichterball": [
+    "Schiedsrichterball",
+    "SR-Ball",
+    "Schiedsrichter-Ball",
+    "Dropped Ball"
+  ],
+  "Eckstoß": [
+    "Eckstoß",
+    "Eckball",
+    "Ecke",
+    "Corner"
+  ],
+  "Abstoß": [
+    "Abstoß",
+    "Torabstoß"
+  ],
+  "Einwurf": [
+    "Einwurf"
+  ],
+  "Anstoß": [
+    "Anstoß",
+    "Wiederanstoß"
+  ],
+  "Weiterspielen": [
+    "Weiterspielen",
+    "kein Eingriff"
+  ],
+  "Tor": [
+    "Tor",
+    "Torerfolg",
+    "Treffer"
+  ],
+  "Kein Tor": [
+    "Kein Tor",
+    "Tor zählt nicht",
+    "Tor aberkannt"
+  ],
+  "Wiederholung": [
+    "Wiederholung",
+    "wird wiederholt",
+    "erneute Ausführung"
+  ],
+  "Ja": [
+    "Ja",
+    "Richtig",
+    "korrekt"
+  ],
+  "Nein": [
+    "Nein",
+    "Falsch",
+    "nicht richtig",
+    "nicht korrekt"
+  ],
+  "Vorteil": [
+    "Vorteil",
+    "Vorteilsbestimmung",
+    "Vorteil gewährt"
+  ]
+}

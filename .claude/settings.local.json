@@ -10,7 +10,9 @@
       "Bash(npx tsx:*)",
       "Bash(node -e:*)",
       "Bash(python3:*)",
-      "Bash(npm run import:all:*)"
+      "Bash(npm run import:all:*)",
+      "Bash(curl:*)",
+      "Bash(git:*)"
     ]
   }
 }

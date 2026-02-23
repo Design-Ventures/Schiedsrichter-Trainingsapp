@@ -2,10 +2,10 @@
 
 @theme {
   /* ─── Brand Colors ─── */
-  --color-primary: #18181B;
-  --color-primary-hover: #27272A;
-  --color-primary-light: #3F3F46;
-  --color-primary-active: #3F3F46;
+  --color-primary: #1C1917;
+  --color-primary-hover: #292524;
+  --color-primary-light: #44403C;
+  --color-primary-active: #44403C;
 
   --color-accent: #8B5CF6;
   --color-accent-hover: #7C3AED;
@@ -14,46 +14,46 @@
   --color-accent-active: #6D28D9;
   --color-accent-text: #7C3AED; /* 5.7:1 on white – use for text on light bg */
 
-  /* ─── Neutral Palette ─── */
-  --color-gray-50: #FAFAFA;
-  --color-gray-100: #F4F4F5;
-  --color-gray-200: #E4E4E7;
-  --color-gray-300: #D4D4D8;
-  --color-gray-400: #A1A1AA;
-  --color-gray-500: #71717A;
-  --color-gray-600: #52525B;
-  --color-gray-700: #3F3F46;
-  --color-gray-800: #27272A;
-  --color-gray-900: #18181B;
-  --color-gray-950: #09090B;
+  /* ─── Neutral Palette (Warm Stone) ─── */
+  --color-gray-50: #FAFAF9;
+  --color-gray-100: #F5F5F4;
+  --color-gray-200: #E7E5E4;
+  --color-gray-300: #D6D3D1;
+  --color-gray-400: #A8A29E;
+  --color-gray-500: #78716C;
+  --color-gray-600: #57534E;
+  --color-gray-700: #44403C;
+  --color-gray-800: #292524;
+  --color-gray-900: #1C1917;
+  --color-gray-950: #0C0A09;
 
   /* ─── Semantic Surfaces ─── */
   --color-surface: #FFFFFF;
-  --color-surface-raised: #FAFAFA;
+  --color-surface-raised: #FAFAF9;
   --color-surface-overlay: rgba(255, 255, 255, 0.85);
-  --color-surface-dark: #18181B;
-  --color-surface-dark-raised: #27272A;
+  --color-surface-dark: #1C1917;
+  --color-surface-dark-raised: #292524;
 
   /* ─── Interactive Fills ─── */
-  --color-fill-hover: #F4F4F5;
-  --color-fill-active: #E4E4E7;
-  --color-fill-tertiary: #F4F4F5;
+  --color-fill-hover: #F5F5F4;
+  --color-fill-active: #E7E5E4;
+  --color-fill-tertiary: #F5F5F4;
 
   /* ─── Semantic Text ─── */
-  --color-text-primary: #18181B;
-  --color-text-secondary: #71717A;
-  --color-text-tertiary: #A1A1AA;
+  --color-text-primary: #1C1917;
+  --color-text-secondary: #78716C;
+  --color-text-tertiary: #A8A29E;
   --color-text-inverse: #FFFFFF;
   --color-text-on-primary: #FFFFFF;
 
   /* ─── Semantic Borders ─── */
-  --color-border: #E4E4E7;
-  --color-border-light: #F4F4F5;
-  --color-border-hover: #D4D4D8;
-  --color-border-focus: #18181B;
+  --color-border: #E7E5E4;
+  --color-border-light: #F5F5F4;
+  --color-border-hover: #D6D3D1;
+  --color-border-focus: #1C1917;
 
   /* ─── Focus Rings ─── */
-  --color-ring: #D4D4D8;
+  --color-ring: #D6D3D1;
   --color-ring-error: #FECACA;
 
   /* ─── Feedback Colors ─── */
@@ -86,6 +86,7 @@
   --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 6px rgba(0, 0, 0, 0.02);
   --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.03);
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card-soft: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
   --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.06);
 
   /* ─── Border Radius ─── */
@@ -128,10 +129,10 @@
   /* ─── Dark Mode ─── */
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-primary: #FAFAFA;
-      --color-primary-hover: #E4E4E7;
-      --color-primary-light: #D4D4D8;
-      --color-primary-active: #D4D4D8;
+      --color-primary: #FAFAF9;
+      --color-primary-hover: #E7E5E4;
+      --color-primary-light: #D6D3D1;
+      --color-primary-active: #D6D3D1;
 
       --color-accent: #A78BFA;
       --color-accent-hover: #8B5CF6;
@@ -140,28 +141,28 @@
       --color-accent-active: #C4B5FD;
       --color-accent-text: #A78BFA;
 
-      --color-surface: #09090B;
-      --color-surface-raised: #18181B;
-      --color-surface-overlay: rgba(9, 9, 11, 0.85);
-      --color-surface-dark: #FAFAFA;
-      --color-surface-dark-raised: #E4E4E7;
+      --color-surface: #0C0A09;
+      --color-surface-raised: #1C1917;
+      --color-surface-overlay: rgba(12, 10, 9, 0.85);
+      --color-surface-dark: #FAFAF9;
+      --color-surface-dark-raised: #E7E5E4;
 
-      --color-fill-hover: #27272A;
-      --color-fill-active: #3F3F46;
-      --color-fill-tertiary: #27272A;
+      --color-fill-hover: #292524;
+      --color-fill-active: #44403C;
+      --color-fill-tertiary: #292524;
 
-      --color-text-primary: #FAFAFA;
-      --color-text-secondary: #A1A1AA;
-      --color-text-tertiary: #71717A;
-      --color-text-inverse: #18181B;
-      --color-text-on-primary: #18181B;
+      --color-text-primary: #FAFAF9;
+      --color-text-secondary: #A8A29E;
+      --color-text-tertiary: #78716C;
+      --color-text-inverse: #1C1917;
+      --color-text-on-primary: #1C1917;
 
-      --color-border: #27272A;
-      --color-border-light: #18181B;
-      --color-border-hover: #3F3F46;
-      --color-border-focus: #FAFAFA;
+      --color-border: #292524;
+      --color-border-light: #1C1917;
+      --color-border-hover: #44403C;
+      --color-border-focus: #FAFAF9;
 
-      --color-ring: #52525B;
+      --color-ring: #57534E;
       --color-ring-error: #7F1D1D;
 
       --color-success: #22C55E;
@@ -190,6 +191,7 @@
       --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
       --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2);
       --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-card-soft: 0 1px 3px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
       --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
   }

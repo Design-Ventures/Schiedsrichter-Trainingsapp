@@ -21,7 +21,7 @@ Regeltest = Freitext-Fragen aus DFB SR-Zeitung/Newsletter (2025/2026). Nutzer be
 | Styling | **Tailwind CSS v4** | `@theme` in globals.css, CSS Custom Properties |
 | Auth | **Supabase** | Auth + PostgreSQL, EU-Frankfurt |
 | ORM | **Prisma** | Schema in `prisma/schema.prisma` |
-| KI-Bewertung | **Claude API** | `@anthropic-ai/sdk`, Model: `claude-haiku-4-5-20251001` |
+| KI-Bewertung | **Claude API** | `@anthropic-ai/sdk`, Haiku (Standard) + Sonnet-Fallback (komplex) |
 | Client State | **Zustand** | `src/stores/regeltestStore.ts` |
 | Server State | **TanStack Query** | Provider in `src/app/providers.tsx` |
 | Animationen | **Framer Motion** | Übergänge und Ladeanimationen |
@@ -101,8 +101,10 @@ src/
 │   ├── utils.ts                # cn() (clsx + tailwind-merge)
 │   ├── supabase/server.ts      # Server-Side Supabase Client
 │   ├── supabase/client.ts      # Browser Supabase Client
-│   ├── claude/client.ts        # Singleton Anthropic Client
-│   └── claude/evaluate.ts      # evaluateAnswers() – Batch (8er), Retry, JSON
+│   ├── claude/client.ts                  # Singleton Anthropic Client
+│   ├── claude/evaluate.ts                # evaluateAnswers() – Hybrid (enriched + legacy)
+│   └── claude/prompts/
+│       └── system-evaluation.ts          # System-Prompts (v2.0 + Fallback)
 ├── stores/
 │   └── regeltestStore.ts       # Zustand: phase, mode, questions, answers, timer
 └── types/
@@ -158,11 +160,27 @@ RegeltestError.tsx       # Fehler + Retry
 4. **KI-Bewertung** → POST `/api/regeltest/sessions/[id]/evaluate` (Batch à 8 Fragen, Claude Haiku)
 5. **Ergebnis anzeigen** → Score, Einzelfeedback, matchedCriteria
 
-### Bewertungssystem
+### Bewertungssystem (v2.0)
 
-- **2 Punkte:** Alle `criteriaFull` Schlüsselwörter in der Antwort
-- **1 Punkt:** Mindestens ein `criteriaPartial` Schlüsselwort
-- **0 Punkte:** Nichts getroffen oder leere Antwort
+Hybrid-Ansatz mit zwei Pipelines:
+
+**Enriched (126 Fragen):** Einzelbewertung pro Frage mit strukturierten Metadaten
+- Bewertungselemente (Spielfortsetzungstyp, Persönliche Strafe, etc.) einzeln geprüft
+- Synonym-Listen pro Element (z.B. "Rote Karte" = "Feldverweis" = "Rot")
+- Falsche Alternativen mit Erklärung für lernförderliches Feedback
+- Explizite Teilpunkt-Logik (nie 0P wenn ein Pflichtelement korrekt)
+- 1 API-Call pro Frage (verhindert Cross-Contamination)
+
+**Legacy Fallback (20 Fragen, ausstehend):** Batch-Bewertung mit criteriaFull/criteriaPartial
+- 15 Fragen pro API-Call
+- Wird verwendet bis die 20 geflaggten Fragen manuell ergänzt sind
+
+**Punktevergabe:**
+- **2 Punkte:** Alle Pflichtelemente korrekt
+- **1 Punkt:** Mindestens ein Pflichtelement korrekt
+- **0 Punkte:** Kein Pflichtelement korrekt ODER leere Antwort
+
+**Leere Antworten:** Werden VOR dem API-Call abgefangen → 0P, kein API-Call.
 
 ### Phasen (Zustand Store)
 
@@ -208,10 +226,20 @@ Quelldaten in `data/`:
 
 | Datei | Inhalt |
 |-------|--------|
-| `questions-2025-2026.json` | **146 Fragen** – Aktuelle, saubere Extraktion aus PDF (Tabellenextraktion) |
-| `questions-all.json` | 344 Fragen (ältere, teilw. fehlerbehaftete Text-Extraktion 2013–2024) |
-| `questions-preview.json` | 145 Fragen (ältere Text-Extraktion 2025/2026, mit Zuordnungsfehlern) |
-| `convert_excel_to_json.py` | Excel → JSON Konverter für manuelle Erfassung |
+| `questions-all.json` | **146 Fragen** – Produktionsdaten (PDF-Tabellenextraktion 2025/2026) |
+| `evaluation/questions-enriched.json` | **126 Fragen** mit Bewertungselementen, Synonymen, Teilpunkt-Logik |
+| `evaluation/questions-flagged.json` | **20 Fragen** zur manuellen Ergänzung (Wissensfragen, mehrdeutige Kriterien) |
+| `evaluation/synonyms.json` | Globale Synonym-Map (18 Fachbegriffe) |
+| `convert-scripts/convert_excel_to_json.py` | Excel → JSON Konverter |
+
+### AI-Evaluation Dokumentation (`docs/ai-evaluation/`)
+
+| Datei | Inhalt |
+|-------|--------|
+| `README.md` | Übersicht + Konventionen für neue Einträge |
+| `2026-02-23-haiku-fehleranalyse.md` | 5 kritische Fehlerklassen in Haiku-Bewertung (alle behoben) |
+| `2026-02-23-training-konzept.md` | 3-Hebel-Trainingskonzept (Wissensbasis, Bewertungslogik, Lernschleife) |
+| `2026-02-23-modell-empfehlung.md` | Haiku vs. Sonnet Analyse + Hybrid-Strategie |
 
 ### JSON-Format pro Frage
 

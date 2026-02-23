@@ -1,0 +1,803 @@
+[
+  {
+    "index": 5,
+    "situation": "In der Nachspielzeit läuft der letzte Angriff. Der neutrale Schiedsrichter-Assistent signalisiert Abseits. Der Schiedsrichter übersieht dies aber und beendet kurz darauf, nachdem die Mannschaft das 2:1 erzielt hat, das Spiel. Erst unmittelbar nach dem Schlusspfiff wird er von seinem Assistenten auf die strafbare Abseitsstellung aufmerksam gemacht. Entscheidung?",
+    "correctAnswer": "Kein Tor, Spielende. Da der Schiedsrichter noch auf dem Feld ist, kann er seine Entscheidung revidieren. Eine Spielfortsetzung wird nicht mehr durchgeführt, da die Zeit abgelaufen ist.",
+    "source": "SR-Zeitung 01/2025",
+    "criteriaFull": [
+      "Spielende",
+      "Tor",
+      "Kein Tor"
+    ],
+    "criteriaPartial": [
+      "Tor"
+    ],
+    "sourceDate": "2025-01-01",
+    "ruleReference": "",
+    "tags": [
+      "Abseits",
+      "Verlängerung"
+    ],
+    "explanation": "Kein Tor, Spielende. Da der Schiedsrichter noch auf dem Feld ist, kann er seine Entscheidung revidieren. Eine Spielfortsetzung wird nicht mehr durchgeführt, da die Zeit abgelaufen ist.",
+    "bewertungselemente": [
+      {
+        "id": "TOR",
+        "name": "Torentscheidung",
+        "korrekte_werte": [
+          "Tor"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Tor",
+          "Torerfolg",
+          "Treffer"
+        ],
+        "falsche_alternativen": {
+          "Kein Tor": "Das Tor ist gültig. Siehe Begründung in Musterantwort."
+        }
+      },
+      {
+        "id": "TOR",
+        "name": "Torentscheidung",
+        "korrekte_werte": [
+          "Kein Tor"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Kein Tor",
+          "Tor zählt nicht",
+          "Tor aberkannt",
+          "Treffer wird nicht anerkannt"
+        ],
+        "falsche_alternativen": {
+          "Tor": "Das Tor zählt nicht. Siehe Begründung in Musterantwort."
+        }
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Torentscheidung, Torentscheidung",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Torentscheidung)",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 2,
+    "flags": [
+      "MANUELL: Kriterium 'Spielende' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 14,
+    "situation": "Zwecks Behandlung begibt sich ein Abwehrspieler direkt neben der Eckfahne zur Außenlinie. Während diese erfolgt, steht er mit einem Bein im Spielfeld, mit dem anderen Bein außerhalb. Nun bekommt, circa 20 Meter vor dem Tor, ein Stürmer des Gegners den Ball von seinem Mitspieler zugespielt. Er hat nur noch den Torwart des verletzten Abwehrspielers unmittelbar vor sich. Entscheidung?",
+    "correctAnswer": "Weiterspielen, kein Abseits. Der Spieler, der halb drin bzw. halb draußen steht, wird immer zu seinem Nachteil gewertet und somit als der vorletzte Abwehrspieler, der das Abseits aufhebt.",
+    "source": "SR-Zeitung 01/2025",
+    "criteriaFull": [
+      "Weiterspielen",
+      "Kein Abseits"
+    ],
+    "criteriaPartial": [
+      "Weiterspielen"
+    ],
+    "sourceDate": "2025-01-01",
+    "ruleReference": "",
+    "tags": [
+      "Abseits",
+      "Spielfeld",
+      "Torwart"
+    ],
+    "explanation": "Weiterspielen, kein Abseits. Der Spieler, der halb drin bzw. halb draußen steht, wird immer zu seinem Nachteil gewertet und somit als der vorletzte Abwehrspieler, der das Abseits aufhebt.",
+    "bewertungselemente": [
+      {
+        "id": "SF",
+        "name": "Spielfortsetzungstyp",
+        "korrekte_werte": [
+          "Weiterspielen"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Weiterspielen",
+          "Spielfortsetzung ohne Unterbrechung",
+          "kein Eingriff"
+        ],
+        "falsche_alternativen": {}
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Spielfortsetzungstyp",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Spielfortsetzungstyp)",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Kein Abseits' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 18,
+    "situation": "Ein Spieler wechselt während des laufenden Spiels aus eigenem Verlangen seine Schuhe auf dem Spielfeld. Der Schiedsrichter greift nicht ein. Handelt er richtig und welche Verpflichtung hat der Spieler?",
+    "correctAnswer": "Ja, der Schiedsrichter handelt richtig. Wenn er keinen Mangel feststellt, darf der Spieler seine Schuhe auf dem Spielfeld wechseln, jedoch muss er diese in der nächsten Spielunterbrechung unaufgefordert beim Schiedsrichter zwecks Kontrolle vorzeigen.",
+    "source": "SR-Zeitung 02/2025",
+    "criteriaFull": [
+      "Spielunterbrechung",
+      "Ja"
+    ],
+    "criteriaPartial": [
+      "Spielunterbrechung"
+    ],
+    "sourceDate": "2025-02-01",
+    "ruleReference": "",
+    "tags": [
+      "Spielfeld"
+    ],
+    "explanation": "Ja, der Schiedsrichter handelt richtig. Wenn er keinen Mangel feststellt, darf der Spieler seine Schuhe auf dem Spielfeld wechseln, jedoch muss er diese in der nächsten Spielunterbrechung unaufgefordert beim Schiedsrichter zwecks Kontrolle vorzeigen.",
+    "bewertungselemente": [
+      {
+        "id": "JN",
+        "name": "Grundentscheidung (Ja/Nein)",
+        "korrekte_werte": [
+          "Ja"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Ja",
+          "Richtig",
+          "korrekt"
+        ],
+        "falsche_alternativen": {
+          "Nein": "Die korrekte Antwort ist 'Ja'. Begründung siehe Musterantwort."
+        }
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Grundentscheidung (Ja/Nein)",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Grundentscheidung (Ja/Nein))",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Spielunterbrechung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 29,
+    "situation": "Ein Angreifer spielt den Ball flach zu einem 20 Meter entfernten Mitspieler, der aber im Abseits steht. Etwa fünf Meter vor diesem steht ein Verteidiger, der den Ball unbedrängt stoppen will. Dies misslingt ihm jedoch, und der Ball springt vom Fuß des Verteidigers zu dem im Abseits stehenden Angreifer. Wie entscheidet der Schiedsrichter?",
+    "correctAnswer": "Weiterspielen, kein Abseits. Dies ist ein Spielen unter kontrollierten Bedingungen durch den Verteidiger. Er ist nicht bedrängt, der Ball ist am Boden und der Verteidiger hat auch keinen Sprung-, Streck- oder Spreizschritt. Das ihm der Ball verspringt, ist ein sogenanntes „bad play“, also ein missglücktes Spielen. Das ändert allerdings nichts daran, dass es unter kontrollierten Bedingungen stattfinden konnte.",
+    "source": "SR-Zeitung 02/2025",
+    "criteriaFull": [
+      "Weiterspielen",
+      "Kein Abseits"
+    ],
+    "criteriaPartial": [
+      "Weiterspielen"
+    ],
+    "sourceDate": "2025-02-01",
+    "ruleReference": "",
+    "tags": [
+      "Abseits"
+    ],
+    "explanation": "Weiterspielen, kein Abseits. Dies ist ein Spielen unter kontrollierten Bedingungen durch den Verteidiger. Er ist nicht bedrängt, der Ball ist am Boden und der Verteidiger hat auch keinen Sprung-, Streck- oder Spreizschritt. Das ihm der Ball verspringt, ist ein sogenanntes „bad play“, also ein missglücktes Spielen. Das ändert allerdings nichts daran, dass es unter kontrollierten Bedingungen stattfinden konnte.",
+    "bewertungselemente": [
+      {
+        "id": "SF",
+        "name": "Spielfortsetzungstyp",
+        "korrekte_werte": [
+          "Weiterspielen"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Weiterspielen",
+          "Spielfortsetzung ohne Unterbrechung",
+          "kein Eingriff"
+        ],
+        "falsche_alternativen": {}
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Spielfortsetzungstyp",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Spielfortsetzungstyp)",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Kein Abseits' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 47,
+    "situation": "In welcher Reihenfolge und warum wird a) die Erklärung des Vorfalls und b) die finale Entscheidung beim „Public Announcement“ bekannt gegeben?",
+    "correctAnswer": "Reihenfolge: erst a), dann b). Zuerst wird der Vorfall beschrieben bzw. erklärt, dann folgt die finale Entscheidung. Grund waren die Erkenntnisse aus dem Pilotprojekt, dass ansonsten die Erklärung in den Jubel bzw. im Lärm der Zuschauer untergehen kann.",
+    "source": "SR-Zeitung 04/2025",
+    "criteriaFull": [
+      "Reihenfolge"
+    ],
+    "criteriaPartial": [
+      "Reihenfolge"
+    ],
+    "sourceDate": "2025-04-01",
+    "ruleReference": "",
+    "tags": [
+      "VAR"
+    ],
+    "explanation": "Reihenfolge: erst a), dann b). Zuerst wird der Vorfall beschrieben bzw. erklärt, dann folgt die finale Entscheidung. Grund waren die Erkenntnisse aus dem Pilotprojekt, dass ansonsten die Erklärung in den Jubel bzw. im Lärm der Zuschauer untergehen kann.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 2,
+    "flags": [
+      "MANUELL: Kriterium 'Reihenfolge' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 54,
+    "situation": "Der Torhüter fängt den Ball. Während er diesen in den Händen hält, befindet sich ein Mitspieler in der gegnerischen Hälfte in Abseitsposition. Als der Mitspieler ein paar Meter zurückgekommen ist und nicht mehr im Abseits steht, wirft der Torwart diesem Spieler den Ball zu. Wie entscheidet der Schiedsrichter?",
+    "correctAnswer": "Kein Abseits; weiterspielen. Anders als beim Zuspiel mit dem Fuß, zählt für die Abseitsbewertung nicht der Moment, in dem der Ball das erste Mal den Fuß des Spielers berührt, sondern beim Abwurf durch den Torhüter zählt der Moment, in dem der Ball die Hände verlässt. Dies wurde im Regelwerk nun explizit festgehalten.",
+    "source": "SR-Zeitung 04/2025",
+    "criteriaFull": [
+      "Kein Abseits"
+    ],
+    "criteriaPartial": [
+      "Kein Abseits"
+    ],
+    "sourceDate": "2025-04-01",
+    "ruleReference": "",
+    "tags": [
+      "Abseits",
+      "Torwart"
+    ],
+    "explanation": "Kein Abseits; weiterspielen. Anders als beim Zuspiel mit dem Fuß, zählt für die Abseitsbewertung nicht der Moment, in dem der Ball das erste Mal den Fuß des Spielers berührt, sondern beim Abwurf durch den Torhüter zählt der Moment, in dem der Ball die Hände verlässt. Dies wurde im Regelwerk nun explizit festgehalten.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Kein Abseits' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 56,
+    "situation": "Was versteht man regeltechnisch unter der Ballkontrolle durch den Torhüter? Nenne die Möglichkeiten.",
+    "correctAnswer": "Der Torhüter fixiert den Ball zwischen den Händen / der Ball ruht auf seiner Hand / der Torhüter fixiert den Ball zwischen seiner Hand und einem Gegenstand, dem Boden oder seinem Körper.",
+    "source": "SR-Zeitung 04/2025",
+    "criteriaFull": [
+      "Erklärung"
+    ],
+    "criteriaPartial": [
+      "Erklärung"
+    ],
+    "sourceDate": "2025-04-01",
+    "ruleReference": "",
+    "tags": [
+      "Torwart"
+    ],
+    "explanation": "Der Torhüter fixiert den Ball zwischen den Händen / der Ball ruht auf seiner Hand / der Torhüter fixiert den Ball zwischen seiner Hand und einem Gegenstand, dem Boden oder seinem Körper.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Erklärung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 59,
+    "situation": "Ein Torhüter, der den Ball sicher gefangen hat, wirft sich mit dem Ball in den Händen auf den Boden, begräbt den Ball unter sich und verweilt mehrere Sekunden. Ab wann beginnt die Zeitspanne von acht Sekunden?",
+    "correctAnswer": "Die Zeit läuft, sobald der Torhüter den Ball gefangen hat und kontrolliert, unabhängig davon, ob er danach noch auf den Boden liegt, steht oder läuft. Nach den ersten drei Sekunden geht der Arm des Referees hoch und die letzten fünf Sekunden werden von einer sichtbaren Handbewegung aus runtergezählt.",
+    "source": "SR-Zeitung 04/2025",
+    "criteriaFull": [
+      "Erklärung"
+    ],
+    "criteriaPartial": [
+      "Erklärung"
+    ],
+    "sourceDate": "2025-04-01",
+    "ruleReference": "",
+    "tags": [
+      "Torwart"
+    ],
+    "explanation": "Die Zeit läuft, sobald der Torhüter den Ball gefangen hat und kontrolliert, unabhängig davon, ob er danach noch auf den Boden liegt, steht oder läuft. Nach den ersten drei Sekunden geht der Arm des Referees hoch und die letzten fünf Sekunden werden von einer sichtbaren Handbewegung aus runtergezählt.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Erklärung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 67,
+    "situation": "Als es im Strafraum zu einem leichten Oberkörperkontakt zwischen Verteidiger und Angreifer kommt, entscheidet der Schiedsrichter auf Strafstoß. Nun geht der Angreifer zum Schiedsrichter und sagt ihm, dass es aus seiner Wahrnehmung kein Foul war. Wie sollte der Referee reagieren?",
+    "correctAnswer": "Schiedsrichterball. Der Unparteiische setzt das Spiel mit einem Schiedsrichterball fort, da er sich geirrt hat. Ein indirekter Freistoß mit Verwarnung kommt nicht infrage, da es kein absichtliches und unsportliches Vortäuschen eines Foulspiels war. Eine Meldung des Spielers im Spielbericht für sein faires Verhalten ist nach den Vorgaben des Landesverbandes möglich.",
+    "source": "SR-Zeitung 05/2025",
+    "criteriaFull": [
+      "Direkter Freistoß",
+      "Indirekter Freistoß",
+      "Verwarnung",
+      "Schiedsrichterball"
+    ],
+    "criteriaPartial": [
+      "Verwarnung"
+    ],
+    "sourceDate": "2025-05-01",
+    "ruleReference": "",
+    "tags": [
+      "Foulspiel",
+      "Persönliche Strafe",
+      "Spielfortsetzung",
+      "Strafstoß",
+      "Unsportliches Verhalten"
+    ],
+    "explanation": "Schiedsrichterball. Der Unparteiische setzt das Spiel mit einem Schiedsrichterball fort, da er sich geirrt hat. Ein indirekter Freistoß mit Verwarnung kommt nicht infrage, da es kein absichtliches und unsportliches Vortäuschen eines Foulspiels war. Eine Meldung des Spielers im Spielbericht für sein faires Verhalten ist nach den Vorgaben des Landesverbandes möglich.",
+    "bewertungselemente": [
+      {
+        "id": "PS",
+        "name": "Persönliche Strafe",
+        "korrekte_werte": [
+          "Verwarnung"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Verwarnung",
+          "Gelbe Karte",
+          "Gelb"
+        ],
+        "falsche_alternativen": {}
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Persönliche Strafe",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Persönliche Strafe)",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 4,
+    "flags": [
+      "UNSICHER: Konnte korrekten Freistoß-Typ nicht sicher aus correctAnswer ableiten"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 69,
+    "situation": "Während die Heimmannschaft fünf Minuten vor Spielende knapp in Führung liegt, ist aus der Ferne bereits deutlich das Donnern eines Gewitters zu hören. Während die Gäste fordern, das Spiel mit Rücksicht auf die Gesundheit der Spieler zu unterbrechen, argumentiert die Heimmannschaft, dass man das Spiel noch zu Ende bringen sollte, bevor das Gewitter da ist. Welche Argumentation sollte der Unparteiische folgen?",
+    "correctAnswer": "Spielunterbrechung. Die Sicherheit aller Beteiligten ist der vorrangige Aspekt eines Schiedsrichters. Bei seiner Bewertung sollte er bei ersten Anzeichen einer Gefährdung der Gesundheit der Beteiligten das Spiel unterbrechen und die Mannschaften sicherheitshalber in die Kabinen bitten. Hier geht immer die Gesundheit und Unversehrtheit der Spieler vor.",
+    "source": "SR-Zeitung 05/2025",
+    "criteriaFull": [
+      "Spielunterbrechung"
+    ],
+    "criteriaPartial": [
+      "Spielunterbrechung"
+    ],
+    "sourceDate": "2025-05-01",
+    "ruleReference": "",
+    "tags": [
+      "Allgemein"
+    ],
+    "explanation": "Spielunterbrechung. Die Sicherheit aller Beteiligten ist der vorrangige Aspekt eines Schiedsrichters. Bei seiner Bewertung sollte er bei ersten Anzeichen einer Gefährdung der Gesundheit der Beteiligten das Spiel unterbrechen und die Mannschaften sicherheitshalber in die Kabinen bitten. Hier geht immer die Gesundheit und Unversehrtheit der Spieler vor.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Spielunterbrechung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 72,
+    "situation": "In einem Kreisligaspiel möchte ein Spieler aufgrund frostiger Temperaturen mit einer Zipfelmütze auflaufen. Von dieser Mütze geht weder eine Gefahr für andere Spieler aus, noch verschafft sich der Spieler dadurch einen Vorteil. Der Schiri verbietet dem Spieler das Tragen der Mütze, obwohl der Torhüter wiederum eine Cap tragen darf. Handelt der Schiedsrichter korrekt?",
+    "correctAnswer": "Kopfbeddeckungen sind dem Torhüter erlaubt, zum Beispiel beim Blick in die Sonne oder das Flutlicht, aber keinem weiteren Spieler. Es sei denn, es handelt sich um eine medizinische Maßnahme. Diese liegt hier nicht vor, somit wird auch das Tragen der Kopfbedeckung nicht gestattet. Sollte ein medizinischer Grund vorliegen, so ist dieser dem Schiedsrichter gegenüber zu belegen.",
+    "source": "SR-Zeitung 05/2025",
+    "criteriaFull": [
+      "Erklärung"
+    ],
+    "criteriaPartial": [
+      "Erklärung"
+    ],
+    "sourceDate": "2025-05-01",
+    "ruleReference": "",
+    "tags": [
+      "Torwart",
+      "Vorteil"
+    ],
+    "explanation": "Kopfbeddeckungen sind dem Torhüter erlaubt, zum Beispiel beim Blick in die Sonne oder das Flutlicht, aber keinem weiteren Spieler. Es sei denn, es handelt sich um eine medizinische Maßnahme. Diese liegt hier nicht vor, somit wird auch das Tragen der Kopfbedeckung nicht gestattet. Sollte ein medizinischer Grund vorliegen, so ist dieser dem Schiedsrichter gegenüber zu belegen.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Erklärung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 73,
+    "situation": "Muss ein Schiedsrichter zur Ausführung eines Schiedsrichter-Balls pfeifen?",
+    "correctAnswer": "Eine Spielfortsetzung muss immer dann mit Pfiff begleitet werden, wenn es zu einer Auswechslung, einer verletzungsbedingte Behandlung auf dem Spielfeld, eine Persönlichen Strafe oder eine Abstandsregulierung gegeben hat. Ist einer dieser vier Fälle beim Schiedsrichter-Ball gegeben, so muss der Schiri hier auch pfeifen. Es empfiehlt sich jedoch auch nach längeren Unterbrechungen, das Spiel immer mit Pfiff fortzusetzen, um damit den Mannschaften zu dokumentieren, dass es weitergeht.",
+    "source": "SR-Zeitung 05/2025",
+    "criteriaFull": [
+      "Schiedsrichterball",
+      "Erklärung"
+    ],
+    "criteriaPartial": [
+      "Schiedsrichterball"
+    ],
+    "sourceDate": "2025-05-01",
+    "ruleReference": "",
+    "tags": [
+      "Auswechslung",
+      "Spielfeld"
+    ],
+    "explanation": "Eine Spielfortsetzung muss immer dann mit Pfiff begleitet werden, wenn es zu einer Auswechslung, einer verletzungsbedingte Behandlung auf dem Spielfeld, eine Persönlichen Strafe oder eine Abstandsregulierung gegeben hat. Ist einer dieser vier Fälle beim Schiedsrichter-Ball gegeben, so muss der Schiri hier auch pfeifen. Es empfiehlt sich jedoch auch nach längeren Unterbrechungen, das Spiel immer mit Pfiff fortzusetzen, um damit den Mannschaften zu dokumentieren, dass es weitergeht.",
+    "bewertungselemente": [
+      {
+        "id": "SF",
+        "name": "Spielfortsetzungstyp",
+        "korrekte_werte": [
+          "Schiedsrichterball"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Schiedsrichterball",
+          "SR-Ball",
+          "Schiedsrichter-Ball",
+          "Dropped Ball"
+        ],
+        "falsche_alternativen": {
+          "Direkter Freistoß": "Freistöße nur für Spielervergehen. Hier kein Spielervergehen, daher Schiedsrichterball.",
+          "Indirekter Freistoß": "Auch indirekter Freistoß nur für Spielervergehen. Daher Schiedsrichterball."
+        }
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Spielfortsetzungstyp",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Spielfortsetzungstyp)",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Erklärung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 78,
+    "situation": "Bei der Strafstoß-Ausführung bewegt sich der Torhüter mit beiden Füßen zu früh von der Linie. Er steht zum Zeitpunkt des Schusses ca. eineinhalb Meter vor der Linie. Der Schütze schießt den Ball gegen den Torpfosten, von wo er ins Aus geht. Entscheidung des Schiedsrichters?",
+    "correctAnswer": "Abstoß. Das Verhalten des Keepers hat keinen Einfluss auf die Wirkung des Strafstoßes und ist damit für den Schiedsrichter nicht zu beanstanden.",
+    "source": "SR-Zeitung 06/2025",
+    "criteriaFull": [
+      "Strafstoß",
+      "Abstoß"
+    ],
+    "criteriaPartial": [
+      "Strafstoß"
+    ],
+    "sourceDate": "2025-06-01",
+    "ruleReference": "",
+    "tags": [
+      "Spielfortsetzung",
+      "Strafstoß",
+      "Torwart"
+    ],
+    "explanation": "Abstoß. Das Verhalten des Keepers hat keinen Einfluss auf die Wirkung des Strafstoßes und ist damit für den Schiedsrichter nicht zu beanstanden.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "UNSICHER: Mehrere Spielfortsetzungstypen in criteriaFull: ['Strafstoß', 'Abstoß']"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 90,
+    "situation": "Der Schiedsrichter hat das Spiel wegen der Verletzung eines Spielers unterbrochen, ohne dass ein Regelverstoß vorgelegen hat. Nun setzt er das Spiel mit einem Schiedsrichterball fort. Der berechtigte Spieler übernimmt den korrekt ausgeführten Schiedsrichterball, läuft damit wenige Meter in Richtung Strafraum und erzielt ein Tor, ohne dass ein zweiter Spieler den Ball berührt hat. Welche Entscheidung trifft der Schiedsrichter?",
+    "correctAnswer": "Abstoß. Der Schiedsrichter lässt das Spiel mit einem Abstoß fortsetzen, da eine reguläre Torerzielung nach einem Schiedsrichterball nur dann möglich ist, wenn ein weiterer Spieler zuvor den Ball berührt hat.",
+    "source": "SR-Zeitung 06/2025",
+    "criteriaFull": [
+      "Abstoß",
+      "Schiedsrichterball"
+    ],
+    "criteriaPartial": [
+      "Abstoß"
+    ],
+    "sourceDate": "2025-06-01",
+    "ruleReference": "",
+    "tags": [
+      "Spielfortsetzung"
+    ],
+    "explanation": "Abstoß. Der Schiedsrichter lässt das Spiel mit einem Abstoß fortsetzen, da eine reguläre Torerzielung nach einem Schiedsrichterball nur dann möglich ist, wenn ein weiterer Spieler zuvor den Ball berührt hat.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "UNSICHER: Mehrere Spielfortsetzungstypen in criteriaFull: ['Abstoß', 'Schiedsrichterball']"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 95,
+    "situation": "Bei einem direkten Freistoß läuft der ausführende Spieler an, stoppt unmittelbar vor dem Ball und täuscht einen Schuss an, indem er ausholt, aber den Fuß hinter dem Ball aufsetzt. Nachdem der Torwart und die Spieler in der Mauer reagieren haben, spielt der Schütze den Ball seitlich zu einem Mitspieler, der diesen dann zum Torerfolg verwandelt. Wie entscheidet der Schiedsrichter?",
+    "correctAnswer": "Tor; Anstoß. „Finten“ bei der Freistoß-Ausführung sind jederzeit erlaubt. Während beim Strafstoß der Stoß in einer Bewegung durchgeführt werden muss, ist beim Freistoß auch ein Abstoppen erlaubt.",
+    "source": "SR-Zeitung 01/2026",
+    "criteriaFull": [
+      "Strafstoß",
+      "Anstoß",
+      "Tor"
+    ],
+    "criteriaPartial": [
+      "Strafstoß"
+    ],
+    "sourceDate": "2026-01-01",
+    "ruleReference": "",
+    "tags": [
+      "Spielfortsetzung",
+      "Strafstoß",
+      "Torwart"
+    ],
+    "explanation": "Tor; Anstoß. „Finten“ bei der Freistoß-Ausführung sind jederzeit erlaubt. Während beim Strafstoß der Stoß in einer Bewegung durchgeführt werden muss, ist beim Freistoß auch ein Abstoppen erlaubt.",
+    "bewertungselemente": [
+      {
+        "id": "TOR",
+        "name": "Torentscheidung",
+        "korrekte_werte": [
+          "Tor"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Tor",
+          "Torerfolg",
+          "Treffer"
+        ],
+        "falsche_alternativen": {
+          "Kein Tor": "Das Tor ist gültig. Siehe Begründung in Musterantwort."
+        }
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Torentscheidung",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Torentscheidung)",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 2,
+    "flags": [
+      "UNSICHER: Mehrere Spielfortsetzungstypen in criteriaFull: ['Strafstoß', 'Anstoß']"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 100,
+    "situation": "Einen aussichtsreichen Angriff versucht ein Verteidiger im Bereich der Mittellinie mit einem rücksichtslosen Fußeinsatz zu verhindern. Da der Stürmer weiterspielen kann, entscheidet der Schiedsrichter auf Vorteil. Was muss der Schiedsrichter in der nächsten Spielunterbrechung tun?",
+    "correctAnswer": "In der nächsten Spielunterbrechung verwarnt der Schiedsrichter den Spieler, da es sich bei dessen Vergehen nicht um ein taktisches Vergehen handelte – das unterliegt einer Reduzierung – wie zum Beispiel eine Notbremse oder das Unterbinden eines vielversprechenden Angriffs, sondern um ein rücksichtsloses Foul, welches aufgrund der Schwere sanktioniert wird. Bei solchen Vergehen findet keine Reduzierung der Persönlichen Strafe statt.",
+    "source": "SR-Zeitung 01/2026",
+    "criteriaFull": [
+      "Spielunterbrechung"
+    ],
+    "criteriaPartial": [
+      "Spielunterbrechung"
+    ],
+    "sourceDate": "2026-01-01",
+    "ruleReference": "",
+    "tags": [
+      "Notbremse/DOGSO",
+      "Vorteil"
+    ],
+    "explanation": "In der nächsten Spielunterbrechung verwarnt der Schiedsrichter den Spieler, da es sich bei dessen Vergehen nicht um ein taktisches Vergehen handelte – das unterliegt einer Reduzierung – wie zum Beispiel eine Notbremse oder das Unterbinden eines vielversprechenden Angriffs, sondern um ein rücksichtsloses Foul, welches aufgrund der Schwere sanktioniert wird. Bei solchen Vergehen findet keine Reduzierung der Persönlichen Strafe statt.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 2,
+    "flags": [
+      "MANUELL: Kriterium 'Spielunterbrechung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 101,
+    "situation": "Der Schiedsrichter hat das Spiel wegen der Verletzung eines Spielers unterbrochen, ohne dass ein Regelverstoß vorgelegen hat. Nun setzt er das Spiel mit einem Schiedsrichterball fort. Ein Spieler übernimmt den korrekt ausgeführten Schiedsrichterball, läuft damit wenige Meter in Richtung Strafraum und erzielt ein Tor, ohne dass ein zweiter Spieler den Ball berührt hat. Welche Entscheidung muss der Schiedsrichter treffen?",
+    "correctAnswer": "Abstoß. Der Schiedsrichter lässt das Spiel mit einem Abstoß fortsetzen, da eine reguläre Torerzielung nach einem Schiedsrichterball nur dann möglich ist, wenn ein weiterer Spieler zuvor den Ball berührt hat.",
+    "source": "SR-Zeitung 01/2026",
+    "criteriaFull": [
+      "Abstoß",
+      "Schiedsrichterball"
+    ],
+    "criteriaPartial": [
+      "Abstoß"
+    ],
+    "sourceDate": "2026-01-01",
+    "ruleReference": "",
+    "tags": [
+      "Spielfortsetzung"
+    ],
+    "explanation": "Abstoß. Der Schiedsrichter lässt das Spiel mit einem Abstoß fortsetzen, da eine reguläre Torerzielung nach einem Schiedsrichterball nur dann möglich ist, wenn ein weiterer Spieler zuvor den Ball berührt hat.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "UNSICHER: Mehrere Spielfortsetzungstypen in criteriaFull: ['Abstoß', 'Schiedsrichterball']"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 138,
+    "situation": "Nach dem Schlusspfiff verlässt das Schiedsrichter- Team zusammen mit beiden Mannschaften das Spielfeld. Als die Unparteiischen und die Spieler beider Teams sich bereits außerhalb des Spielfeldes auf der Aschenbahn befinden, schlägt ein Spieler seinen Gegenspieler. Wie muss der Schiedsrichter reagieren?",
+    "correctAnswer": "Meldung im Spielbericht. Ein Zeigen der Signalkarten ist hier nicht mehr möglich. Die Möglichkeit, eine Karte zu zeigen, endet mit Verlassen des Platzes durch den Schiedsrichter.",
+    "source": "SR-Newsletter 05/2025",
+    "criteriaFull": [
+      "Meldung im Spielbericht"
+    ],
+    "criteriaPartial": [
+      "Meldung im Spielbericht"
+    ],
+    "sourceDate": "2025-05-01",
+    "ruleReference": "",
+    "tags": [
+      "Spielfeld"
+    ],
+    "explanation": "Meldung im Spielbericht. Ein Zeigen der Signalkarten ist hier nicht mehr möglich. Die Möglichkeit, eine Karte zu zeigen, endet mit Verlassen des Platzes durch den Schiedsrichter.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Meldung im Spielbericht' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 144,
+    "situation": "Während des laufenden Spiels merkt der Schiedsrichter, dass der Gästetrainer in die Coachingzone des Heim-Trainers gelaufen ist und diesen dort mit einem Faustschlag niederstreckt. Zur gleichen Zeit hat der Gastverein im Mittelfeld Ballbesitz. Wie entscheidet der Schiedsrichter? Wie, wo und mit wem wird das Spiel fortgesetzt?",
+    "correctAnswer": "Spielunterbrechung; Feldverweis gegen den schlagenden Trainer der Gäste. Zudem wird das Spiel mit einem Schiedsrichter-Ball mit einem Spieler der Gäste an dem Ort fortgesetzt, an dem sich der Ball zum Zeitpunkt der Unterbrechung befand.",
+    "source": "SR-Newsletter 06/2025",
+    "criteriaFull": [
+      "Feldverweis",
+      "Spielunterbrechung"
+    ],
+    "criteriaPartial": [
+      "Feldverweis"
+    ],
+    "sourceDate": "2025-06-01",
+    "ruleReference": "",
+    "tags": [
+      "Persönliche Strafe",
+      "Schiedsrichter-Entscheidung",
+      "Tätlichkeit"
+    ],
+    "explanation": "Spielunterbrechung; Feldverweis gegen den schlagenden Trainer der Gäste. Zudem wird das Spiel mit einem Schiedsrichter-Ball mit einem Spieler der Gäste an dem Ort fortgesetzt, an dem sich der Ball zum Zeitpunkt der Unterbrechung befand.",
+    "bewertungselemente": [
+      {
+        "id": "PS",
+        "name": "Persönliche Strafe",
+        "korrekte_werte": [
+          "Feldverweis"
+        ],
+        "gewicht": "pflicht",
+        "synonyme": [
+          "Feldverweis",
+          "Rote Karte",
+          "Rot",
+          "Platzverweis",
+          "des Feldes verwiesen"
+        ],
+        "falsche_alternativen": {}
+      }
+    ],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Pflichtelemente korrekt: Persönliche Strafe",
+      "1_punkt": "Mindestens ein Pflichtelement korrekt (z.B. Persönliche Strafe)",
+      "0_punkte": "Kein Pflichtelement korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 2,
+    "flags": [
+      "MANUELL: Kriterium 'Spielunterbrechung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  },
+  {
+    "index": 146,
+    "situation": "Aufgrund der kalten Witterung und durch Schneefall ist der Platz schneebedeckt und es steht kein andersfarbiges Abstreumaterial als weiße Kreide zu Verfügung. Der Platzwart organisiert Hütchen. Wie viele Hütchen benötigt er, um die sogenannten Hilfsmarkierungen zu setzen und wo müssen sie stehen?",
+    "correctAnswer": "Der Platzwart benötigt zehn Hilfsmarkierungen: Vier begrenzen jeweils die Strafräume, zwei die Mittellinie und diese müssen alle einen Meter außerhalb des Spielfeldes stehen.",
+    "source": "SR-Newsletter 06/2025",
+    "criteriaFull": [
+      "Erklärung"
+    ],
+    "criteriaPartial": [
+      "Erklärung"
+    ],
+    "sourceDate": "2025-06-01",
+    "ruleReference": "",
+    "tags": [
+      "Spielfeld"
+    ],
+    "explanation": "Der Platzwart benötigt zehn Hilfsmarkierungen: Vier begrenzen jeweils die Strafräume, zwei die Mittellinie und diese müssen alle einen Meter außerhalb des Spielfeldes stehen.",
+    "bewertungselemente": [],
+    "teilpunkt_logik": {
+      "max_punkte": 2,
+      "2_punkte": "Alle Kriterien korrekt",
+      "1_punkt": "Mindestens ein Kriterium korrekt",
+      "0_punkte": "Kein Kriterium korrekt ODER leere Antwort"
+    },
+    "schwierigkeitsgrad": 1,
+    "flags": [
+      "MANUELL: Kriterium 'Erklärung' konnte nicht automatisch klassifiziert werden"
+    ],
+    "needs_review": true,
+    "enrichment_version": "1.0"
+  }
+]

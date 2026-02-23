@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { AnimatedNumber } from "@/components/ui/animated-number";
+import { AnimatedList } from "@/components/ui/animated-list";
 
 export const metadata = {
   title: "Dashboard | schiri.app",
@@ -185,12 +187,12 @@ export default async function DashboardPage() {
     <>
       {/* Zone 1 — The Number */}
       <div className="flex flex-col items-center pt-12 sm:pt-20 pb-10">
-        <span
+        <AnimatedNumber
+          value={averagePercent}
+          suffix="%"
           className="text-[64px] font-bold text-text-primary leading-none"
           style={{ letterSpacing: "-3px" }}
-        >
-          {averagePercent}%
-        </span>
+        />
 
         <span className="mt-2 text-[13px] text-text-tertiary">
           Dein Durchschnitt
