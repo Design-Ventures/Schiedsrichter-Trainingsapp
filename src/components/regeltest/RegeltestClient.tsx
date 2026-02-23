@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useRegeltestStore } from "@/stores/regeltestStore";
 import type { RegeltestMode } from "@/types/regeltest";
 import { RegeltestLoading } from "./RegeltestLoading";
 import { RegeltestActive } from "./RegeltestActive";
+import { ResultScreen } from "./ResultScreen";
 
 // Lazy-load views that aren't needed on initial render
-const EvaluatingView = dynamic(
-  () => import("./EvaluatingView").then((m) => ({ default: m.EvaluatingView })),
-  { loading: () => <RegeltestLoading /> }
-);
-const ResultsView = dynamic(
-  () => import("./ResultsView").then((m) => ({ default: m.ResultsView })),
-  { loading: () => <RegeltestLoading /> }
+const EvaluationAnimation = dynamic(
+  () =>
+    import("./EvaluationAnimation").then((m) => ({
+      default: m.EvaluationAnimation,
+    })),
+  { ssr: false }
 );
 const RegeltestError = dynamic(
   () => import("./RegeltestError").then((m) => ({ default: m.RegeltestError }))
@@ -25,11 +25,21 @@ interface RegeltestClientProps {
   initialTags?: string[];
 }
 
-export function RegeltestClient({ initialMode, initialTags }: RegeltestClientProps) {
+export function RegeltestClient({
+  initialMode,
+  initialTags,
+}: RegeltestClientProps) {
   const phase = useRegeltestStore((s) => s.phase);
+  const results = useRegeltestStore((s) => s.results);
   const startSession = useRegeltestStore((s) => s.startSession);
+  const setPhase = useRegeltestStore((s) => s.setPhase);
   const reset = useRegeltestStore((s) => s.reset);
   const tagsKey = initialTags?.join(",") ?? "";
+
+  // Track crossfade transition state
+  const [evalVisible, setEvalVisible] = useState(false);
+  const [evalFadingOut, setEvalFadingOut] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
     reset();
@@ -37,6 +47,44 @@ export function RegeltestClient({ initialMode, initialTags }: RegeltestClientPro
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialMode, tagsKey]);
 
+  // Show EvaluationAnimation when entering eval phases
+  useEffect(() => {
+    if (
+      phase === "submitting" ||
+      phase === "evaluating" ||
+      phase === "evaluating_done"
+    ) {
+      setEvalVisible(true);
+      setEvalFadingOut(false);
+      setShowResults(false);
+    } else if (
+      phase === "idle" ||
+      phase === "loading" ||
+      phase === "active"
+    ) {
+      setEvalVisible(false);
+      setEvalFadingOut(false);
+      setShowResults(false);
+    }
+  }, [phase]);
+
+  // Crossfade: EvaluationAnimation fades out, ResultScreen appears underneath
+  const handleEvalComplete = useCallback(() => {
+    // 1. Show ResultScreen immediately (it's behind the overlay at z-40)
+    setShowResults(true);
+
+    // 2. Start fading out the EvaluationAnimation overlay (z-50)
+    setEvalFadingOut(true);
+
+    // 3. After crossfade, clean up overlay and sync store phase
+    setTimeout(() => {
+      setEvalVisible(false);
+      setEvalFadingOut(false);
+      setPhase("results");
+    }, 400);
+  }, [setPhase]);
+
+  // Standard flow content (non-overlay phases)
   const content = (() => {
     switch (phase) {
       case "idle":
@@ -47,9 +95,9 @@ export function RegeltestClient({ initialMode, initialTags }: RegeltestClientPro
       case "submitting":
       case "evaluating":
       case "evaluating_done":
-        return <EvaluatingView />;
+        return null;
       case "results":
-        return <ResultsView />;
+        return null; // ResultScreen is rendered separately as a fixed overlay
       case "error":
         return <RegeltestError />;
       default:
@@ -59,7 +107,7 @@ export function RegeltestClient({ initialMode, initialTags }: RegeltestClientPro
 
   return (
     <>
-      {initialTags && initialTags.length > 0 && (
+      {initialTags && initialTags.length > 0 && phase === "active" && (
         <div className="mb-4 rounded-[var(--radius-lg)] bg-accent/5 border border-accent/15 px-4 py-2.5 text-center">
           <span className="text-[13px] font-medium text-accent">
             Gezieltes Training: {initialTags.join(", ")}
@@ -67,6 +115,13 @@ export function RegeltestClient({ initialMode, initialTags }: RegeltestClientPro
         </div>
       )}
       {content}
+      {(showResults || phase === "results") && results && <ResultScreen />}
+      {evalVisible && (
+        <EvaluationAnimation
+          onComplete={handleEvalComplete}
+          fadingOut={evalFadingOut}
+        />
+      )}
     </>
   );
 }
