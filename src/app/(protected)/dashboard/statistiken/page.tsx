@@ -80,20 +80,20 @@ export default async function StatistikenPage() {
         <div>
           <Link
             href="/dashboard"
-            className="-ml-0.5 inline-flex items-center gap-1 text-[13px] sm:text-sm text-text-secondary hover:text-text-primary transition-colors"
+            className="-ml-0.5 inline-flex items-center gap-1 text-[13px] text-text-tertiary hover:text-text-secondary transition-colors min-h-[44px]"
           >
             &larr; Dashboard
           </Link>
-          <h2 className="mt-1 text-xl sm:text-2xl font-bold text-text-primary">
+          <h2 className="text-xl font-bold text-text-primary">
             Regelkategorien
           </h2>
         </div>
         <p className="hidden sm:block text-[13px] text-text-tertiary text-right max-w-[14rem]">
-          Sortiert nach Trefferquote — Schwächen stehen oben
+          Sortiert nach Trefferquote
         </p>
       </div>
 
-      {/* Sparkline progress card */}
+      {/* Sparkline progress */}
       {sessionPercents.length >= 2 && (() => {
         const avg = Math.round(
           sessionPercents.reduce((a, b) => a + b, 0) / sessionPercents.length
@@ -119,24 +119,15 @@ export default async function StatistikenPage() {
         const lastPct = sessionPercents[n - 1];
         const lastX = w - pad;
         const lastY = h - pad - (lastPct / 100) * (h - pad * 2);
-        // Fill area under the line
-        const fillPoints = `${pad},${h - pad} ${points} ${lastX.toFixed(1)},${h - pad}`;
 
         return (
-          <div className="mt-8 rounded-[var(--radius-lg)] border border-border px-4 py-3 sm:px-5 sm:py-4">
-            <h3 className="text-[13px] sm:text-sm font-medium text-text-secondary mb-3">
-              Dein Verlauf
-            </h3>
+          <div className="mt-8 py-4">
             <div className="flex items-center gap-5 sm:gap-6">
               <svg
                 viewBox={`0 0 ${w} ${h}`}
                 className="h-10 w-[120px] shrink-0"
                 aria-hidden="true"
               >
-                <polygon
-                  points={fillPoints}
-                  className="fill-accent/10"
-                />
                 <polyline
                   points={points}
                   fill="none"
@@ -154,32 +145,28 @@ export default async function StatistikenPage() {
               </svg>
               <div className="flex items-baseline gap-4 sm:gap-5">
                 <div>
-                  <span className="text-lg sm:text-xl font-bold text-text-primary">
+                  <span className="text-lg font-bold text-text-primary">
                     {avg}%
                   </span>
-                  <span className="ml-1 text-[11px] sm:text-xs text-text-tertiary">
+                  <span className="ml-1 text-[11px] text-text-tertiary">
                     Schnitt
                   </span>
                 </div>
                 {sessionPercents.length >= 3 && trend !== 0 && (
                   <div>
-                    <span
-                      className={`text-[13px] sm:text-sm font-semibold ${
-                        trend > 0 ? "text-success-text" : "text-error"
-                      }`}
-                    >
+                    <span className="text-[13px] font-semibold text-text-tertiary">
                       {trend > 0 ? "+" : ""}{trend}%
                     </span>
-                    <span className="ml-1 text-[11px] sm:text-xs text-text-tertiary">
+                    <span className="ml-1 text-[11px] text-text-tertiary">
                       Trend
                     </span>
                   </div>
                 )}
                 <div>
-                  <span className="text-[13px] sm:text-sm font-semibold text-text-primary">
+                  <span className="text-[13px] font-semibold text-text-primary">
                     {sessionPercents.length}
                   </span>
-                  <span className="ml-1 text-[11px] sm:text-xs text-text-tertiary">
+                  <span className="ml-1 text-[11px] text-text-tertiary">
                     Tests
                   </span>
                 </div>
@@ -190,60 +177,50 @@ export default async function StatistikenPage() {
       })()}
 
       {tagStats.length === 0 ? (
-        <div className="mt-10 space-y-6">
-          <div className="rounded-[var(--radius-xl)] border border-border px-6 py-10 sm:py-14 text-center">
-            <h3 className="text-lg sm:text-xl font-bold text-text-primary">
-              Finde heraus, wo du stehst
-            </h3>
-            <p className="mx-auto mt-2 max-w-[22rem] text-[13px] sm:text-sm text-text-secondary text-pretty leading-relaxed">
-              Mach deinen ersten Regeltest — danach siehst du hier deine Stärken und Schwächen pro Kategorie.
-            </p>
+        <div className="mt-12 flex flex-col items-center text-center">
+          <h3 className="text-lg font-semibold text-text-primary">
+            Finde heraus, wo du stehst
+          </h3>
+          <p className="mx-auto mt-2 max-w-[22rem] text-[13px] text-text-secondary text-pretty leading-relaxed">
+            Mach deinen ersten Regeltest — danach siehst du hier deine
+            St{"\u00e4"}rken und Schw{"\u00e4"}chen pro Kategorie.
+          </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 max-w-md mx-auto">
-              <Link href="/regeltest?mode=EXAM" className="group block">
-                <div className="rounded-[var(--radius-lg)] border border-border p-4 transition-all duration-150 hover:border-border-hover hover:shadow-md text-left">
-                  <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
-                    <span className="text-sm">⏱️</span>
-                  </div>
-                  <h4 className="text-[13px] sm:text-sm font-semibold text-text-primary">Regeltest</h4>
-                  <p className="mt-0.5 text-[11px] sm:text-xs text-text-tertiary">30 Fragen, 30 Sek. pro Frage</p>
-                </div>
-              </Link>
-              <Link href="/regeltest?mode=TEST" className="group block">
-                <div className="rounded-[var(--radius-lg)] border border-border p-4 transition-all duration-150 hover:border-border-hover hover:shadow-md text-left">
-                  <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-[var(--radius-lg)] bg-test-light">
-                    <span className="text-sm">📝</span>
-                  </div>
-                  <h4 className="text-[13px] sm:text-sm font-semibold text-text-primary">Übungstest</h4>
-                  <p className="mt-0.5 text-[11px] sm:text-xs text-text-tertiary">15 Fragen, kein Zeitlimit</p>
-                </div>
-              </Link>
-            </div>
+          <div className="mt-8 w-full max-w-sm">
+            <Link
+              href="/regeltest?mode=EXAM"
+              className="flex items-center justify-center w-full rounded-[14px] bg-primary px-6 py-3.5 text-base font-semibold text-text-on-primary min-h-[44px] transition-colors hover:bg-primary-hover"
+            >
+              Regeltest starten
+            </Link>
+            <Link
+              href="/regeltest?mode=TEST"
+              className="mt-4 text-center text-[13px] text-text-tertiary hover:text-text-secondary transition-colors min-h-[44px] flex items-center justify-center"
+            >
+              Erst {"\u00fc"}ben &rarr;
+            </Link>
           </div>
         </div>
       ) : (
-        <div className="mt-8 space-y-3">
+        <div className="mt-6 border-t border-border pt-6 space-y-4">
           {tagStats.map((t) => (
-            <div
-              key={t.tag}
-              className="rounded-[var(--radius-lg)] border border-border px-4 py-3 sm:px-5 sm:py-4"
-            >
+            <div key={t.tag} className="py-1">
               <div className="flex items-center justify-between gap-3">
-                <span className="text-[13px] sm:text-sm font-medium text-text-primary truncate">
+                <span className="text-[13px] font-medium text-text-primary truncate">
                   {t.tag}
                 </span>
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[11px] sm:text-xs text-text-tertiary">
+                  <span className="text-[11px] text-text-tertiary">
                     {t.totalAnswered} Fragen
                   </span>
-                  <span className="text-[13px] sm:text-sm font-semibold text-text-primary">
+                  <span className="text-[13px] font-semibold text-text-primary">
                     {t.percent}%
                   </span>
                 </div>
               </div>
 
               {/* Progress bar */}
-              <div className="mt-2.5 h-2 rounded-full bg-fill-tertiary overflow-hidden">
+              <div className="mt-2 h-[3px] rounded-full bg-fill-tertiary overflow-hidden">
                 <div
                   className="h-full rounded-full bg-accent transition-all duration-300"
                   style={{ width: `${t.percent}%` }}
@@ -260,9 +237,9 @@ export default async function StatistikenPage() {
                 {t.percent < 80 && (
                   <Link
                     href={`/regeltest?mode=TEST&tags=${encodeURIComponent(t.tag)}`}
-                    className="shrink-0 text-[11px] sm:text-xs font-medium text-accent hover:text-accent-hover transition-colors"
+                    className="shrink-0 text-[11px] font-medium text-accent hover:text-accent-hover transition-colors min-h-[44px] flex items-center"
                   >
-                    Üben &rarr;
+                    {"\u00dc"}ben &rarr;
                   </Link>
                 )}
               </div>

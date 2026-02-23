@@ -46,7 +46,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-2px)] flex-col items-center justify-center px-5 sm:px-6">
+    <div className="flex min-h-screen flex-col items-center justify-center px-5 sm:px-6">
       <div className="w-full max-w-sm">
         <div className="mb-6 sm:mb-8 text-center">
           <Link href="/">

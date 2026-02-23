@@ -108,9 +108,9 @@ export function RegeltestClient({
   return (
     <>
       {initialTags && initialTags.length > 0 && phase === "active" && (
-        <div className="mb-4 rounded-[var(--radius-lg)] bg-accent/5 border border-accent/15 px-4 py-2.5 text-center">
-          <span className="text-[13px] font-medium text-accent">
-            Gezieltes Training: {initialTags.join(", ")}
+        <div className="mb-4 text-center">
+          <span className="text-[13px] text-text-tertiary">
+            {initialTags.join(", ")}
           </span>
         </div>
       )}

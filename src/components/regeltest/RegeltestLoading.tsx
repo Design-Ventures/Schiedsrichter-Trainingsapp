@@ -9,11 +9,11 @@ export function RegeltestLoading() {
           <div className="skeleton h-4 w-28" />
           <div className="skeleton h-4 w-20" />
         </div>
-        <div className="skeleton h-2 w-full rounded-full" />
+        <div className="skeleton h-[3px] w-full rounded-full" />
       </div>
 
       {/* Question card skeleton */}
-      <div className="rounded-[var(--radius-xl)] border border-border bg-surface p-6">
+      <div className="rounded-[var(--radius-xl)] bg-surface p-6">
         <div className="skeleton mb-3 h-4 w-24" />
         <div className="space-y-2">
           <div className="skeleton h-4 w-full" />

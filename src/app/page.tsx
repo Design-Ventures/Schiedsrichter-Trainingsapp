@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
-import { prisma } from "@/lib/prisma";
 
 export default async function LandingPage() {
-  const questionCount = await prisma.regeltestQuestion.count({
-    where: { isActive: true },
-  });
   return (
-    <div className="flex min-h-[calc(100vh-2px)] flex-col">
-      {/* Nav — compact like Luma: tight padding, pill-style sign-in */}
+    <div className="flex min-h-screen flex-col">
       <nav className="flex items-center justify-between px-5 py-3 sm:px-6 sm:py-4">
         <Logo />
         <Link
@@ -19,7 +14,6 @@ export default async function LandingPage() {
         </Link>
       </nav>
 
-      {/* Hero */}
       <main className="flex-1 flex flex-col items-center justify-center px-5 sm:px-6 pb-16 sm:pb-24">
         <div className="max-w-xl text-center">
           <h1 className="text-[28px] sm:text-5xl font-bold text-text-primary leading-[1.15] sm:leading-[1.1]">
@@ -28,13 +22,13 @@ export default async function LandingPage() {
             Schiedsrichter.
           </h1>
           <p className="mt-4 sm:mt-6 text-[15px] sm:text-lg text-text-secondary max-w-md mx-auto leading-relaxed text-pretty">
-            Echte Prüfungsfragen aus der DFB Schiedsrichter-Zeitung mit sofortigem Feedback nach jeder Antwort.
+            Echte Pr&uuml;fungsfragen aus der DFB Schiedsrichter-Zeitung mit sofortigem Feedback nach jeder Antwort.
           </p>
 
           <div className="mt-8 sm:mt-10 flex flex-col items-center gap-2">
             <Link
               href="/regeltest?mode=TEST"
-              className="inline-flex items-center justify-center rounded-[var(--radius-lg)] bg-primary px-8 py-3 min-h-[48px] text-[15px] font-medium text-text-on-primary transition-all duration-150 hover:bg-primary-hover w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-[14px] bg-primary px-8 py-3.5 min-h-[48px] text-[15px] font-semibold text-text-on-primary transition-colors hover:bg-primary-hover w-full sm:w-auto"
             >
               Kostenlos trainieren
             </Link>
@@ -44,28 +38,19 @@ export default async function LandingPage() {
           </div>
         </div>
 
-        {/* Feature highlights */}
-        <div className="mt-14 sm:mt-20 grid grid-cols-3 gap-4 sm:gap-8 max-w-sm sm:max-w-2xl w-full">
+        {/* Features — text only, no icons, no chrome */}
+        <div className="mt-16 sm:mt-24 grid grid-cols-3 gap-6 sm:gap-12 max-w-sm sm:max-w-lg w-full">
           <div className="text-center">
-            <div className="mx-auto mb-2 sm:mb-3 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-accent-subtle">
-              <span className="text-base sm:text-lg">📝</span>
-            </div>
-            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Offizielle DFB-Fragen</div>
-            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Direkt aus der SR-Zeitung</div>
+            <div className="text-[13px] sm:text-sm font-medium text-text-primary">DFB-Fragen</div>
+            <div className="text-[11px] sm:text-xs text-text-tertiary mt-1">Direkt aus der SR-Zeitung</div>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-2 sm:mb-3 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-exam-light">
-              <span className="text-base sm:text-lg">⏱️</span>
-            </div>
-            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Prüfungsnah trainieren</div>
-            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Wie im echten Regeltest</div>
+            <div className="text-[13px] sm:text-sm font-medium text-text-primary">Pr&uuml;fungsnah</div>
+            <div className="text-[11px] sm:text-xs text-text-tertiary mt-1">Wie im echten Regeltest</div>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-2 sm:mb-3 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[var(--radius-lg)] bg-info-light">
-              <span className="text-base sm:text-lg">✨</span>
-            </div>
             <div className="text-[13px] sm:text-sm font-medium text-text-primary">Sofort verstehen</div>
-            <div className="text-[11px] sm:text-xs text-text-tertiary mt-0.5">Begründung zu jeder Antwort</div>
+            <div className="text-[11px] sm:text-xs text-text-tertiary mt-1">Begr&uuml;ndung zu jeder Antwort</div>
           </div>
         </div>
       </main>

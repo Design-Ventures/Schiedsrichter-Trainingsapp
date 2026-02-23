@@ -20,7 +20,7 @@ export function ProgressBar({ current, total, answeredCount }: ProgressBarProps)
         </span>
       </div>
       <div
-        className="h-2 w-full overflow-hidden rounded-full bg-fill-tertiary"
+        className="h-[3px] w-full overflow-hidden rounded-full bg-fill-tertiary"
         role="progressbar"
         aria-valuenow={current + 1}
         aria-valuemin={1}

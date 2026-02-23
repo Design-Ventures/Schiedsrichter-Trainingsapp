@@ -16,8 +16,6 @@ export default async function ProtectedLayout({
     redirect("/login");
   }
 
-  const displayName = user.user_metadata?.name || user.email || "Nutzer";
-
   return (
     <div className="min-h-screen bg-surface">
       <header className="border-b border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
@@ -25,12 +23,7 @@ export default async function ProtectedLayout({
           <Link href="/dashboard">
             <Logo />
           </Link>
-          <div className="flex items-center gap-3 sm:gap-4">
-            <span className="hidden sm:inline text-sm text-text-secondary">
-              {displayName}
-            </span>
-            <LogoutButton />
-          </div>
+          <LogoutButton />
         </div>
       </header>
 
