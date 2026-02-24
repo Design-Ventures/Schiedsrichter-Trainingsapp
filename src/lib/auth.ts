@@ -16,19 +16,22 @@ export const getAuthenticatedUser = cache(async () => {
     return null;
   }
 
-  // Ensure a matching record exists in the users table
-  await prisma.user.upsert({
-    where: { id: user.id },
-    update: {
-      email: user.email!,
-      name: user.user_metadata?.name ?? null,
-    },
-    create: {
-      id: user.id,
-      email: user.email!,
-      name: user.user_metadata?.name ?? null,
-    },
-  });
+  // Ensure a matching record exists in the users table (only write if missing)
+  const existing = await prisma.user.findUnique({ where: { id: user.id } });
+  if (!existing) {
+    await prisma.user.upsert({
+      where: { id: user.id },
+      update: {
+        email: user.email!,
+        name: user.user_metadata?.name ?? null,
+      },
+      create: {
+        id: user.id,
+        email: user.email!,
+        name: user.user_metadata?.name ?? null,
+      },
+    });
+  }
 
   return user;
 });
