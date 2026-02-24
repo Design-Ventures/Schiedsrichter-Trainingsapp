@@ -61,6 +61,78 @@ async function getEnrichedQuestions(): Promise<
   }
 }
 
+// --- JSON repair for malformed LLM output ---
+
+/**
+ * State-machine JSON repair: walks char-by-char, tracks whether we're inside
+ * a JSON string, and escapes any ASCII " (U+0022) that appears at a
+ * non-structural position (i.e. content quote, not a key/value delimiter).
+ *
+ * A " is structural if the next non-whitespace char is one of: : , } ] " or EOF.
+ * Otherwise it's a content quote (e.g. Haiku writing „ja" where the closing "
+ * is ASCII) and gets escaped to \".
+ */
+function repairJson(raw: string): string {
+  const result: string[] = [];
+  let inString = false;
+  let i = 0;
+
+  while (i < raw.length) {
+    const ch = raw[i];
+
+    // Handle escape sequences inside strings (skip both chars)
+    if (ch === "\\" && inString && i + 1 < raw.length) {
+      result.push(ch, raw[i + 1]);
+      i += 2;
+      continue;
+    }
+
+    if (ch === '"') {
+      if (!inString) {
+        // Opening a JSON string
+        inString = true;
+        result.push(ch);
+      } else {
+        // Inside a string — is this " structural (closing) or content?
+        let j = i + 1;
+        while (j < raw.length && /\s/.test(raw[j])) j++;
+        const next = j < raw.length ? raw[j] : "";
+
+        if (
+          next === ":" ||
+          next === "," ||
+          next === "}" ||
+          next === "]" ||
+          next === '"' ||
+          next === ""
+        ) {
+          // Structural: closes the JSON string
+          inString = false;
+          result.push(ch);
+        } else {
+          // Content quote: escape it so it stays inside the string
+          result.push('\\"');
+        }
+      }
+    } else {
+      result.push(ch);
+    }
+
+    i++;
+  }
+
+  return result.join("");
+}
+
+function safeJsonParse<T>(raw: string): T {
+  try {
+    return JSON.parse(raw);
+  } catch {
+    const repaired = repairJson(raw);
+    return JSON.parse(repaired);
+  }
+}
+
 // --- Enriched evaluation (1 question per API call) ---
 
 function buildEnrichedPrompt(
@@ -110,13 +182,13 @@ async function evaluateSingle(
         throw new Error("No JSON object found in response");
       }
 
-      const result = JSON.parse(jsonMatch[0]);
+      const result = safeJsonParse<Record<string, unknown>>(jsonMatch[0]);
 
       return {
         questionIndex: input.questionIndex,
-        score: Math.min(2, Math.max(0, result.score)),
-        feedback: result.feedback,
-        matchedCriteria: result.matchedCriteria || [],
+        score: Math.min(2, Math.max(0, result.score as number)),
+        feedback: result.feedback as string,
+        matchedCriteria: (result.matchedCriteria as string[]) || [],
       };
     } catch (error) {
       if (attempt === 1) {
@@ -180,7 +252,7 @@ async function evaluateLegacyBatch(
         throw new Error("No JSON array found in response");
       }
 
-      const results: EvaluationResult[] = JSON.parse(jsonMatch[0]);
+      const results: EvaluationResult[] = safeJsonParse(jsonMatch[0]);
 
       return results.map((r) => ({
         questionIndex: r.questionIndex,

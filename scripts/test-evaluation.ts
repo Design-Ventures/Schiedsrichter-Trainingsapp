@@ -187,6 +187,69 @@ function buildUserPrompt(
   });
 }
 
+// --- JSON repair for malformed LLM output ---
+
+/**
+ * State-machine JSON repair: walks char-by-char, tracks whether we're inside
+ * a JSON string, and escapes any ASCII " (U+0022) that appears at a
+ * non-structural position (i.e. content quote, not a key/value delimiter).
+ */
+function repairJson(raw: string): string {
+  const result: string[] = [];
+  let inString = false;
+  let i = 0;
+
+  while (i < raw.length) {
+    const ch = raw[i];
+
+    if (ch === "\\" && inString && i + 1 < raw.length) {
+      result.push(ch, raw[i + 1]);
+      i += 2;
+      continue;
+    }
+
+    if (ch === '"') {
+      if (!inString) {
+        inString = true;
+        result.push(ch);
+      } else {
+        let j = i + 1;
+        while (j < raw.length && /\s/.test(raw[j])) j++;
+        const next = j < raw.length ? raw[j] : "";
+
+        if (
+          next === ":" ||
+          next === "," ||
+          next === "}" ||
+          next === "]" ||
+          next === '"' ||
+          next === ""
+        ) {
+          inString = false;
+          result.push(ch);
+        } else {
+          result.push('\\"');
+        }
+      }
+    } else {
+      result.push(ch);
+    }
+
+    i++;
+  }
+
+  return result.join("");
+}
+
+function safeJsonParse<T>(raw: string): T {
+  try {
+    return JSON.parse(raw);
+  } catch {
+    const repaired = repairJson(raw);
+    return JSON.parse(repaired);
+  }
+}
+
 // --- API Call ---
 
 async function evaluateTestCase(
@@ -236,7 +299,7 @@ async function evaluateTestCase(
         throw new Error(`No JSON in response: ${text.slice(0, 200)}`);
       }
 
-      const result: FullEvaluationResult = JSON.parse(jsonMatch[0]);
+      const result: FullEvaluationResult = safeJsonParse(jsonMatch[0]);
       const actualScore = Math.min(2, Math.max(0, result.score));
 
       return {

@@ -139,6 +139,10 @@ AUSGABEFORMAT (antworte IMMER in diesem JSON)
   "lernhinweis": "<optionaler didaktischer Hinweis>"
 }
 
+WICHTIG: Verwende in Textfeldern (feedback, kommentar, lernhinweis) KEINE doppelten
+Anführungszeichen. Nutze stattdessen deutsche Anführungszeichen „…" oder einfache ‚…'.
+Beispiel: "feedback": "Die Antwort „ja" ist keine gültige Entscheidung."
+
 Antworte NUR mit dem JSON-Objekt. Kein Markdown, kein zusätzlicher Text.`;
 
 /**
