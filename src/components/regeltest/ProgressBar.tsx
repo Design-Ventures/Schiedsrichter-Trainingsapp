@@ -8,6 +8,7 @@ interface ProgressBarProps {
 
 export function ProgressBar({ current, total, answeredCount }: ProgressBarProps) {
   const progress = ((current + 1) / total) * 100;
+  const allAnswered = answeredCount === total;
 
   return (
     <div className="space-y-2">
@@ -16,11 +17,11 @@ export function ProgressBar({ current, total, answeredCount }: ProgressBarProps)
           Frage {current + 1} von {total}
         </span>
         <span className="text-text-tertiary">
-          {answeredCount} beantwortet
+          {allAnswered ? "Alle beantwortet!" : `${answeredCount} beantwortet`}
         </span>
       </div>
       <div
-        className="h-[3px] w-full overflow-hidden rounded-full bg-fill-tertiary"
+        className="h-[5px] w-full overflow-hidden rounded-full bg-fill-tertiary"
         role="progressbar"
         aria-valuenow={current + 1}
         aria-valuemin={1}
@@ -28,7 +29,7 @@ export function ProgressBar({ current, total, answeredCount }: ProgressBarProps)
         aria-label={`Frage ${current + 1} von ${total}`}
       >
         <div
-          className="h-full rounded-full bg-accent transition-all duration-300"
+          className="h-full rounded-full bg-accent transition-all duration-500"
           style={{ width: `${progress}%` }}
         />
       </div>

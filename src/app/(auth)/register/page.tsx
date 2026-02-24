@@ -56,55 +56,59 @@ export default function RegisterPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-5 sm:px-6">
       <div className="w-full max-w-sm">
-        <div className="mb-6 sm:mb-8 text-center">
-          <Link href="/">
-            <Logo />
-          </Link>
-          <h1 className="mt-5 sm:mt-6 text-xl sm:text-2xl font-bold text-text-primary">Registrieren</h1>
-          <p className="mt-1 text-[13px] sm:text-sm text-text-secondary">
-            Erstelle ein neues Konto
-          </p>
+        <div className="rounded-[var(--radius-2xl)] border border-border/50 bg-surface p-6 sm:p-8 shadow-[var(--shadow-card-soft)]">
+          <div className="mb-6 sm:mb-8 text-center">
+            <Link href="/">
+              <Logo />
+            </Link>
+            <h1 className="mt-5 sm:mt-6 text-xl sm:text-2xl font-bold text-text-primary">
+              Starte dein Training
+            </h1>
+            <p className="mt-1 text-[13px] sm:text-sm text-text-secondary">
+              Erstelle ein neues Konto
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            <Input
+              id="name"
+              label="Name"
+              type="text"
+              placeholder="Dein Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+
+            <Input
+              id="email"
+              label="E-Mail"
+              type="email"
+              placeholder="deine@email.de"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <Input
+              id="password"
+              label="Passwort"
+              type="password"
+              placeholder="Mindestens 6 Zeichen"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            {error ? (
+              <p className="text-sm text-error">{error}</p>
+            ) : null}
+
+            <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
+              Konto erstellen
+            </Button>
+          </form>
         </div>
-
-        <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
-          <Input
-            id="name"
-            label="Name"
-            type="text"
-            placeholder="Dein Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-
-          <Input
-            id="email"
-            label="E-Mail"
-            type="email"
-            placeholder="deine@email.de"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <Input
-            id="password"
-            label="Passwort"
-            type="password"
-            placeholder="Mindestens 6 Zeichen"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          {error ? (
-            <p className="text-sm text-error">{error}</p>
-          ) : null}
-
-          <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
-            Konto erstellen
-          </Button>
-        </form>
 
         <p className="mt-5 sm:mt-6 text-center text-[13px] sm:text-sm text-text-secondary">
           Bereits ein Konto?{" "}

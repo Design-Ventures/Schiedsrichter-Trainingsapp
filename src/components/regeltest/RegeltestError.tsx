@@ -28,10 +28,10 @@ export function RegeltestError() {
           />
         </svg>
         <h3 className="mt-4 text-lg font-semibold text-text-primary">
-          Ein Fehler ist aufgetreten
+          Etwas ist schiefgelaufen
         </h3>
         <p className="mt-2 text-sm text-text-secondary">
-          {errorMessage || "Unbekannter Fehler"}
+          {errorMessage || "Bitte versuche es erneut."}
         </p>
         <div className="mt-8 flex gap-3">
           <Link href="/dashboard" className="flex-1">

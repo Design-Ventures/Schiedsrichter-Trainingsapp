@@ -8,7 +8,7 @@ export function Logo({ className }: LogoProps) {
   return (
     <span
       className={cn(
-        "text-[17px] font-normal tracking-[0.04em] text-gray-500 select-none",
+        "text-[17px] font-medium tracking-[0.04em] text-text-primary/60 select-none",
         className
       )}
       aria-label="schiri"

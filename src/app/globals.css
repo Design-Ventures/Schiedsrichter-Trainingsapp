@@ -14,6 +14,10 @@
   --color-accent-active: #6D28D9;
   --color-accent-text: #7C3AED; /* 5.7:1 on white – use for text on light bg */
 
+  --color-warm: #F97316;
+  --color-warm-light: #FFF7ED;
+  --color-warm-text: #EA580C;
+
   /* ─── Neutral Palette (Warm Stone) ─── */
   --color-gray-50: #FAFAF9;
   --color-gray-100: #F5F5F4;
@@ -80,27 +84,29 @@
   --color-test: #8B5CF6;
   --color-test-light: #F5F3FF;
 
-  /* ─── Shadows ─── */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 6px rgba(0, 0, 0, 0.02);
-  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.03);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-card-soft: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
-  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.06);
+  /* ─── Shadows (warm-tinted) ─── */
+  --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.03);
+  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04), 0 1px 3px rgba(28, 25, 23, 0.03);
+  --shadow-md: 0 2px 4px rgba(28, 25, 23, 0.04), 0 4px 6px rgba(28, 25, 23, 0.02);
+  --shadow-lg: 0 4px 8px rgba(28, 25, 23, 0.04), 0 8px 16px rgba(28, 25, 23, 0.03);
+  --shadow-card: 0 1px 2px rgba(28, 25, 23, 0.03);
+  --shadow-card-soft: 0 1px 3px rgba(28, 25, 23, 0.04), 0 4px 12px rgba(28, 25, 23, 0.03);
+  --shadow-card-hover: 0 4px 12px rgba(28, 25, 23, 0.06);
+  --shadow-button-hover: 0 4px 12px rgba(28, 25, 23, 0.08), 0 2px 4px rgba(28, 25, 23, 0.04);
 
   /* ─── Border Radius ─── */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 16px; /* Apple HIG: ~20pt for large cards */
-  --radius-2xl: 20px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
   --radius-full: 9999px;
 
   /* ─── Transitions ─── */
   --transition-fast: 150ms ease;
   --transition-base: 200ms ease;
   --transition-slow: 300ms ease;
+  --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @layer base {
@@ -109,6 +115,7 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4 {
@@ -118,8 +125,9 @@
   }
 
   h1 {
-    letter-spacing: -0.035em;
+    letter-spacing: -0.04em;
     font-weight: 700;
+    line-height: 1.1;
   }
 
   ::selection {
@@ -140,6 +148,10 @@
       --color-accent-subtle: #1E1B4B;
       --color-accent-active: #C4B5FD;
       --color-accent-text: #A78BFA;
+
+      --color-warm: #FB923C;
+      --color-warm-light: #431407;
+      --color-warm-text: #FB923C;
 
       --color-surface: #0C0A09;
       --color-surface-raised: #1C1917;
@@ -186,13 +198,14 @@
       --color-test: #A78BFA;
       --color-test-light: #2E1065;
 
-      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
-      --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2);
-      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2);
-      --shadow-card-soft: 0 1px 3px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
-      --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.2);
+      --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.3), 0 1px 3px rgba(28, 25, 23, 0.2);
+      --shadow-md: 0 2px 4px rgba(28, 25, 23, 0.3), 0 4px 6px rgba(28, 25, 23, 0.2);
+      --shadow-lg: 0 4px 8px rgba(28, 25, 23, 0.3), 0 8px 16px rgba(28, 25, 23, 0.2);
+      --shadow-card: 0 1px 2px rgba(28, 25, 23, 0.2);
+      --shadow-card-soft: 0 1px 3px rgba(28, 25, 23, 0.15), 0 4px 12px rgba(28, 25, 23, 0.1);
+      --shadow-card-hover: 0 4px 12px rgba(28, 25, 23, 0.3);
+      --shadow-button-hover: 0 4px 12px rgba(28, 25, 23, 0.3), 0 2px 4px rgba(28, 25, 23, 0.15);
     }
   }
 }
@@ -213,9 +226,9 @@
     border-color: var(--color-border-hover);
   }
 
-  /* Luma-style top gradient bar */
+  /* Warm gradient bar with rose tones */
   .gradient-bar {
-    background: linear-gradient(90deg, #c084fc, #a78bfa, #818cf8, #93c5fd);
+    background: linear-gradient(90deg, #f472b6, #c084fc, #a78bfa, #818cf8, #93c5fd);
     height: 2px;
   }
 
@@ -248,8 +261,26 @@
   to { opacity: 1; }
 }
 
+@keyframes celebrate-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes score-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(139, 92, 246, 0.15); }
+}
+
 @utility animate-page-in {
   animation: page-in 0.2s ease both;
+}
+
+@utility animate-celebrate {
+  animation: celebrate-pulse 0.6s ease-in-out;
+}
+
+@utility animate-score-glow {
+  animation: score-glow 2s ease-in-out infinite;
 }
 
 /* ─── Reduced Motion ─── */

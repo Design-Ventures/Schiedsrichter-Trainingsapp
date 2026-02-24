@@ -13,11 +13,11 @@ export function AnswerInput() {
   return (
     <Textarea
       id="answer-input"
-      label="Deine Antwort"
-      placeholder="Beschreibe die korrekte Entscheidung des Schiedsrichters..."
+      label="Deine Entscheidung"
+      placeholder="Was ist die korrekte Entscheidung des Schiedsrichters? Beschreibe Spielfortsetzung und pers&ouml;nliche Strafe..."
       value={currentAnswer}
       onChange={(e) => setAnswer(currentIndex, e.target.value)}
-      rows={4}
+      rows={5}
     />
   );
 }

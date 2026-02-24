@@ -20,11 +20,17 @@ const scoreLabels = {
   2: "2 Punkte",
 } as const;
 
+const scoreBorderColors = {
+  0: "border-l-error/30",
+  1: "border-l-warning/30",
+  2: "border-l-success/30",
+} as const;
+
 export function QuestionResult({ result }: QuestionResultProps) {
   const score = result.score as 0 | 1 | 2;
 
   return (
-    <Card>
+    <Card className={cn("border-l-[3px]", scoreBorderColors[score])}>
       <CardContent className="space-y-3">
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-1">
@@ -33,7 +39,7 @@ export function QuestionResult({ result }: QuestionResultProps) {
             </div>
             {score === 1 && (
               <span className="text-xs text-warning-text">
-                Sinngemäß richtig gewertet
+                Sinngem&auml;&szlig; richtig gewertet
               </span>
             )}
           </div>

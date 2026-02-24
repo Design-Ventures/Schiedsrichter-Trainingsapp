@@ -6,6 +6,7 @@ import {
   AnimatePresence,
   useReducedMotion,
 } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { useRegeltestStore } from "@/stores/regeltestStore";
 
 // ─── Types ───
@@ -28,7 +29,6 @@ export function EvaluationAnimation({
   const prefersReducedMotion = useReducedMotion();
 
   const totalQuestions = questions.length;
-  // Use results availability instead of store phase — more robust
   const isApiDone = results !== null;
   const finalScore = results
     ? Math.round((results.totalScore / results.maxScore) * 100)
@@ -37,7 +37,6 @@ export function EvaluationAnimation({
   const [animPhase, setAnimPhase] = useState<AnimPhase>("processing");
   const [condensingDone, setCondensingDone] = useState(false);
 
-  // Stable ref for onComplete to prevent effect re-runs
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
@@ -69,7 +68,7 @@ export function EvaluationAnimation({
     }
   }, [condensingDone, isApiDone]);
 
-  // Phase 3 → onComplete after 0.8s (use ref to avoid timeout resets)
+  // Phase 3 → onComplete after 0.8s
   useEffect(() => {
     if (animPhase !== "reveal" || prefersReducedMotion) return;
     const t = setTimeout(() => onCompleteRef.current(), 800);
@@ -80,12 +79,11 @@ export function EvaluationAnimation({
   if (prefersReducedMotion) {
     return (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center"
-        style={{ background: "#0A0A14" }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900"
         aria-busy="true"
         aria-label="Auswertung wird erstellt"
       >
-        <p style={{ color: "#6B7280", fontSize: 14 }}>
+        <p className="text-sm text-gray-400">
           Auswertung wird erstellt...
         </p>
       </div>
@@ -94,12 +92,11 @@ export function EvaluationAnimation({
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center"
-      style={{ background: "#0A0A14" }}
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-900"
       animate={{ opacity: fadingOut ? 0 : 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       aria-busy={animPhase !== "reveal"}
-      aria-label="Auswertung läuft"
+      aria-label="Dein Ergebnis wird berechnet"
     >
       <AnimatePresence mode="wait">
         {animPhase === "processing" && (
@@ -156,7 +153,6 @@ function EvalQuestionFeed({ totalQuestions }: { totalQuestions: number }) {
     return () => clearInterval(interval);
   }, [totalQuestions, intervalMs]);
 
-  // Build visible window of ~4 items
   const windowSize = 4;
   const startIndex = Math.max(0, activeIndex - windowSize + 1);
   const items: { index: number; state: "active" | "checked" | "fading" }[] = [];
@@ -174,16 +170,7 @@ function EvalQuestionFeed({ totalQuestions }: { totalQuestions: number }) {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 8,
-        width: 280,
-        overflow: "hidden",
-        height: 160,
-      }}
-    >
+    <div className="flex flex-col gap-2 w-[280px] overflow-hidden h-[160px]">
       <AnimatePresence mode="popLayout">
         {items.map(({ index, state }) => (
           <EvalQuestionItem
@@ -206,69 +193,42 @@ function EvalQuestionItem({
   questionNumber: number;
   state: "active" | "checked" | "fading";
 }) {
-  const stateColors = {
-    active: "#FFFFFF",
-    checked: "#6B7280",
-    fading: "#374151",
-  };
-
-  const stateOpacity = {
-    active: 1,
-    checked: 0.7,
-    fading: 0.3,
-  };
-
   return (
     <motion.div
       layout
       initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: stateOpacity[state], y: 0 }}
+      animate={{
+        opacity: state === "fading" ? 0.3 : state === "checked" ? 0.7 : 1,
+        y: 0,
+      }}
       exit={{ opacity: 0, y: -8, transition: { duration: 0.1, ease: "easeIn" } }}
       transition={{ duration: 0.12, ease: "easeOut" }}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        padding: "10px 0",
-        borderBottom: "1px solid #1F1F3A",
-      }}
+      className="flex items-center py-2.5 border-b border-gray-700/40"
     >
       <span
-        style={{
-          fontSize: 12,
-          fontWeight: 500,
-          color: stateColors[state],
-          flexShrink: 0,
-        }}
+        className={cn(
+          "text-xs font-medium shrink-0",
+          state === "active"
+            ? "text-white"
+            : state === "checked"
+              ? "text-gray-400"
+              : "text-gray-600"
+        )}
       >
         Situation {questionNumber}
       </span>
 
-      {/* Dotted line — terminal style */}
-      <span
-        style={{
-          flex: 1,
-          borderBottom: "1px dotted #1F1F3A",
-          margin: "0 8px",
-          alignSelf: "center",
-          minWidth: 16,
-        }}
-      />
+      {/* Dotted line */}
+      <span className="flex-1 border-b border-dotted border-gray-700/40 mx-2 self-center min-w-4" />
 
       {/* Checkmark */}
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: state !== "active" ? 1 : 0 }}
         transition={{ duration: 0.08 }}
-        style={{
-          color: "#8B5CF6",
-          fontSize: 12,
-          fontWeight: 600,
-          flexShrink: 0,
-          width: 14,
-          textAlign: "right",
-        }}
+        className="text-accent text-xs font-semibold shrink-0 w-3.5 text-right"
       >
-        {state !== "active" ? "✓" : ""}
+        {state !== "active" ? "\u2713" : ""}
       </motion.span>
     </motion.div>
   );
@@ -279,32 +239,20 @@ function EvalQuestionItem({
 function EvalCondensing() {
   return (
     <div className="flex flex-col items-center justify-center">
-      {/* Central dot */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.4, delay: 0.4 }}
-        style={{
-          width: 8,
-          height: 8,
-          borderRadius: "50%",
-          background: "#8B5CF6",
-        }}
+        className="w-2 h-2 rounded-full bg-accent"
       />
 
-      {/* Label */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        style={{
-          fontSize: 12,
-          color: "#6B7280",
-          textAlign: "center",
-          marginTop: 16,
-        }}
+        className="text-xs text-gray-400 text-center mt-4"
       >
-        Auswertung wird abgeschlossen
+        Dein Ergebnis wird berechnet
       </motion.div>
     </div>
   );
@@ -320,7 +268,6 @@ function EvalReveal({ finalScore }: { finalScore: number }) {
   const circumference = 2 * Math.PI * radius;
   const targetOffset = circumference * (1 - finalScore / 100);
 
-  // Animate counter 0 → finalScore with easeOut over 800ms
   useEffect(() => {
     const duration = 800;
     let startTime: number | null = null;
@@ -329,7 +276,6 @@ function EvalReveal({ finalScore }: { finalScore: number }) {
       if (!startTime) startTime = timestamp;
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // cubic easeOut
       const eased = 1 - Math.pow(1 - progress, 3);
       setDisplayNum(Math.round(eased * finalScore));
 
@@ -344,15 +290,13 @@ function EvalReveal({ finalScore }: { finalScore: number }) {
 
   return (
     <motion.div
-      className="flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center animate-score-glow rounded-full"
       initial={{ scale: 0.5, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      {/* SVG Score Ring */}
       <div
-        className="relative"
-        style={{ width: 168, height: 168 }}
+        className="relative w-[168px] h-[168px]"
         role="progressbar"
         aria-valuenow={displayNum}
         aria-valuemin={0}
@@ -362,24 +306,22 @@ function EvalReveal({ finalScore }: { finalScore: number }) {
           width={168}
           height={168}
           viewBox="0 0 168 168"
-          style={{ transform: "rotate(-90deg)" }}
+          className="-rotate-90"
         >
-          {/* Background ring */}
           <circle
             cx="84"
             cy="84"
             r={radius}
             fill="none"
-            stroke="#1F1F3A"
+            className="stroke-gray-700/40"
             strokeWidth="4"
           />
-          {/* Progress ring */}
           <motion.circle
             cx="84"
             cy="84"
             r={radius}
             fill="none"
-            stroke="#8B5CF6"
+            className="stroke-accent"
             strokeWidth="4"
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -389,15 +331,7 @@ function EvalReveal({ finalScore }: { finalScore: number }) {
           />
         </svg>
 
-        {/* Percentage number */}
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-          style={{
-            fontSize: 48,
-            fontWeight: 700,
-            color: "#FFFFFF",
-          }}
-        >
+        <div className="absolute inset-0 flex items-center justify-center text-5xl font-bold text-white">
           {displayNum}%
         </div>
       </div>

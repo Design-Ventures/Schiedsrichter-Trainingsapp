@@ -146,9 +146,12 @@ export default async function DashboardPage() {
   if (totalTests === 0) {
     return (
       <div className="flex flex-col items-center pt-20 sm:pt-28">
-        <h2 className="text-xl font-semibold text-text-primary text-center text-pretty">
-          Dein Regelwissen{"\n"}in 15 Minuten testen.
+        <h2 className="text-2xl font-bold text-text-primary text-center text-pretty">
+          Bereit loszulegen?
         </h2>
+        <p className="mt-2 text-sm text-text-secondary">
+          Finde heraus, wo du stehst.
+        </p>
 
         <div className="mt-8 space-y-1 text-center">
           <p className="text-sm text-text-secondary leading-[1.8]">
@@ -165,14 +168,14 @@ export default async function DashboardPage() {
         <div className="mt-10 w-full max-w-sm">
           <Link
             href={primaryCta.href}
-            className="flex items-center justify-center w-full rounded-[14px] bg-primary px-6 py-3.5 text-base font-semibold text-text-on-primary min-h-[44px] transition-colors hover:bg-primary-hover"
+            className="flex items-center justify-center w-full rounded-[var(--radius-xl)] bg-primary px-6 py-3.5 text-base font-semibold text-text-on-primary min-h-[44px] transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] hover:shadow-[var(--shadow-button-hover)]"
           >
             {primaryCta.label}
           </Link>
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
-              className="block mt-4 text-center text-[13px] text-text-tertiary hover:text-text-secondary transition-colors min-h-[44px] flex items-center justify-center"
+              className="mt-4 text-center text-[13px] text-text-tertiary hover:text-text-secondary transition-colors min-h-[44px] flex items-center justify-center"
             >
               {secondaryCta.label}
             </Link>
@@ -182,6 +185,14 @@ export default async function DashboardPage() {
     );
   }
 
+  // Encouraging micro-copy based on performance
+  const encouragement =
+    averagePercent >= 80
+      ? "Stark! Weiter so."
+      : averagePercent >= 60
+        ? "Guter Start. Du wirst besser."
+        : "Jeder Test macht dich besser.";
+
   // Populated state
   return (
     <>
@@ -190,11 +201,14 @@ export default async function DashboardPage() {
         <AnimatedNumber
           value={averagePercent}
           suffix="%"
-          className="text-[64px] font-bold text-text-primary leading-none"
-          style={{ letterSpacing: "-3px" }}
+          className="text-[72px] font-bold text-text-primary leading-none tracking-tighter"
         />
 
-        <span className="mt-2 text-[13px] text-text-tertiary">
+        <span className="mt-3 text-sm text-text-secondary">
+          {encouragement}
+        </span>
+
+        <span className="mt-1 text-[13px] text-text-tertiary">
           Dein Durchschnitt
           {totalTests > 1 && ` \u00b7 aus ${totalTests} Tests`}
         </span>
@@ -215,7 +229,7 @@ export default async function DashboardPage() {
             <polyline
               points={sparklineSvg.points}
               fill="none"
-              className="stroke-accent"
+              className={trend > 0 ? "stroke-warm" : "stroke-accent"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -224,7 +238,7 @@ export default async function DashboardPage() {
               cx={sparklineSvg.lastX}
               cy={sparklineSvg.lastY}
               r="3"
-              className="fill-accent"
+              className={trend > 0 ? "fill-warm" : "fill-accent"}
             />
           </svg>
         )}
@@ -234,7 +248,7 @@ export default async function DashboardPage() {
       <div className="w-full max-w-sm mx-auto">
         <Link
           href={primaryCta.href}
-          className="flex items-center justify-center w-full rounded-[14px] bg-primary px-6 py-3.5 text-base font-semibold text-text-on-primary min-h-[44px] transition-colors hover:bg-primary-hover"
+          className="flex items-center justify-center w-full rounded-[var(--radius-xl)] bg-primary px-6 py-3.5 text-base font-semibold text-text-on-primary min-h-[44px] transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] hover:shadow-[var(--shadow-button-hover)]"
         >
           {primaryCta.label}
         </Link>
@@ -254,7 +268,7 @@ export default async function DashboardPage() {
         {weakCategories.length > 0 && (
           <section>
             <h3 className="text-xs font-medium uppercase tracking-wide text-text-tertiary">
-              Deine Schwächen
+              Deine Schw&auml;chen
             </h3>
 
             <div className="mt-4 space-y-5">
@@ -272,9 +286,9 @@ export default async function DashboardPage() {
                       {cat.percent}%
                     </span>
                   </div>
-                  <div className="mt-1.5 h-[3px] rounded-full bg-fill-tertiary overflow-hidden">
+                  <div className="mt-1.5 h-1 rounded-full bg-fill-tertiary overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-accent transition-all duration-300"
+                      className={`h-full rounded-full transition-all duration-300 ${cat.percent < 50 ? "bg-warm" : "bg-accent"}`}
                       style={{ width: `${cat.percent}%` }}
                     />
                   </div>
@@ -321,6 +335,12 @@ export default async function DashboardPage() {
                       month: "short",
                     })
                   : "";
+                const dotColor =
+                  pct >= 80
+                    ? "bg-success"
+                    : pct >= 60
+                      ? "bg-warning"
+                      : "bg-error";
                 return (
                   <div
                     key={s.id}
@@ -338,9 +358,12 @@ export default async function DashboardPage() {
                       <span className="text-[13px] text-text-primary">
                         {s.totalScore}/{s.maxScore}
                       </span>
-                      <span className="text-[13px] font-semibold text-text-primary w-10 text-right">
-                        {pct}%
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`h-1.5 w-1.5 rounded-full ${dotColor}`} />
+                        <span className="text-[13px] font-semibold text-text-primary w-10 text-right">
+                          {pct}%
+                        </span>
+                      </div>
                     </div>
                   </div>
                 );

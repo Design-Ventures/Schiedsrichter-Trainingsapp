@@ -12,9 +12,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-text-on-primary hover:bg-primary-hover active:bg-primary-active",
+    "bg-primary text-text-on-primary hover:bg-primary-hover active:bg-primary-active hover:shadow-[var(--shadow-button-hover)]",
   secondary:
-    "bg-accent text-text-on-primary hover:bg-accent-hover active:bg-accent-active",
+    "bg-accent text-text-on-primary hover:bg-accent-hover active:bg-accent-active hover:shadow-[var(--shadow-button-hover)]",
   outline:
     "border border-border text-text-primary hover:bg-fill-hover hover:border-border-hover active:bg-fill-active",
   ghost:
@@ -22,9 +22,9 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-3 py-1.5 text-sm gap-1.5 min-h-[44px]",
-  md: "px-4 py-2.5 text-sm gap-2 min-h-[44px]",
-  lg: "px-5 py-3 text-[15px] gap-2 min-h-[44px]",
+  sm: "px-3.5 py-1.5 text-sm gap-1.5 min-h-[44px]",
+  md: "px-5 py-2.5 text-sm gap-2 min-h-[44px]",
+  lg: "px-6 py-3.5 text-[15px] gap-2 min-h-[48px]",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -44,7 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-[14px] font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-40",
+          "inline-flex items-center justify-center rounded-[var(--radius-xl)] font-medium transition-all duration-150 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-40",
           variantStyles[variant],
           sizeStyles[size],
           className

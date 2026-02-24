@@ -27,7 +27,7 @@ export function RegeltestActive() {
   if (!currentQuestion) return null;
 
   return (
-    <div className="space-y-4 pb-24">
+    <div className="space-y-6 pb-28">
       <div className="flex items-center justify-between gap-4">
         <div className="flex-1">
           <ProgressBar

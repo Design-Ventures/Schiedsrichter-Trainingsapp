@@ -131,7 +131,7 @@ export default async function StatistikenPage() {
                 <polyline
                   points={points}
                   fill="none"
-                  className="stroke-accent"
+                  className={trend > 0 ? "stroke-warm" : "stroke-accent"}
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -140,7 +140,7 @@ export default async function StatistikenPage() {
                   cx={lastX}
                   cy={lastY}
                   r="3"
-                  className="fill-accent"
+                  className={trend > 0 ? "fill-warm" : "fill-accent"}
                 />
               </svg>
               <div className="flex items-baseline gap-4 sm:gap-5">
@@ -189,7 +189,7 @@ export default async function StatistikenPage() {
           <div className="mt-8 w-full max-w-sm">
             <Link
               href="/regeltest?mode=EXAM"
-              className="flex items-center justify-center w-full rounded-[14px] bg-primary px-6 py-3.5 text-base font-semibold text-text-on-primary min-h-[44px] transition-colors hover:bg-primary-hover"
+              className="flex items-center justify-center w-full rounded-[var(--radius-xl)] bg-primary px-6 py-3.5 text-base font-semibold text-text-on-primary min-h-[44px] transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98]"
             >
               Regeltest starten
             </Link>
@@ -204,7 +204,7 @@ export default async function StatistikenPage() {
       ) : (
         <div className="mt-6 border-t border-border pt-6 space-y-4">
           {tagStats.map((t) => (
-            <div key={t.tag} className="py-1">
+            <div key={t.tag} className="py-1 rounded-[var(--radius-md)] hover:bg-fill-hover/50 -mx-2 px-2 transition-colors">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-[13px] font-medium text-text-primary truncate">
                   {t.tag}
@@ -220,9 +220,9 @@ export default async function StatistikenPage() {
               </div>
 
               {/* Progress bar */}
-              <div className="mt-2 h-[3px] rounded-full bg-fill-tertiary overflow-hidden">
+              <div className="mt-2 h-1 rounded-full bg-fill-tertiary overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-accent transition-all duration-300"
+                  className={`h-full rounded-full transition-all duration-300 ${t.percent < 50 ? "bg-warm" : "bg-accent"}`}
                   style={{ width: `${t.percent}%` }}
                 />
               </div>

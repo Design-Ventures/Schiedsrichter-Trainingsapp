@@ -9,12 +9,12 @@ interface QuestionCardProps {
 
 export function QuestionCard({ situation, questionNumber }: QuestionCardProps) {
   return (
-    <Card>
+    <Card className="border-l-[3px] border-l-accent/30">
       <CardContent>
         <div className="mb-2 text-sm font-medium text-accent-text">
           Situation {questionNumber}
         </div>
-        <p className="text-text-primary leading-relaxed whitespace-pre-line">
+        <p className="text-[15px] text-text-primary leading-[1.7] whitespace-pre-line">
           {situation}
         </p>
       </CardContent>

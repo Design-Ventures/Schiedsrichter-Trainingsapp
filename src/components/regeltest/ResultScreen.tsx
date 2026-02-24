@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { useRegeltestStore } from "@/stores/regeltestStore";
 import { REGELTEST_CONFIG } from "@/types/regeltest";
 import type { RegeltestAnswerResult } from "@/types/regeltest";
@@ -35,16 +36,22 @@ export function ResultScreen() {
   );
   const weakestCategory = weakTags.length > 0 ? weakTags[0] : null;
 
-  // Placeholders until data tracking is implemented (Step 4 in brief)
   const previousPercentage: number | null = null;
   const isFirstTest = true;
 
+  // Encouraging micro-copy based on score
+  const encouragement =
+    percentage >= 80
+      ? "Hervorragend!"
+      : percentage >= 60
+        ? "Gut gemacht!"
+        : percentage >= 40
+          ? "Guter Anfang!"
+          : "Jeder Test macht dich besser!";
+
   return (
-    <div
-      className="fixed inset-0 z-40 overflow-y-auto"
-      style={{ background: "#0A0A14" }}
-    >
-      <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
+    <div className="fixed inset-0 z-40 overflow-y-auto bg-gray-950">
+      <div className="mx-auto max-w-[480px] px-5">
         <ResultHeader
           mode={mode}
           questionCount={results.totalQuestions}
@@ -54,6 +61,7 @@ export function ResultScreen() {
           percentage={percentage}
           pointsEarned={results.totalScore}
           pointsTotal={results.maxScore}
+          encouragement={encouragement}
         />
         <ResultDelta
           previousPercentage={previousPercentage}
@@ -93,7 +101,7 @@ function ResultHeader({
   questionCount: number;
   date: Date;
 }) {
-  const modeLabel = mode === "pruefung" ? "Prüfungsmodus" : "Übungsmodus";
+  const modeLabel = mode === "pruefung" ? "Pr\u00fcfungsmodus" : "\u00dcbungsmodus";
   const formattedDate = date.toLocaleDateString("de-DE", {
     day: "numeric",
     month: "long",
@@ -101,16 +109,7 @@ function ResultHeader({
   });
 
   return (
-    <div
-      style={{
-        fontSize: 12,
-        color: "#6B7280",
-        textAlign: "center",
-        marginTop: 48,
-        fontWeight: 400,
-        lineHeight: 1.6,
-      }}
-    >
+    <div className="text-xs text-gray-400 text-center mt-12 leading-relaxed">
       <div>
         {modeLabel} &middot; {questionCount} Fragen
       </div>
@@ -125,35 +124,22 @@ function ResultScore({
   percentage,
   pointsEarned,
   pointsTotal,
+  encouragement,
 }: {
   percentage: number;
   pointsEarned: number;
   pointsTotal: number;
+  encouragement: string;
 }) {
   return (
     <div>
-      <div
-        style={{
-          fontSize: 72,
-          fontWeight: 700,
-          color: "#FFFFFF",
-          textAlign: "center",
-          marginTop: 16,
-          lineHeight: 1,
-          letterSpacing: -2,
-        }}
-      >
+      <div className="text-[72px] font-bold text-white text-center mt-4 leading-none tracking-tight">
         {percentage}%
       </div>
-      <div
-        style={{
-          fontSize: 14,
-          color: "#6B7280",
-          textAlign: "center",
-          marginTop: 8,
-          marginBottom: 32,
-        }}
-      >
+      <div className="text-sm text-accent text-center mt-2 font-medium">
+        {encouragement}
+      </div>
+      <div className="text-sm text-gray-400 text-center mt-1 mb-8">
         {pointsEarned} von {pointsTotal} Punkten
       </div>
     </div>
@@ -173,16 +159,7 @@ function ResultDelta({
   if (currentPercentage <= previousPercentage) return null;
 
   return (
-    <div
-      style={{
-        fontSize: 13,
-        color: "#8B5CF6",
-        textAlign: "center",
-        fontWeight: 500,
-        marginTop: -16,
-        marginBottom: 32,
-      }}
-    >
+    <div className="text-[13px] text-accent text-center font-medium -mt-4 mb-8">
       &#9650; Besser als dein letzter Test
     </div>
   );
@@ -200,50 +177,23 @@ function ResultBreakdown({
   noPoints: number;
 }) {
   const items = [
-    { count: fullPoints, label: "2 Punkte", dotColor: "#16A34A" },
-    { count: partialPoints, label: "1 Punkt", dotColor: "#D97706" },
-    { count: noPoints, label: "0 Punkte", dotColor: "#6B7280" },
+    { count: fullPoints, label: "2 Punkte", dotColor: "bg-success" },
+    { count: partialPoints, label: "1 Punkt", dotColor: "bg-warning" },
+    { count: noPoints, label: "0 Punkte", dotColor: "bg-gray-500" },
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "20px 24px",
-        borderTop: "1px solid #1F1F3A",
-        borderBottom: "1px solid #1F1F3A",
-        margin: "0 -20px",
-      }}
-    >
+    <div className="flex justify-between py-5 px-6 border-t border-b border-gray-800 -mx-5">
       {items.map((item) => (
         <div
           key={item.label}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 6,
-          }}
+          className="flex flex-col items-center gap-1.5"
         >
-          <div
-            style={{
-              width: 8,
-              height: 8,
-              borderRadius: "50%",
-              background: item.dotColor,
-            }}
-          />
-          <div
-            style={{
-              fontSize: 24,
-              fontWeight: 600,
-              color: "#FFFFFF",
-            }}
-          >
+          <span className={cn("w-2 h-2 rounded-full", item.dotColor)} />
+          <span className="text-2xl font-semibold text-white">
             {item.count}
-          </div>
-          <div style={{ fontSize: 11, color: "#6B7280" }}>{item.label}</div>
+          </span>
+          <span className="text-[11px] text-gray-400">{item.label}</span>
         </div>
       ))}
     </div>
@@ -254,28 +204,23 @@ function ResultBreakdown({
 
 function ResultAnswers({ answers }: { answers: RegeltestAnswerResult[] }) {
   return (
-    <div style={{ marginTop: 32 }}>
-      <h3
-        style={{
-          fontSize: 16,
-          fontWeight: 600,
-          color: "#FFFFFF",
-          marginBottom: 16,
-        }}
-      >
+    <div className="mt-8">
+      <h3 className="text-base font-semibold text-white mb-4">
         Was du mitgenommen hast
       </h3>
-      {answers.map((answer) => (
-        <AnswerCard
-          key={answer.questionIndex}
-          questionNumber={answer.questionIndex + 1}
-          questionText={answer.situation}
-          userAnswer={answer.userAnswer || null}
-          referenceAnswer={answer.correctAnswer}
-          points={answer.score as 0 | 1 | 2}
-          isApproximate={answer.score === 1}
-        />
-      ))}
+      <div className="space-y-2">
+        {answers.map((answer) => (
+          <AnswerCard
+            key={answer.questionIndex}
+            questionNumber={answer.questionIndex + 1}
+            questionText={answer.situation}
+            userAnswer={answer.userAnswer || null}
+            referenceAnswer={answer.correctAnswer}
+            points={answer.score as 0 | 1 | 2}
+            isApproximate={answer.score === 1}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -298,147 +243,74 @@ function AnswerCard({
   isApproximate: boolean;
 }) {
   const pointsConfig = {
-    2: { dotColor: "#16A34A", textColor: "#16A34A", label: "2 Pkt" },
-    1: { dotColor: "#D97706", textColor: "#D97706", label: "1 Pkt" },
-    0: { dotColor: undefined, textColor: "#6B7280", label: "0 Pkt" },
+    2: { dotColor: "bg-success", textColor: "text-success", label: "2 Pkt" },
+    1: { dotColor: "bg-warning", textColor: "text-warning", label: "1 Pkt" },
+    0: { dotColor: undefined, textColor: "text-gray-400", label: "0 Pkt" },
   } as const;
   const pc = pointsConfig[points];
 
+  const borderColor =
+    points === 2
+      ? "border-l-success/30"
+      : points === 1
+        ? "border-l-warning/30"
+        : "border-l-gray-700/30";
+
   return (
-    <div
-      style={{
-        background: "#111827",
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 8,
-        position: "relative",
-      }}
-    >
+    <div className={cn(
+      "bg-gray-800/60 rounded-[var(--radius-lg)] p-4 relative border-l-[3px]",
+      borderColor
+    )}>
       {/* Points indicator (top-right) */}
-      <div
-        style={{
-          position: "absolute",
-          top: 16,
-          right: 16,
-          display: "flex",
-          alignItems: "center",
-          gap: 4,
-        }}
-      >
+      <div className="absolute top-4 right-4 flex items-center gap-1">
         {pc.dotColor && (
-          <div
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              background: pc.dotColor,
-            }}
-          />
+          <span className={cn("w-1.5 h-1.5 rounded-full", pc.dotColor)} />
         )}
-        <span style={{ fontSize: 11, fontWeight: 500, color: pc.textColor }}>
+        <span className={cn("text-[11px] font-medium", pc.textColor)}>
           {pc.label}
         </span>
       </div>
 
       {/* Situation label */}
-      <div
-        style={{
-          fontSize: 11,
-          color: "#8B5CF6",
-          fontWeight: 500,
-          marginBottom: 4,
-        }}
-      >
+      <div className="text-[11px] text-accent font-medium mb-1">
         Situation {questionNumber}
       </div>
 
       {/* Question text */}
-      <div
-        style={{
-          fontSize: 13,
-          color: "#9CA3AF",
-          fontWeight: 400,
-          marginBottom: 12,
-          lineHeight: 1.5,
-        }}
-      >
+      <div className="text-[13px] text-gray-300 leading-relaxed mb-3">
         {questionText}
       </div>
 
+      {/* Separator */}
+      <div className="border-t border-gray-700/40 my-3" />
+
       {/* User answer block */}
       <div>
-        <div
-          style={{
-            fontSize: 10,
-            color: "#6B7280",
-            textTransform: "uppercase",
-            letterSpacing: 0.5,
-            marginBottom: 4,
-          }}
-        >
+        <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">
           Deine Antwort
         </div>
         {userAnswer ? (
-          <div
-            style={{
-              fontSize: 14,
-              color: "#FFFFFF",
-              fontWeight: 400,
-              lineHeight: 1.5,
-            }}
-          >
+          <div className="text-sm text-white leading-relaxed">
             {userAnswer}
           </div>
         ) : (
-          <div
-            style={{
-              fontSize: 14,
-              color: "#4B5563",
-              fontStyle: "italic",
-              lineHeight: 1.5,
-            }}
-          >
+          <div className="text-sm text-gray-500 italic leading-relaxed">
             (keine Antwort)
           </div>
         )}
         {isApproximate && (
-          <span
-            style={{
-              fontSize: 10,
-              color: "#8B5CF6",
-              background: "#1E1B4B",
-              borderRadius: 4,
-              padding: "2px 8px",
-              display: "inline-block",
-              marginTop: 6,
-            }}
-          >
-            Sinngemäß richtig
+          <span className="text-[10px] text-accent bg-accent-subtle rounded px-2 py-0.5 inline-block mt-1.5">
+            Sinngem&auml;&szlig; richtig
           </span>
         )}
       </div>
 
       {/* Reference answer block */}
-      <div style={{ marginTop: 12 }}>
-        <div
-          style={{
-            fontSize: 10,
-            color: "#6B7280",
-            textTransform: "uppercase",
-            letterSpacing: 0.5,
-            marginBottom: 4,
-          }}
-        >
+      <div className="mt-3">
+        <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">
           Musterantwort
         </div>
-        <div
-          style={{
-            fontSize: 14,
-            color: "#8B5CF6",
-            fontWeight: 400,
-            lineHeight: 1.5,
-          }}
-        >
+        <div className="text-sm text-accent leading-relaxed">
           {referenceAnswer}
         </div>
       </div>
@@ -462,27 +334,13 @@ function ResultVerdict({
   if (mode !== "pruefung") return null;
 
   return (
-    <div style={{ marginTop: 32 }}>
-      <div
-        style={{
-          fontSize: 13,
-          color: "#6B7280",
-          textAlign: "center",
-          fontWeight: 400,
-          marginBottom: 8,
-        }}
-      >
-        Prüfungsstand: {passed ? "Bestanden" : "Nicht bestanden"}
+    <div className="mt-8">
+      <div className="text-[13px] text-gray-400 text-center mb-2">
+        Pr&uuml;fungsstand: {passed ? "Bestanden" : "Dieses Mal nicht bestanden"}
       </div>
       {!passed && (
-        <div
-          style={{
-            fontSize: 12,
-            color: "#4B5563",
-            textAlign: "center",
-          }}
-        >
-          Zum Bestehen benötigst du {requiredPoints} Punkte
+        <div className="text-xs text-gray-500 text-center">
+          Zum Bestehen ben&ouml;tigst du {requiredPoints} Punkte &mdash; du schaffst das!
         </div>
       )}
     </div>
@@ -514,7 +372,7 @@ function ResultCTA({
     primaryLabel = `${weakestCategory} jetzt trainieren`;
     primaryRoute = `/regeltest?tags=${encodeURIComponent(weakestCategory)}&mode=TEST`;
   } else if (passed) {
-    primaryLabel = "Neue Prüfung starten";
+    primaryLabel = "Neue Pr\u00fcfung starten";
     primaryRoute = "/regeltest?mode=EXAM";
   } else {
     primaryLabel = "Weiter trainieren";
@@ -522,51 +380,18 @@ function ResultCTA({
   }
 
   return (
-    <div>
+    <div className="mt-10 mb-12">
       <button
         onClick={() => router.push(primaryRoute)}
-        className="min-h-[44px]"
-        style={{
-          background: "#FFFFFF",
-          color: "#000000",
-          borderRadius: 14,
-          padding: "16px 24px",
-          width: "100%",
-          fontSize: 16,
-          fontWeight: 600,
-          textAlign: "center",
-          marginTop: 40,
-          cursor: "pointer",
-          border: "none",
-          transition: "background 0.15s ease",
-        }}
-        onMouseEnter={(e) =>
-          ((e.currentTarget as HTMLButtonElement).style.background = "#F3F4F6")
-        }
-        onMouseLeave={(e) =>
-          ((e.currentTarget as HTMLButtonElement).style.background = "#FFFFFF")
-        }
+        className="w-full min-h-[48px] rounded-[var(--radius-xl)] bg-white text-gray-900 px-6 py-4 text-base font-semibold text-center transition-all hover:bg-gray-100 hover:scale-[1.02] active:scale-[0.98]"
       >
         {primaryLabel}
       </button>
       <button
         onClick={() => router.push("/dashboard")}
-        className="min-h-[44px]"
-        style={{
-          fontSize: 13,
-          color: "#6B7280",
-          textAlign: "center",
-          marginTop: 16,
-          marginBottom: 48,
-          display: "block",
-          width: "100%",
-          cursor: "pointer",
-          background: "none",
-          border: "none",
-          padding: 0,
-        }}
+        className="w-full min-h-[44px] text-[13px] text-gray-400 text-center mt-4 hover:text-gray-300 transition-colors bg-transparent border-none"
       >
-        Dashboard
+        Zum Dashboard
       </button>
     </div>
   );

@@ -115,7 +115,7 @@ export function EvaluatingView() {
     <div
       className="space-y-6"
       aria-busy={animPhase !== "done"}
-      aria-label="Auswertung läuft"
+      aria-label="Auswertung l\u00e4uft"
     >
       {(animPhase === "checkoff" || animPhase === "waiting") && (
         <QuestionCheckoffList
@@ -323,6 +323,9 @@ function ScoreRingReveal({
     }, 900);
   }, [onComplete]);
 
+  // Encouraging label
+  const label = passed ? "Bestanden!" : "Weiter trainieren";
+
   return (
     <motion.div
       className="rounded-[var(--radius-xl)] border border-border bg-surface p-8 sm:p-10 text-center"
@@ -353,7 +356,7 @@ function ScoreRingReveal({
             cy="50"
             r={radius}
             fill="none"
-            stroke={passed ? "var(--color-success)" : "var(--color-error)"}
+            stroke={passed ? "var(--color-success)" : "var(--color-warm)"}
             strokeWidth="7"
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -364,7 +367,7 @@ function ScoreRingReveal({
           />
         </svg>
 
-        {/* Percentage number — springs in after ring completes */}
+        {/* Percentage number */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.5 }}
@@ -378,7 +381,7 @@ function ScoreRingReveal({
           <span
             className={cn(
               "text-3xl sm:text-4xl font-bold",
-              passed ? "text-success-text" : "text-error"
+              passed ? "text-success-text" : "text-warm-text"
             )}
             aria-live="polite"
           >
@@ -397,10 +400,10 @@ function ScoreRingReveal({
         <h2
           className={cn(
             "text-xl font-bold",
-            passed ? "text-success-text" : "text-error"
+            passed ? "text-success-text" : "text-warm-text"
           )}
         >
-          {passed ? "Bestanden!" : "Nicht bestanden"}
+          {label}
         </h2>
         <p className="mt-1 text-sm text-text-secondary">
           {totalScore} von {maxScore} Punkten

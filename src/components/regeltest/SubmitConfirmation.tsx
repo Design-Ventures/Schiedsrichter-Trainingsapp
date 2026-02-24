@@ -48,7 +48,7 @@ export function SubmitConfirmation({
 
       {/* Sheet */}
       <motion.div
-        className="relative mx-0 sm:mx-4 w-full sm:max-w-md rounded-t-[var(--radius-2xl)] sm:rounded-[var(--radius-xl)] bg-surface p-6 shadow-xl"
+        className="relative mx-0 sm:mx-4 w-full sm:max-w-md rounded-t-[var(--radius-2xl)] sm:rounded-[var(--radius-xl)] bg-surface p-7 shadow-xl"
         drag="y"
         dragConstraints={{ top: 0 }}
         dragElastic={0.1}
@@ -68,8 +68,8 @@ export function SubmitConfirmation({
           Du hast {answeredCount} von {totalCount} Fragen beantwortet.
         </p>
         {unanswered > 0 && (
-          <p className="mb-4 text-sm font-medium text-error">
-            {unanswered} Frage{unanswered > 1 ? "n" : ""} ohne Antwort (0 Punkte).
+          <p className="mb-4 text-sm font-medium text-warning-text">
+            {unanswered} Frage{unanswered > 1 ? "n" : ""} noch offen (0 Punkte).
           </p>
         )}
         {unanswered === 0 && <div className="mb-4" />}

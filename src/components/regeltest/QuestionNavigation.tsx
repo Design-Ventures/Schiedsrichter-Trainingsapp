@@ -25,7 +25,7 @@ export function QuestionNavigation() {
     <>
       {/* Question grid (TEST mode only) — stays in scrollable content */}
       {mode === "TEST" && (
-        <nav aria-label="Fragenübersicht" className="flex flex-wrap gap-2">
+        <nav aria-label="Fragen&uuml;bersicht" className="flex flex-wrap gap-2">
           {questions.map((_, i) => (
             <button
               key={i}
@@ -33,12 +33,12 @@ export function QuestionNavigation() {
               aria-label={`Frage ${i + 1}${answers.has(i) ? ", beantwortet" : ""}`}
               aria-current={i === currentIndex ? "step" : undefined}
               className={cn(
-                "flex h-11 w-11 items-center justify-center rounded-[var(--radius-lg)] text-sm font-medium transition-colors",
+                "flex h-11 w-11 items-center justify-center rounded-[var(--radius-lg)] text-sm font-medium transition-all",
                 i === currentIndex
-                  ? "bg-accent text-text-on-primary"
+                  ? "bg-primary text-text-on-primary"
                   : answers.has(i)
                     ? "bg-accent-light text-accent-text"
-                    : "bg-fill-tertiary text-text-tertiary hover:bg-fill-active"
+                    : "bg-fill-tertiary text-text-tertiary hover:bg-fill-active hover:scale-105"
               )}
             >
               {i + 1}
@@ -48,8 +48,8 @@ export function QuestionNavigation() {
       )}
 
       {/* Fixed bottom navigation bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 border-t border-border bg-surface/80 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-3xl items-center gap-3 px-5 pt-3 pb-safe sm:px-6">
+      <div className="fixed bottom-0 left-0 right-0 z-20 bg-surface/80 backdrop-blur-sm shadow-[0_-1px_3px_rgba(28,25,23,0.04)]">
+        <div className="mx-auto flex max-w-3xl items-center gap-3 px-5 pt-3.5 pb-safe sm:px-6">
           {canGoBack ? (
             <Button
               variant="outline"
@@ -57,7 +57,7 @@ export function QuestionNavigation() {
               onClick={previousQuestion}
               className="flex-1"
             >
-              Zurück
+              Zur&uuml;ck
             </Button>
           ) : (
             <div className="flex-1" />

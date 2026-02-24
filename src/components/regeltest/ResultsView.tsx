@@ -26,19 +26,33 @@ export function ResultsView() {
   const config = REGELTEST_CONFIG[results.mode];
   const passScore = Math.ceil(results.maxScore * (config.passPercentage / 100));
   const passed = results.totalScore >= passScore;
+  const percentage = Math.round((results.totalScore / results.maxScore) * 100);
 
   const completedDate = new Date(results.completedAt).toLocaleDateString(
     "de-DE",
     { day: "2-digit", month: "2-digit", year: "numeric" }
   );
 
+  // Encouraging header copy
+  const headerCopy =
+    percentage >= 80
+      ? "Hervorragend! Hier ist dein Ergebnis."
+      : percentage >= 60
+        ? "Gut gemacht! Hier ist dein Ergebnis."
+        : "Hier ist dein Ergebnis.";
+
   return (
     <div className="space-y-6">
-      {/* Neutral header */}
-      <p className="text-center text-sm text-text-secondary">
-        {results.totalQuestions} Situationen abgeschlossen &middot;{" "}
-        {completedDate}
-      </p>
+      {/* Encouraging header */}
+      <div className="text-center">
+        <p className="text-base font-medium text-text-primary">
+          {headerCopy}
+        </p>
+        <p className="mt-1 text-sm text-text-secondary">
+          {results.totalQuestions} Situationen abgeschlossen &middot;{" "}
+          {completedDate}
+        </p>
+      </div>
 
       {/* Score breakdown */}
       <div className="grid grid-cols-3 gap-3">
@@ -56,12 +70,12 @@ export function ResultsView() {
             <div
               key={score}
               className={cn(
-                "rounded-[var(--radius-lg)] p-3 text-center",
+                "rounded-[var(--radius-lg)] p-4 text-center",
                 colors[score]
               )}
             >
-              <div className="text-2xl font-bold">{count}</div>
-              <div className="text-xs">{labels[score]}</div>
+              <div className="text-3xl font-bold">{count}</div>
+              <div className="text-xs mt-1">{labels[score]}</div>
             </div>
           );
         })}
@@ -87,11 +101,16 @@ export function ResultsView() {
         )}
       >
         <p>
-          Zum Bestehen benötigst du {passScore} Punkte — du hattest{" "}
+          Zum Bestehen ben&ouml;tigst du {passScore} Punkte — du hattest{" "}
           {results.totalScore}.{" "}
           <span className="font-semibold">
             {passed ? "Bestanden." : "Nicht bestanden."}
           </span>
+          {!passed && (
+            <span className="block mt-1 font-normal">
+              Weiter &uuml;ben!
+            </span>
+          )}
         </p>
       </div>
 
@@ -100,13 +119,13 @@ export function ResultsView() {
         <div className="rounded-[var(--radius-lg)] border border-accent/20 bg-accent/5 p-4 sm:p-5">
           <h4 className="text-[15px] font-semibold text-text-primary">
             {weakTags.length === 1
-              ? `Jetzt ${weakTags[0]} gezielt üben`
+              ? `Jetzt ${weakTags[0]} gezielt \u00fcben`
               : "Schwache Kategorien trainieren"}
           </h4>
           <p className="mt-1.5 text-[13px] text-text-secondary leading-relaxed">
             {weakTags.length === 1
-              ? `Du hattest Schwierigkeiten bei "${weakTags[0]}". Starte einen gezielten Übungstest.`
-              : `Du hattest Schwierigkeiten in ${weakTags.length} Kategorien. Trainiere gezielt deine Schwächen.`}
+              ? `Du hattest Schwierigkeiten bei "${weakTags[0]}". Starte einen gezielten \u00dcbungstest.`
+              : `Du hattest Schwierigkeiten in ${weakTags.length} Kategorien. Trainiere gezielt deine Schw\u00e4chen.`}
           </p>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {weakTags.slice(0, 5).map((tag) => (
@@ -131,8 +150,8 @@ export function ResultsView() {
             }}
           >
             {weakTags.length === 1
-              ? `${weakTags[0]} üben`
-              : "Schwache Kategorien üben"}
+              ? `${weakTags[0]} \u00fcben`
+              : "Schwache Kategorien \u00fcben"}
           </Button>
         </div>
       )}

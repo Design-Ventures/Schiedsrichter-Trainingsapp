@@ -12,7 +12,7 @@ interface AnimatedListProps {
 export function AnimatedList({
   children,
   className,
-  staggerMs = 40,
+  staggerMs = 60,
 }: AnimatedListProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -25,12 +25,12 @@ export function AnimatedList({
       {Children.map(children, (child, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             type: "spring",
-            stiffness: 400,
-            damping: 30,
+            stiffness: 280,
+            damping: 26,
             delay: i * (staggerMs / 1000),
           }}
         >

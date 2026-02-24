@@ -37,15 +37,20 @@ export function Timer() {
 
   if (mode !== "EXAM") return null;
 
-  const isWarning = timeRemaining <= 5;
+  const isUrgent = timeRemaining <= 5;
+  const isWarning = timeRemaining <= 10 && !isUrgent;
 
   return (
     <div
       aria-live="polite"
       aria-label={`${timeRemaining} Sekunden verbleibend`}
       className={cn(
-        "font-mono text-lg font-bold tabular-nums transition-colors duration-150",
-        isWarning ? "text-error" : "text-text-tertiary"
+        "font-mono text-lg font-bold tabular-nums transition-all duration-150",
+        isUrgent
+          ? "text-warm scale-110"
+          : isWarning
+            ? "text-warning-text"
+            : "text-text-tertiary"
       )}
     >
       {timeRemaining}s
