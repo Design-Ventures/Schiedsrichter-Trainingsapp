@@ -49,8 +49,35 @@ BEWERTUNGSREGELN (befolge diese STRIKT)
    - 1 Punkt: Mindestens ein Pflichtelement korrekt
    - 0 Punkte: Kein Pflichtelement korrekt ODER leere Antwort
 
-   WICHTIG: Wenn die persönliche Strafe korrekt ist aber die Spielfortsetzung falsch
-   (oder umgekehrt), vergib IMMER mindestens 1 Punkt.
+   AKTIV FALSCHE AUSSAGEN vs. NICHT ERWÄHNT — ENTSCHEIDENDE UNTERSCHEIDUNG:
+   Unterscheide IMMER zwischen "nicht erwähnt" (Prüfling hat Element ausgelassen)
+   und "aktiv falsch" (Prüfling hat einen FALSCHEN Wert EXPLIZIT genannt).
+
+   Bewertungslogik (in dieser Reihenfolge prüfen):
+
+   Schritt 1: Hat der Prüfling EIN EINZIGES Pflichtelement AKTIV FALSCH beantwortet?
+   (z.B. falsche Kartenfarbe, falsche Spielfortsetzung, falsche Ja/Nein-Antwort explizit genannt)
+   → Wenn JA: score = 0, hat_aktiv_falsche_aussage = true
+     AUCH WENN andere Pflichtelemente korrekt waren!
+     Dies gilt UNABHÄNGIG davon, wie viele Elemente die Frage hat (2 oder 3).
+
+   Schritt 2: Nur wenn KEIN Element aktiv falsch ist:
+   → Pflichtelement korrekt + anderes nur "nicht erwähnt" → 1 Punkt
+   → Alle Pflichtelemente korrekt → 2 Punkte
+   → Kein Pflichtelement korrekt → 0 Punkte
+
+   WICHTIG: Die Regel "mindestens 1 Punkt wenn ein Element korrekt" gilt NUR
+   wenn das andere Element NICHT ERWÄHNT wurde. Sobald ein Pflichtelement
+   AKTIV FALSCH ist (falscher Wert explizit genannt), gilt Schritt 1 → 0 Punkte.
+
+   Beispiele:
+   - "Direkter Freistoß" (Verwarnung nicht erwähnt) → 1 Punkt (Schritt 2)
+   - "Direkter Freistoß und Rote Karte" (Rote Karte ist aktiv falsch, richtig: Verwarnung)
+     → 0 Punkte (Schritt 1: Persönliche Strafe aktiv falsch)
+   - "Indirekter Freistoß und Verwarnung" (Indirekter ist aktiv falsch, richtig: Direkter)
+     → 0 Punkte (Schritt 1: Spielfortsetzung aktiv falsch)
+   - "Nein, Gelbe Karte" bei Frage mit 3 Elementen (JN=Nein ✓, PS=Gelb ✗ aktiv falsch, TOR nicht erwähnt)
+     → 0 Punkte (Schritt 1: PS ist aktiv falsch → score=0, egal dass JN korrekt ist)
 
 6. DIFFERENZIERTES FEEDBACK
    Bei falschem Element: Erkläre WARUM es falsch ist.
@@ -84,6 +111,7 @@ AUSGABEFORMAT (antworte IMMER in diesem JSON)
   "feedback": "<zusammenfassendes Feedback, max 3 Sätze, Deutsch>",
   "matchedCriteria": ["<liste der korrekt erkannten Kriterien>"],
   "erkannte_fehlannahme": "<Beschreibung>" oder null,
+  "hat_aktiv_falsche_aussage": true/false,
   "bewertung_elemente": [
     {
       "element_id": "<ID>",

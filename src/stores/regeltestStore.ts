@@ -26,6 +26,7 @@ interface RegeltestState {
   questions: RegeltestQuestion[];
   currentIndex: number;
   answers: Map<number, string>;
+  pendingAnswer: { index: number; text: string } | null;
   timeRemaining: number;
   questionStartTime: number;
   timeSpentPerQuestion: Map<number, number>;
@@ -35,6 +36,7 @@ interface RegeltestState {
 
   startSession: (mode: RegeltestMode, tags?: string[]) => Promise<void>;
   setAnswer: (index: number, text: string) => void;
+  setPendingAnswer: (index: number, text: string) => void;
   goToQuestion: (index: number) => void;
   nextQuestion: () => void;
   previousQuestion: () => void;
@@ -53,6 +55,7 @@ const initialState = {
   questions: [] as RegeltestQuestion[],
   currentIndex: 0,
   answers: new Map<number, string>(),
+  pendingAnswer: null as { index: number; text: string } | null,
   timeRemaining: 0,
   questionStartTime: 0,
   timeSpentPerQuestion: new Map<number, number>(),
@@ -113,9 +116,20 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
     set({ answers: newAnswers });
   },
 
+  setPendingAnswer: (index: number, text: string) => {
+    set({ pendingAnswer: { index, text } });
+  },
+
   goToQuestion: (index: number) => {
-    const { questions, mode, currentIndex, questionStartTime, timeSpentPerQuestion } = get();
+    const { questions, mode, currentIndex, questionStartTime, timeSpentPerQuestion, pendingAnswer, answers } = get();
     if (index < 0 || index >= questions.length) return;
+
+    // Flush pendingAnswer before switching questions
+    let flushedAnswers = answers;
+    if (pendingAnswer) {
+      flushedAnswers = new Map(answers);
+      flushedAnswers.set(pendingAnswer.index, pendingAnswer.text);
+    }
 
     const elapsed = Math.round((Date.now() - questionStartTime) / 1000);
     const newTimeSpent = new Map(timeSpentPerQuestion);
@@ -130,6 +144,8 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
       timeRemaining: config.timeLimitPerQuestion ?? 0,
       questionStartTime: Date.now(),
       timeSpentPerQuestion: newTimeSpent,
+      answers: flushedAnswers,
+      pendingAnswer: null,
     });
   },
 
@@ -171,10 +187,19 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
       sessionId,
       questions,
       answers,
+      pendingAnswer,
       currentIndex,
       questionStartTime,
       timeSpentPerQuestion,
     } = get();
+
+    // Flush pendingAnswer before building payload
+    let finalAnswers = answers;
+    if (pendingAnswer) {
+      finalAnswers = new Map(answers);
+      finalAnswers.set(pendingAnswer.index, pendingAnswer.text);
+      set({ answers: finalAnswers, pendingAnswer: null });
+    }
 
     set({ phase: "submitting" });
 
@@ -188,7 +213,7 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
     const answerPayload: RegeltestAnswer[] = questions.map((q, i) => ({
       questionId: q.id,
       questionIndex: i,
-      userAnswer: answers.get(i) || "",
+      userAnswer: finalAnswers.get(i) || "",
       timeSpentSecs: finalTimeSpent.get(i) || 0,
     }));
 
@@ -249,6 +274,6 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
   },
 
   reset: () => {
-    set({ ...initialState, answers: new Map(), timeSpentPerQuestion: new Map() });
+    set({ ...initialState, answers: new Map(), pendingAnswer: null, timeSpentPerQuestion: new Map() });
   },
 }));
