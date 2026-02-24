@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       select: { id: true },
     });
 
-    const minRequired = isFiltered ? 5 : config.questionCount;
+    const minRequired = isFiltered ? 1 : config.questionCount;
     if (allQuestionIds.length < minRequired) {
       return NextResponse.json(
         {
