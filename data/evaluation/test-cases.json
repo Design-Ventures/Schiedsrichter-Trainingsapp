@@ -1,0 +1,170 @@
+[
+  {
+    "id": "q1-full-correct",
+    "questionIndex": 1,
+    "userAnswer": "Nein, Feldverweis, Tor",
+    "expectedScore": 2,
+    "tags": ["baseline"],
+    "description": "Q1 (3 elements): All correct — PS, JN, TOR"
+  },
+  {
+    "id": "q3-full-correct",
+    "questionIndex": 3,
+    "userAnswer": "Direkter Freistoß, Verwarnung",
+    "expectedScore": 2,
+    "tags": ["baseline"],
+    "description": "Q3 (2 elements): Both SF and PS correct"
+  },
+  {
+    "id": "q10-full-correct",
+    "questionIndex": 10,
+    "userAnswer": "Nein",
+    "expectedScore": 2,
+    "tags": ["baseline"],
+    "description": "Q10 (1 element): JN correct"
+  },
+  {
+    "id": "q1-full-correct-verbose",
+    "questionIndex": 1,
+    "userAnswer": "Nein, er hätte Rote Karte geben müssen. Das Tor zählt.",
+    "expectedScore": 2,
+    "tags": ["baseline"],
+    "description": "Q1: Verbose but all elements present (Rot=Feldverweis synonym)"
+  },
+  {
+    "id": "q3-full-correct-synonym",
+    "questionIndex": 3,
+    "userAnswer": "DFK, Gelbe Karte",
+    "expectedScore": 2,
+    "tags": ["baseline", "synonym"],
+    "description": "Q3: Both correct via synonyms (DFK=Direkter Freistoß, Gelbe Karte=Verwarnung)"
+  },
+  {
+    "id": "q3-sf-only-ps-missing",
+    "questionIndex": 3,
+    "userAnswer": "Direkter Freistoß",
+    "expectedScore": 1,
+    "tags": ["partial"],
+    "description": "Q3: SF correct, PS not mentioned → 1P"
+  },
+  {
+    "id": "q1-ps-only",
+    "questionIndex": 1,
+    "userAnswer": "Feldverweis",
+    "expectedScore": 1,
+    "tags": ["partial"],
+    "description": "Q1: Only PS correct, JN+TOR not mentioned → 1P"
+  },
+  {
+    "id": "q3-ps-only-sf-missing",
+    "questionIndex": 3,
+    "userAnswer": "Verwarnung",
+    "expectedScore": 1,
+    "tags": ["partial"],
+    "description": "Q3: PS correct, SF not mentioned → 1P"
+  },
+  {
+    "id": "q3-sf-correct-ps-wrong",
+    "questionIndex": 3,
+    "userAnswer": "Direkter Freistoß und Rote Karte",
+    "expectedScore": 0,
+    "tags": ["aktiv-falsch"],
+    "description": "Q3: SF correct but PS actively wrong (Rot statt Verwarnung) → 0P"
+  },
+  {
+    "id": "q3-sf-wrong-ps-correct",
+    "questionIndex": 3,
+    "userAnswer": "Indirekter Freistoß und Verwarnung",
+    "expectedScore": 0,
+    "tags": ["aktiv-falsch"],
+    "description": "Q3: PS correct but SF actively wrong (Indirekt statt Direkt) → 0P"
+  },
+  {
+    "id": "q3-empty",
+    "questionIndex": 3,
+    "userAnswer": "",
+    "expectedScore": 0,
+    "tags": ["empty"],
+    "description": "Q3: Empty answer → 0P (no API call)"
+  },
+  {
+    "id": "q1-justification-only",
+    "questionIndex": 1,
+    "userAnswer": "Weil der Torhüter aus dem Spiel ist",
+    "expectedScore": 0,
+    "tags": ["rule-11"],
+    "description": "Q1: Only justification, no core elements (Rule 11) → 0P"
+  },
+  {
+    "id": "q3-wrong-location-rule12",
+    "questionIndex": 3,
+    "userAnswer": "Direkter Freistoß am Strafraum, Verwarnung",
+    "expectedScore": 2,
+    "tags": ["rule-12"],
+    "description": "Q3: Correct SF type + wrong location → still 2P (Rule 12)"
+  },
+  {
+    "id": "q3-reversed-order-rule13",
+    "questionIndex": 3,
+    "userAnswer": "Verwarnung, Direkter Freistoß",
+    "expectedScore": 2,
+    "tags": ["rule-13"],
+    "description": "Q3: Reversed order (PS then SF) → still 2P (Rule 13)"
+  },
+  {
+    "id": "q1-synonym-rot",
+    "questionIndex": 1,
+    "userAnswer": "Nein, Rot, Tor",
+    "expectedScore": 2,
+    "tags": ["synonym"],
+    "description": "Q1: Uses 'Rot' synonym for Feldverweis → full credit"
+  },
+  {
+    "id": "q10-correct-wrong-reasoning",
+    "questionIndex": 10,
+    "userAnswer": "Nein, weil das im Regelwerk nirgends steht",
+    "expectedScore": 2,
+    "tags": ["rule-11"],
+    "description": "Q10: Correct JN + wrong reasoning → still 2P (Rule 11: reasoning doesn't count)"
+  },
+  {
+    "id": "q1-jn-wrong-rest-correct",
+    "questionIndex": 1,
+    "userAnswer": "Ja, Feldverweis, Tor",
+    "expectedScore": 0,
+    "tags": ["aktiv-falsch"],
+    "description": "Q1 (3 elements): JN actively wrong (Ja statt Nein), PS+TOR correct → 0P"
+  },
+  {
+    "id": "q1-two-elements-wrong",
+    "questionIndex": 1,
+    "userAnswer": "Nein, Gelbe Karte, kein Tor",
+    "expectedScore": 0,
+    "tags": ["aktiv-falsch"],
+    "description": "Q1: JN correct but PS+TOR both actively wrong → 0P"
+  },
+  {
+    "id": "q3-trivial-ja",
+    "questionIndex": 3,
+    "userAnswer": "ja",
+    "expectedScore": 0,
+    "tags": ["trivial"],
+    "description": "Q3: Trivial answer with no matching core elements → 0P"
+  },
+  {
+    "id": "q10-wrong-ja",
+    "questionIndex": 10,
+    "userAnswer": "Ja",
+    "expectedScore": 0,
+    "tags": ["aktiv-falsch"],
+    "description": "Q10: JN actively wrong (Ja statt Nein) → 0P"
+  },
+  {
+    "id": "q3-correct-wrong-reasoning-rule11",
+    "questionIndex": 3,
+    "userAnswer": "Direkter Freistoß, Verwarnung, weil Handspiel vorlag",
+    "expectedScore": 2,
+    "tags": ["rule-11"],
+    "description": "Q3: Both elements correct + wrong reasoning (Handspiel statt unsportlich) → still 2P (Rule 11)"
+  }
+]

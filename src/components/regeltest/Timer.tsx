@@ -12,7 +12,6 @@ export function Timer() {
 
   const timeLimit = mode ? (REGELTEST_CONFIG[mode].timeLimitPerQuestion ?? 0) : 0;
   const [timeRemaining, setTimeRemaining] = useState(timeLimit);
-  const [showFlash, setShowFlash] = useState(false);
 
   // Ref for handleTimeout to avoid stale closures without adding to deps
   const handleTimeoutRef = useRef(handleTimeout);
@@ -26,7 +25,6 @@ export function Timer() {
   // Reset timer when question changes
   useEffect(() => {
     setTimeRemaining(timeLimit);
-    setShowFlash(false);
     timeoutFiredRef.current = false;
   }, [currentIndex, timeLimit]);
 
@@ -44,20 +42,14 @@ export function Timer() {
     return () => clearInterval(interval);
   }, [mode, timeLimit]);
 
-  // Handle timeout when time reaches 0
+  // Handle timeout when time reaches 0 — navigate immediately, no delay
   useEffect(() => {
     if (timeRemaining !== 0) return;
     if (mode !== "EXAM" || timeLimit === 0) return;
     if (timeoutFiredRef.current) return;
 
     timeoutFiredRef.current = true;
-    setShowFlash(true);
-
-    const timer = setTimeout(() => {
-      handleTimeoutRef.current();
-    }, 300);
-
-    return () => clearTimeout(timer);
+    handleTimeoutRef.current();
   }, [timeRemaining, mode, timeLimit]);
 
   if (mode !== "EXAM") return null;
@@ -66,36 +58,19 @@ export function Timer() {
   const isWarning = timeRemaining <= 10 && !isUrgent;
 
   return (
-    <>
-      <div
-        aria-live="polite"
-        aria-label={`${timeRemaining} Sekunden verbleibend`}
-        className={cn(
-          "font-mono text-lg font-bold tabular-nums transition-all duration-150",
-          isUrgent
-            ? "text-warm scale-110"
-            : isWarning
-              ? "text-warning-text"
-              : "text-text-tertiary"
-        )}
-      >
-        {timeRemaining}s
-      </div>
-
-      {showFlash && (
-        <div
-          role="alert"
-          className={cn(
-            "fixed inset-0 z-50 flex items-center justify-center",
-            "bg-warm/10 animate-[fadeOut_300ms_ease-out_forwards]",
-            "motion-reduce:animate-none motion-reduce:opacity-0"
-          )}
-        >
-          <span className="rounded-lg bg-warm-light px-6 py-3 text-lg font-bold text-warm-text shadow-lg">
-            Zeit abgelaufen!
-          </span>
-        </div>
+    <div
+      aria-live="polite"
+      aria-label={`${timeRemaining} Sekunden verbleibend`}
+      className={cn(
+        "font-mono text-lg font-bold tabular-nums transition-all duration-150",
+        isUrgent
+          ? "text-warm scale-110"
+          : isWarning
+            ? "text-warning-text"
+            : "text-text-tertiary"
       )}
-    </>
+    >
+      {timeRemaining}s
+    </div>
   );
 }

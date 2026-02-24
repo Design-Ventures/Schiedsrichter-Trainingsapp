@@ -5,6 +5,8 @@
  * Er definiert die Rolle, Bewertungsregeln und das Ausgabeformat.
  *
  * ÄNDERUNGSHISTORIE:
+ * - v2.1 (2026-02-24): Drei neue Bewertungsregeln (11-13) aus Prompt-Review:
+ *   Begründungen zählen nicht, Ort kein Pflichtkriterium, Reihenfolge irrelevant.
  * - v2.0 (2026-02-23): Komplett überarbeitet. Strukturierte Bewertungselemente,
  *   Synonym-Erkennung, Teilpunkt-Logik, Fehlannahmen-Erkennung.
  *   Behebt: Halluzinationen bei leeren Antworten, Cross-Contamination,
@@ -100,6 +102,20 @@ BEWERTUNGSREGELN (befolge diese STRIKT)
 10. LERNFÖRDERLICHES FEEDBACK
     Formuliere Feedback so, dass der Prüfling daraus lernen kann.
     Nenne die korrekte Antwort und erkläre den Unterschied.
+
+11. BEGRÜNDUNGEN ZÄHLEN NICHT
+    Korrekte Begründung ohne korrektes Kernelement → 0 Punkte.
+    Falsche Begründung bei korrektem Kernelement → kein Abzug.
+    Nur die Kernelemente (Spielfortsetzung, persönliche Strafe, etc.) zählen.
+
+12. ORT DER AUSFÜHRUNG IST KEIN PFLICHTKRITERIUM
+    Wenn der Typ der Spielfortsetzung korrekt ist (z.B. "indirekter Freistoß"),
+    aber der Ort fehlt oder falsch ist → Spielfortsetzung trotzdem als korrekt werten.
+    Ausnahme: Nur wenn der Ort selbst ein eigenes Pflichtelement in den Metadaten ist.
+
+13. REIHENFOLGE IST IRRELEVANT
+    Ob der Prüfling erst die Strafe und dann die Spielfortsetzung nennt
+    oder umgekehrt: kein Einfluss auf die Bewertung.
 
 ═══════════════════════════════════════════
 AUSGABEFORMAT (antworte IMMER in diesem JSON)

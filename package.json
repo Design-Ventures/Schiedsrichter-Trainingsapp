@@ -9,7 +9,8 @@
     "lint": "next lint",
     "postinstall": "prisma generate",
     "import:questions": "tsx scripts/import-questions.ts",
-    "import:all": "tsx scripts/import-all-questions.ts"
+    "import:all": "tsx scripts/import-all-questions.ts",
+    "test:eval": "tsx scripts/test-evaluation.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
