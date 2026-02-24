@@ -31,6 +31,7 @@ interface RegeltestState {
   timeSpentPerQuestion: Map<number, number>;
   results: RegeltestResults | null;
   errorMessage: string | null;
+  answersSubmitted: boolean;
 
   startSession: (mode: RegeltestMode, tags?: string[]) => Promise<void>;
   setAnswer: (index: number, text: string) => void;
@@ -57,6 +58,7 @@ const initialState = {
   timeSpentPerQuestion: new Map<number, number>(),
   results: null as RegeltestResults | null,
   errorMessage: null as string | null,
+  answersSubmitted: false,
 };
 
 export const useRegeltestStore = create<RegeltestState>((set, get) => ({
@@ -205,6 +207,7 @@ export const useRegeltestStore = create<RegeltestState>((set, get) => ({
         throw new Error(data.error || "Fehler beim Einreichen der Antworten");
       }
 
+      set({ answersSubmitted: true });
       await get().triggerEvaluation();
     } catch (error) {
       set({

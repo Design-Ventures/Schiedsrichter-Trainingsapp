@@ -8,7 +8,7 @@ const submitAnswersSchema = z.object({
     z.object({
       questionId: z.string().uuid(),
       questionIndex: z.number().int().min(0),
-      userAnswer: z.string(),
+      userAnswer: z.string().max(5000),
       timeSpentSecs: z.number().int().min(0),
     })
   ),

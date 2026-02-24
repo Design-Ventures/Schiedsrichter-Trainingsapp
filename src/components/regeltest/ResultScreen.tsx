@@ -36,9 +36,6 @@ export function ResultScreen() {
   );
   const weakestCategory = weakTags.length > 0 ? weakTags[0] : null;
 
-  const previousPercentage: number | null = null;
-  const isFirstTest = true;
-
   // Encouraging micro-copy based on score
   const encouragement =
     percentage >= 80
@@ -63,10 +60,6 @@ export function ResultScreen() {
           pointsTotal={results.maxScore}
           encouragement={encouragement}
         />
-        <ResultDelta
-          previousPercentage={previousPercentage}
-          currentPercentage={percentage}
-        />
         <ResultBreakdown
           fullPoints={fullPoints}
           partialPoints={partialPoints}
@@ -82,7 +75,6 @@ export function ResultScreen() {
         <ResultCTA
           weakestCategory={weakestCategory}
           passed={passed}
-          isFirstTest={isFirstTest}
           mode={mode}
         />
       </div>
@@ -142,25 +134,6 @@ function ResultScore({
       <div className="text-sm text-gray-400 text-center mt-1 mb-8">
         {pointsEarned} von {pointsTotal} Punkten
       </div>
-    </div>
-  );
-}
-
-// ─── ResultDelta (conditional) ───
-
-function ResultDelta({
-  previousPercentage,
-  currentPercentage,
-}: {
-  previousPercentage: number | null;
-  currentPercentage: number;
-}) {
-  if (previousPercentage === null) return null;
-  if (currentPercentage <= previousPercentage) return null;
-
-  return (
-    <div className="text-[13px] text-accent text-center font-medium -mt-4 mb-8">
-      &#9650; Besser als dein letzter Test
     </div>
   );
 }
@@ -352,12 +325,10 @@ function ResultVerdict({
 function ResultCTA({
   weakestCategory,
   passed,
-  isFirstTest,
   mode,
 }: {
   weakestCategory: string | null;
   passed: boolean;
-  isFirstTest: boolean;
   mode: Mode;
 }) {
   const router = useRouter();
@@ -365,10 +336,7 @@ function ResultCTA({
   let primaryLabel: string;
   let primaryRoute: string;
 
-  if (isFirstTest) {
-    primaryLabel = "Alle Kategorien ansehen";
-    primaryRoute = "/dashboard/statistiken";
-  } else if (weakestCategory && !passed) {
+  if (weakestCategory && !passed) {
     primaryLabel = `${weakestCategory} jetzt trainieren`;
     primaryRoute = `/regeltest?tags=${encodeURIComponent(weakestCategory)}&mode=TEST`;
   } else if (passed) {

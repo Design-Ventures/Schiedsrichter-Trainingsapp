@@ -7,7 +7,9 @@ import { useRegeltestStore } from "@/stores/regeltestStore";
 export function RegeltestError() {
   const errorMessage = useRegeltestStore((s) => s.errorMessage);
   const mode = useRegeltestStore((s) => s.mode);
+  const answersSubmitted = useRegeltestStore((s) => s.answersSubmitted);
   const startSession = useRegeltestStore((s) => s.startSession);
+  const triggerEvaluation = useRegeltestStore((s) => s.triggerEvaluation);
   const reset = useRegeltestStore((s) => s.reset);
 
   return (
@@ -39,7 +41,14 @@ export function RegeltestError() {
               Dashboard
             </Button>
           </Link>
-          {mode && (
+          {answersSubmitted ? (
+            <Button
+              onClick={triggerEvaluation}
+              className="flex-1"
+            >
+              Bewertung erneut starten
+            </Button>
+          ) : mode && (
             <Button
               onClick={() => startSession(mode)}
               className="flex-1"
