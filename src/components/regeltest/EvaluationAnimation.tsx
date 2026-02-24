@@ -210,9 +210,7 @@ function EvalQuestionItem({
           "text-xs font-medium shrink-0",
           state === "active"
             ? "text-white"
-            : state === "checked"
-              ? "text-gray-400"
-              : "text-gray-600"
+            : "text-gray-400"
         )}
       >
         Situation {questionNumber}

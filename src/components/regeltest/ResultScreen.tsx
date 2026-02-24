@@ -294,7 +294,7 @@ function AnswerCard({
             {userAnswer}
           </div>
         ) : (
-          <div className="text-sm text-gray-500 italic leading-relaxed">
+          <div className="text-sm text-gray-400 italic leading-relaxed">
             (keine Antwort)
           </div>
         )}
@@ -339,7 +339,7 @@ function ResultVerdict({
         Pr&uuml;fungsstand: {passed ? "Bestanden" : "Dieses Mal nicht bestanden"}
       </div>
       {!passed && (
-        <div className="text-xs text-gray-500 text-center">
+        <div className="text-xs text-gray-400 text-center">
           Zum Bestehen ben&ouml;tigst du {requiredPoints} Punkte &mdash; du schaffst das!
         </div>
       )}

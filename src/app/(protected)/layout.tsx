@@ -17,8 +17,8 @@ export default async function ProtectedLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-surface/80 backdrop-blur-sm sticky top-0 z-10 shadow-[var(--shadow-xs)]">
+    <div className="min-h-screen bg-surface">
+      <header className="border-b border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3 sm:px-6 sm:py-4">
           <Link href="/dashboard">
             <Logo />
